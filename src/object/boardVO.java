@@ -1,12 +1,14 @@
 package object;
 
+import java.sql.Date;
+
 public class boardVO {
 	private int boardNumber;
 	private int userNumber;
 	private int categoryNumber;
 	private String boardText;
-	private java.sql.Date boardDate;
-	private boolean boardShowCheck;
+	private Date boardDate;
+	
 	public int getBoardNumber() {
 		return boardNumber;
 	}
@@ -31,18 +33,18 @@ public class boardVO {
 	public void setBoardText(String boardText) {
 		this.boardText = boardText;
 	}
-	public java.sql.Date getBoardDate() {
+	public Date getBoardDate() {
 		return boardDate;
 	}
-	public void setBoardDate(java.sql.Date boardDate) {
+	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
-	public boolean isBoardShowCheck() {
-		return boardShowCheck;
+	@Override
+	public String toString() {
+		return "boardVO [boardNumber=" + boardNumber + ", userNumber=" + userNumber + ", categoryNumber="
+				+ categoryNumber + ", boardText=" + boardText + ", boardDate=" + boardDate + "]";
 	}
-	public void setBoardShowCheck(boolean boardShowCheck) {
-		this.boardShowCheck = boardShowCheck;
-	}
+	
 	
 	
 }

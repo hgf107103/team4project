@@ -1,11 +1,14 @@
 package object;
 
+import java.sql.Date;
+
 public class userVO {
 	private int userNumber;
 	private String userID;
 	private String userPassword;
 	private String userName;
 	private String userNickname;
+	private Date userCreateDate;
 	public int getUserNumber() {
 		return userNumber;
 	}
@@ -36,6 +39,17 @@ public class userVO {
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
-	
+	public Date getUserCreateDate() {
+		return userCreateDate;
+	}
+	public void setUserCreateDate(Date userCreateDate) {
+		this.userCreateDate = userCreateDate;
+	}
+	@Override
+	public String toString() {
+		return "userVO [userNumber=" + userNumber + ", userID=" + userID + ", userPassword=" + userPassword
+				+ ", userName=" + userName + ", userNickname=" + userNickname + ", userCreateDate=" + userCreateDate
+				+ "]";
+	}
 	
 }
