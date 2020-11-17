@@ -1,6 +1,8 @@
-package controller.userController;
+package Controller.userController;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +22,9 @@ public class signupServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		System.out.println("signipServlet GET Call : 肋给等 康开 立辟 涝聪促.");
-		response.sendRedirect("error.jsp?errorMessage=肋给等康开立辟");
+		request.setAttribute("errorMessage", "肋给等 立辟");
+		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
