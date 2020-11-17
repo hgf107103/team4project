@@ -12,8 +12,12 @@
     	<result property="userCreateDate" column="userCreateDate"/>
     </resultMap>
     
-   	<select id="selectList" parameterType="object.userVO" resultMap="userMap">
-        SELECT * FROM userTable ORDER BY userNumber ASC;
+   	<select id="isUserCheck" parameterType="object.userVO" resultMap="userMap">
+        SELECT * FROM userTable WHERE userID=#{userID};
     </select>
+    
+    <insert id="insertUserID" parameterType="object.userVO" useGeneratedKeys="true" keyProperty="userNumber">
+    	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, userOutCheck, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, 0, 0, 0);
+    </insert>
 
 </mapper>

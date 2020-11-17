@@ -138,21 +138,42 @@ function idCheck() {
         signupStatus.id = false;
         return;
     }
-    $('#signupIdInput').css('color', 'rgb(0, 141, 7)');
-    $('#signupIdInput').css('background-color', 'rgb(240,240,240)');
-    $('#signupIdInput').attr('readonly', 'on');
-    $('#signupIdInput').css('cursor', 'default');
-    $('#signupIdLog').text('아이디 중복확인 되었습니다.');
-    $('#signupIdLog').css('color', 'rgb(0, 141, 7)');
-    signupStatus.id = true;
     
-    $('#signupForm').css('top', '38%');
-    $('#moreForm').css('display', 'block');
-    setTimeout(() => {
-        $('#moreForm').css('opacity', '1');
-    }, 400);
+    $('#signupIdLog').text('서버와 통신하는 중입니다.');
+    $.ajax({
+        url: `/signupCheckServlet?userid=${$('#signupIdInput').val()}`,
+        cache: false,
+        dataType: "json",
+        success: (data) => {
+            if(data.check == "true") {
+            	console.log('아이디 중복확인 성공');
+            	$('#signupIdInput').css('color', 'rgb(0, 141, 7)');
+                $('#signupIdInput').css('background-color', 'rgb(240,240,240)');
+                $('#signupIdInput').attr('readonly', 'on');
+                $('#signupIdInput').css('cursor', 'default');
+                $('#signupIdLog').text('아이디 중복확인 되었습니다.');
+                $('#signupIdLog').css('color', 'rgb(0, 141, 7)');
+                signupStatus.id = true;
+                
+                $('#signupForm').css('top', '30%');
+                $('#moreForm').css('display', 'block');
+                setTimeout(() => {
+                    $('#moreForm').css('opacity', '1');
+                }, 400);
 
-    $('#signupPwd').focus()
+                $('#signupPwd').focus();
+                return;
+            }
+            $('#signupIdLog').text('이미 있는 아이디입니다.');
+        	$('#signupIdLog').css('color', 'rgb(255, 0, 0)');
+        	$('#signupIdInput').focus();
+        	return;
+        },
+        error: () => {
+        	console.log('오류 발생');
+        	alert('원인을 알 수 없는 오류가 발생했습니다.');
+        }
+    });
 }
 
 function regExpPwd(str) {
@@ -179,7 +200,7 @@ function pwdCheck() {
     if (!regExpPwd($('#signupPwd').val())) {
         $('#signupPwdLog').html('비밀번호는 영문과 숫자가 반드시 포함되어야 하며<br>8자리 이상 15자리 이하로 만들어야합니다.');
         $('#signupPwdLog').css('color', 'rgb(255, 0, 0)');
-        $('#signupForm').css('top', '38%');
+        $('#signupForm').css('top', '30%');
         $('#optionForm').css('display', 'none');
         setTimeout(() => {
             $('#optionForm').css('opacity', '0');
@@ -191,7 +212,7 @@ function pwdCheck() {
     if ($('#signupPwd').val() === $('#signupPwdCheck').val()) {
         $('#signupPwdLog').text('비밀번호가 같습니다.')
         $('#signupPwdLog').css('color', 'rgb(0, 141, 7)');
-        $('#signupForm').css('top', '26%');
+        $('#signupForm').css('top', '20%');
         $('#optionForm').css('display', 'block');
         setTimeout(() => {
             $('#optionForm').css('opacity', '1');
@@ -202,7 +223,7 @@ function pwdCheck() {
 
     $('#signupPwdLog').text('비밀번호가 다릅니다.');
     $('#signupPwdLog').css('color', 'rgb(255, 0, 0)');
-    $('#signupForm').css('top', '38%');
+    $('#signupForm').css('top', '30%');
     $('#optionForm').css('display', 'none');
     setTimeout(() => {
         $('#optionForm').css('opacity', '0');
@@ -238,12 +259,18 @@ function signupSubmit() {
         if (signupStatus.pwd) {
             if (signupStatus.name) {
                 if (signupStatus.nickname) {
-                    alert('회원가입 되었습니다.');
-                    location.href = 'login.html';
+                    document.signupForm.submit();
                     return;
                 }
+                alert('닉네임이 설정되지 않았습니다.');
+                return;
             }
+            alert('이름이 설정되지 않았습니다.');
+            return;
         }
+        alert('비밀번호가 설정되지 않았습니다.');
+        return;
     }
-    alert('회원가입 실패');
+    alert('아이디가 설정되지 않았습니다.');
+    return;
 }

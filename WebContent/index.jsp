@@ -42,21 +42,21 @@
         <img id="exit" src="VIEW/img/icon/out.png" width="45px" onclick="location.href='#menuCloss'; signupExit();" alt="">
         <img id="logo" src="VIEW/img/boardIcon/lolboard.png" alt="">
         <div id="signupFormBack"></div>
-        <form id="signupForm">
-        <label><span class="labelSet">　아이디</span><input type="text" id="signupIdInput" class="inputTextStyle" onkeyup="if (window.event.keyCode == 13) {idCheck()}" autocomplete="off"></label>
+        <form id="signupForm" name="signupForm" action="signup" method="post">
+        <label><span class="labelSet">　아이디</span><input type="text" id="signupIdInput" name="signupID" class="inputTextStyle" onkeyup="if (window.event.keyCode == 13) {idCheck()}" autocomplete="off"></label>
             <input type="button" class="signupButtonStyle" onclick="idCheck()" value="중복확인">
             <p class="signupLog" id="signupIdLog">아이디 중복확인을 해주십시오</p>
             <legend id="moreForm">
-                <label><span class="labelSet">비밀번호</span><input type="password" id="signupPwd" style="margin-left: 10px;" onkeyup="pwdCheck()" class="inputTextStyle"></label>
+                <label><span class="labelSet">비밀번호</span><input type="password" id="signupPwd" name="signupPWD" style="margin-left: 10px;" onkeyup="pwdCheck()" class="inputTextStyle"></label>
                 <br>
                 <label><span class="labelSet">　　확인</span><input type="password" id="signupPwdCheck" onkeyup="pwdCheck()" class="inputTextStyle"></label>
                 <p class="signupLog" id="signupPwdLog">비밀번호를 한번 더 입력하십시오</p>
             </legend>
             <legend id="optionForm">
-                <label><span class="labelSet">　　이름</span><input type="text" id="signupName" class="inputTextStyle" onkeyup="nameCheck()" autocomplete="off"></label>
+                <label><span class="labelSet">　　이름</span><input type="text" id="signupName" name="signupName" class="inputTextStyle" onkeyup="nameCheck()" autocomplete="off"></label>
                 <p class="signupLog" id="signupNameLog">이름을 입력하십시오</p>
                 <br>
-                <label><span class="labelSet">　닉네임</span><input type="text" id="signupNickName" class="inputTextStyle" onkeyup="nicknameCheck()" autocomplete="off"></label>
+                <label><span class="labelSet">　닉네임</span><input type="text" id="signupNickName" name="signupNickName" class="inputTextStyle" onkeyup="nicknameCheck()" autocomplete="off"></label>
                 <p class="signupLog" id="signupNickNameLog">닉네임을 입력하십시오</p>
                 <br>
                 <input type="button" id="submitButton" class="signupButtonStyle" onclick="signupSubmit()" value="회원가입">

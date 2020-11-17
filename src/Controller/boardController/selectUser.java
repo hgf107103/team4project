@@ -27,10 +27,12 @@ public class selectUser extends HttpServlet {
 			userVO a = new userVO();
 			System.out.println("2");
 			
-			userVO out = sqlse.selectOne("userMapper.selectList", null);
+			userVO out = sqlse.selectOne("userMapper.isUserCheck", null);
 			System.out.println("3");
 			
 			System.out.println(out.toString());
+			sqlse.commit();
+			sqlse.close();
 		} catch (Exception e) {
 			System.out.println(e);
 			System.out.println("서블릿 오류 발생");
