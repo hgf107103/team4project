@@ -1,11 +1,14 @@
 package object;
 
+import java.sql.Date;
+
 public class commentVO {
 	private int commentNumber;
 	private int boardNumber;
 	private int userNumber;
 	private String commentText;
-	private boolean commentShowCheck;
+	private Date commentDate;
+	
 	public int getCommentNumber() {
 		return commentNumber;
 	}
@@ -30,12 +33,18 @@ public class commentVO {
 	public void setCommentText(String commentText) {
 		this.commentText = commentText;
 	}
-	public boolean isCommentShowCheck() {
-		return commentShowCheck;
+	public Date getCommentDate() {
+		return commentDate;
 	}
-	public void setCommentShowCheck(boolean commentShowCheck) {
-		this.commentShowCheck = commentShowCheck;
+	public void setCommentDate(Date commentDate) {
+		this.commentDate = commentDate;
 	}
+	@Override
+	public String toString() {
+		return "commentVO [commentNumber=" + commentNumber + ", boardNumber=" + boardNumber + ", userNumber="
+				+ userNumber + ", commentText=" + commentText + ", commentDate=" + commentDate + "]";
+	}
+	
 	
 	
 }

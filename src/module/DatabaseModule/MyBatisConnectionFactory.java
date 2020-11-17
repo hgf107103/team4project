@@ -16,11 +16,14 @@ public class MyBatisConnectionFactory {
 			Reader reader = Resources.getResourceAsReader("module/DatabaseModule/mybatis_config.xml");
 			
 			if (sqlSessionFactory == null) {
+				System.out.println("sqlSessionFactory Build Start");
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			}
 		} catch (IOException e) {
+			System.out.println("sqlSessionFactory Build error : " + e);
 			e.printStackTrace();
 		} catch (Exception e) {
+			System.out.println("sqlSessionFactory Build error : " + e);
 			e.printStackTrace();
 		}
 	}

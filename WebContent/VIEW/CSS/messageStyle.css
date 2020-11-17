@@ -1,0 +1,251 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+    font-family: "Noto Sans KR";
+}
+*:focus {
+    outline: none;
+}
+
+body {
+    width: 570px;
+    height: 570px;
+    padding: 15px 15px;
+    font-size: 10px;
+    background-color: rgb(255, 226, 254);
+}
+
+div#rootDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    justify-content: center;
+    align-self: start;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 226, 254);
+}
+div#menuDiv {
+    width: 20%;
+    border-top: 1px solid rgba(0,0,0,0.3);
+}
+div#menuDiv input[type=button]{
+    width: 100%;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 15px 0px;
+    border: none;
+    color: rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    border-left: 1px solid rgba(0,0,0,0.3);
+    background-color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: background-color ease 0.2s 0s, color ease 0.2s 0s;
+}
+div#menuDiv input[type=button]:hover{
+    background-color: rgb(255,255,255);
+    color: rgba(0,0,0,0.7);
+    transition: background-color ease 0.2s 0s, color ease 0.2s 0s;
+}
+div#menuDiv input[type=button]:target{
+    background-color: black;
+    color: white;
+    transition: background-color ease 0.2s 0s, color ease 0.2s 0s;
+}
+
+div#mainShowDiv {
+    width: 75%;
+    padding: 2% 2%;
+    height: 96%;
+    border-top: 1px solid rgba(0,0,0,0.3);
+    border-right: 1px solid rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    background-color: rgba(255,255,255,0.9);
+    border-left: 1px solid rgba(0,0,0,0.3);
+}
+
+
+.displaySetting {
+    display: none;
+}
+
+.defaultSetting {
+    width: 100%;
+    text-align: left;
+    padding: 0 0;
+}
+.defaultSetting h1{
+    display: inline-block;
+    margin-top: 2px;
+    margin-left: 15px;
+    font-size: 2.5em;
+}
+
+.defaultSetting table{
+    border-collapse: collapse;
+    margin-top: 15px;
+    width: 100%;
+}
+.defaultSetting table tr th{
+    border: 1px solid black;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    font-size: 1em;
+    padding: 3px 0px;
+    color: white;
+    background-color: black;
+}
+
+.defaultSetting table tr th#tableNumber{
+    width: 12%;
+}
+
+.defaultSetting table tr th#tableTitle{
+    width: 43%;
+}
+
+.defaultSetting table tr th#tableWriter{
+    width: 22%;
+}
+
+.defaultSetting table tr th#tableDate{
+    width: 23%;
+}
+
+.defaultSetting table tr {
+    background-color: white;
+    transition: background-color ease 0.2s 0s;
+}
+
+.defaultSetting table tr td{
+    border: none;
+    border-bottom: 1px solid rgb(200,200,200);
+    font-size: 0.9em;
+    padding: 4px 0px;
+    text-align: center;
+    cursor: default;
+}
+.defaultSetting table tr td.messageTitleTd{
+    cursor: pointer;
+    transition: color ease 0.2s 0s;
+}
+.defaultSetting table tr td.messageTitleTd:hover{
+    color: red;
+    transition: color ease 0.2s 0s;
+}
+
+.defaultSetting table tr:hover{
+    background-color: rgba(230,230,230,0.6);
+    transition: background-color ease 0.2s 0s;
+}
+.defaultSetting div.pageNumberDiv{
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.defaultSetting div.pageNumberDiv span{
+    cursor: pointer;
+    color: rgb(150,150,150);
+}
+.defaultSetting div.pageNumberDiv span:hover{
+    color: rgb(50,50,50);
+}
+.defaultSetting div.pageNumberDiv span.nowPageNumber{
+    color: rgb(255,0,0);
+    cursor: default;
+}
+
+.defaultSetting form#sendMessageForm {
+    width: 90%;
+    padding: 2% 2%;
+    border: 1px solid rgba(170,170,255,0.8);
+    border-radius: 6px;
+    background-color: rgb(240, 240, 255);
+    margin: 0px auto;
+    margin-top: 8px;
+}
+.defaultSetting form#sendMessageForm label span{
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0px 7px;
+    margin-right: 10px;
+}
+.defaultSetting form#sendMessageForm .defaultTextAnimation{
+    border: 1px solid rgb(220,220,220);
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 5px;
+    padding: 5px 12px;
+    margin-bottom: 5px;
+    font-size: 1.3em;
+    transition: border ease 0.3s 0s, background-color ease 0.3s 0s;
+}
+.defaultSetting form#sendMessageForm .defaultTextAnimation:hover{
+    border: 1px solid rgb(190,190,190);
+    background-color: rgba(255,255,255,0.8);
+    transition: border ease 0.2s 0s, background-color ease 0.2s 0s;
+}
+.defaultSetting form#sendMessageForm .defaultTextAnimation:focus{
+    border: 1px solid rgb(130,130,130);
+    background-color: rgba(255,255,255);
+    transition: border ease 0.3s 0s, background-color ease 0.3s 0s;
+}
+
+.defaultSetting form#sendMessageForm .defaultButtonAnimation{
+    border: 1px solid rgb(220,220,220);
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 5px;
+    width: 20%;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 12px;
+    font-size: 1.5em;
+    transition: border ease 0.3s 0s, background-color ease 0.3s 0s;
+}
+.defaultSetting form#sendMessageForm .defaultButtonAnimation:hover{
+    border: 1px solid rgb(130,130,230);
+    background-color: rgba(255,255,255);
+    transition: border ease 0.3s 0s, background-color ease 0.3s 0s;
+}
+
+
+
+
+
+
+.defaultSetting form#sendMessageForm input[type=text]#receptionIdInput{
+    width: 50%;
+}
+.defaultSetting form#sendMessageForm input[type=text]#receptionTitleInput{
+    width: 70%;
+}
+.defaultSetting form#sendMessageForm textarea#receptionContentsInput{
+    width: 100%;
+    height: 65%;
+    margin: 5px 0px;
+    margin-bottom: 10px;
+    padding: 3% 3%;
+    resize: none;
+}
+.defaultSetting form#sendMessageForm input[type=text]#receptionCountInput{
+    width: 20%;
+    margin-right: 30%;
+    text-align: center;
+    border: 1px solid rgb(220,220,220);
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-size: 1.5em;
+    transition: border ease 0.3s 0s, background-color ease 0.3s 0s;
+}
+.defaultSetting form#sendMessageForm input[type=text]#receptionCountInput:hover{
+    border: 1px solid red;
+    cursor: no-drop;
+    background-color: rgb(255,240,240);
+    transition: border ease 0.3s 0s, background-color ease 0.3s 0s;
+}
+.defaultSetting form#sendMessageForm input[type=reset]{
+    margin-left: 5%;
+}
+

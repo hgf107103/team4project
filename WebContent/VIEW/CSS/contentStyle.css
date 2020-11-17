@@ -1,0 +1,99 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+    font-family: "Noto Sans KR";
+}
+*:focus {
+    outline: none;
+}
+
+body {
+    background-image: url('../img/back/backimg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 10px;
+    transition: all ease 3s 0s;
+}
+
+div#smoke {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.bgBlur:before {
+
+    content: '';
+    position: absolute;
+    top: 0; left:0; right:0; bottom:0;
+    background: inherit;
+    z-index:-1;
+  
+    filter:url(#blur);
+  
+}
+
+
+div#mainContentsDiv {
+    display: flex;
+    position: fixed;
+    top: 38vh;
+    width: 100vw;
+    flex-wrap: wrap;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+div#mainContentsDiv input[type=button] {
+    width: 200px;
+    height: 200px;
+    border-radius: 0px;
+    margin: 0px 1.5vw;
+    font-size: 4em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: text-shadow ease 0.8s 0s, border ease 0.8s 0s, transform cubic-bezier(0.3,0.4,0.6,1) 1.2s 0s, background-color cubic-bezier(0.3,0.5,0.8,1) 1.2s 0s, border-radius cubic-bezier(1,1,1,1) 1s 0s, color ease 0.8s 0s;
+}
+div#mainContentsDiv input[type=button]:hover {
+    transform: rotate(1turn);
+    border-radius: 200px;
+    text-shadow: 0 0 2px rgba(100, 56, 56, 0.8), 0 0 4px rgba(100,100,100,0.6), 0 0 6px rgba(100,100,100,0.4);
+    transition: text-shadow ease 0.8s 0.8s, border ease 0.8s 0.8s, transform cubic-bezier(0.3,0.5,0.8,1) 1.3s 0s, background-color cubic-bezier(0.3,0.5,0.8,1) 1.3s 0s, border-radius cubic-bezier(1,1,1,1) 1s 0.4s, color ease 0.8s 0.8s;
+}
+
+
+div#mainContentsDiv input[type=button]#boardBtn {
+    border: 2px solid rgb(255, 162, 162);
+    background-color: rgba(255,255,255,0.6);
+    color: rgb(255, 162, 162);
+}
+div#mainContentsDiv input[type=button]#boardBtn:hover {
+    border: 2px solid rgb(255, 100, 100);
+    background-color: rgba(255,245,245,0.9);
+    color: rgb(255, 100, 100);
+}
+div#mainContentsDiv input[type=button]#playLogBtn {
+    border: 2px solid rgb(168, 255, 243);
+    background-color: rgba(255,255,255,0.6);
+    color: rgb(168, 255, 243);
+}
+div#mainContentsDiv input[type=button]#playLogBtn:hover {
+    border: 2px solid rgb(62, 255, 229);
+    background-color: rgba(255,245,245,0.9);
+    color: rgb(62, 255, 229);
+}
+div#mainContentsDiv input[type=button]#newsBtn {
+    border: 2px solid rgb(188, 255, 172);
+    background-color: rgba(255,255,255,0.6);
+    color: rgb(188, 255, 172);
+}
+div#mainContentsDiv input[type=button]#newsBtn:hover {
+    border: 2px solid rgb(137, 251, 108);
+    background-color: rgba(255,245,245,0.9);
+    color: rgb(137, 251, 108);
+}

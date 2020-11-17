@@ -1,0 +1,350 @@
+* {
+    margin: 0 0;
+    padding: 0 0;
+    font-family: "Noto Sans";
+    cursor: default;
+}
+*:focus {
+    outline: none;
+}
+body {
+    margin: auto;
+    width: 100%;
+    height: 95%;
+    background-color: rgb(235,235,235);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+div {
+    overflow: hidden;
+}
+
+div#userListDiv {
+    border: 2px solid rgba(150,150,150,0.7);
+    background-color: white;
+    border-radius: 6px;
+    width: 25%;
+    height: 92%;
+    margin-right: 2%;
+}
+
+
+
+div#userListDiv table#userTableHeader {
+    margin: 5px auto;
+    width: 98%;
+    height: 5%;
+    border-collapse: collapse;
+}
+div#userListDiv table#userTableHeader th{
+    text-align: center;
+    font-size: 1em;
+    background-color: black;
+    color: white;
+}
+div#userListDiv div#userList{
+    height: 92.5%;
+    width: 97%;
+    margin: auto;
+    border: 1px solid rgb(200,200,200);
+    text-align: center;
+    overflow-y: auto;
+}
+div#userListDiv div#userList table#userTableList{
+    margin: 0px auto;
+    width: 99%;
+    border-collapse: collapse;
+}
+div#userListDiv div#userList table#userTableList td{
+    text-align: center;
+    padding: 5px 0px;
+    border-bottom: 1px solid rgb(240,240,240);
+    cursor: pointer;
+}
+
+div#userListDiv div#userList table#userTableList tr{
+    background-color: white;
+    transition: background-color ease 0.5s 0s;
+}
+div#userListDiv div#userList table#userTableList tr:hover{
+    background-color: rgb(230,230,230);
+    transition: background-color ease 0.2s 0s;
+}
+
+
+
+div#userListDiv .userId {
+    width: 40%;
+}
+div#userListDiv .userName {
+    width: 30%;
+}
+div#userListDiv .userNick {
+    width: 30%;
+}
+
+
+
+
+
+
+div#userContentDiv {
+    width: 65%;
+    height: 92%;
+}
+
+
+input.inputDefaultStyle {
+    width: 150px;
+    font-size: 1.5em;
+    border: 1px solid rgb(200,200,200);
+    border-radius: 5px;
+    background-color: rgb(255,255,255);
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: center;
+    transition: border ease 0.5s 0s, background-color ease 0.5s 0s, color ease 0.5s 0s;
+}
+input[type=text].inputDefaultStyle:focus {
+    border: 1px solid red;
+    background-color: rgb(255, 200, 200);
+    color: red;
+    transition: border ease 1s 0s, background-color ease 1s 0s, color ease 1s 0s;
+}
+input[type=text]#userStopDay {
+    width: 60px;
+}
+
+input[type=button].inputDefaultStyle {
+    width: 120px;
+    font-size: 1.5em;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid rgb(200,200,200);
+    border-radius: 5px;
+    background-color: rgb(255,255,255);
+    padding: 6px 10px;
+    margin-right: 0px;
+    margin-left: 10px;
+    transition: border ease 0.5s 0s, background-color ease 0.5s 0s;
+}
+input[type=button].inputDefaultStyle:hover {
+    border: 1px solid rgb(150,150,150);
+    background-color: rgb(245,245,245);
+    transition: border ease 0.2s 0s, background-color ease 0.2s 0s;
+}
+
+select {
+    width: 105px;
+    padding: 5px 10px;
+    font-size: 1.5em;
+    border: 1px solid rgb(200,200,200);
+    border-radius: 5px;
+    text-align: center;
+    transition: border ease 0.2s 0s;
+}
+select:hover {
+    border: 1px solid rgb(150,150,150);
+    transition: border ease 0.2s 0s;
+}
+select:focus {
+    border: 1px solid rgb(100,100,100);
+    transition: border ease 0.2s 0s;
+}
+option:checked {
+    background-color: black;
+    color: white;
+}
+
+
+
+
+div#userContentDiv div#userControlDiv {
+    width: 95%;
+    padding: 15px 2%;
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(200,200,200);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px auto;
+    margin-bottom: 2%;
+}
+
+div#userContentDiv div#userControlDiv label{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+
+
+div#userBoardListDiv {
+    width: 95%;
+    margin: auto;
+    padding: 2% 2%;
+    background-color: white;
+    border: 1px solid rgb(200,200,200);
+    border-radius: 10px;
+}
+
+div#userBoardListDiv table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+div#userBoardListDiv table#selectedUserBoardHeader th{
+    background-color: black;
+    color: white;
+    padding: 5px 0px;
+}
+
+div#userBoardListDiv div#borderListScroll{
+    height: 45%;
+    overflow-y: auto;
+}
+
+div#userBoardListDiv div#borderListScroll table#selectedUserBoardList {
+    table-layout: fixed;
+}
+
+div#userBoardListDiv div#borderListScroll table#selectedUserBoardList td{
+    padding: 5px 0px;
+    text-align: center;
+    border-bottom: 1px solid rgb(230,230,230);
+    overflow-y: auto;
+}
+
+
+div#userBoardListDiv .boardNumber {
+    width: 10%;
+}
+div#userBoardListDiv .boardContents {
+    width: 65%;
+}
+div#userBoardListDiv td.boardContents {
+    border-left: 1px solid rgb(230,230,230);
+    border-right: 1px solid rgb(230,230,230);
+    width: 65%;
+    height: 110px;
+}
+div#userBoardListDiv td.boardContents div {
+    width: 98%;
+    height: 98%;
+    margin: auto;
+    text-align: left;
+    overflow-y: auto;
+}
+div#userBoardListDiv .boardDate {
+    width: 13%;
+}
+div#userBoardListDiv .boardControl {
+    width: 10%;
+}
+div#userBoardListDiv td.boardControl input[type=button] {
+    width: 70%;
+    font-size: 1em;
+    padding: 10px 0px;
+    border: 1px solid rgb(200,200,200);
+    background-color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border ease 0.2s 0s, background-color ease 0.2s 0s;
+}
+div#userBoardListDiv td.boardControl input[type=button]:hover {
+    border: 1px solid rgb(150,150,150);
+    background-color: rgb(245,245,245);
+    transition: border ease 0.2s 0s, background-color ease 0.2s 0s;
+}
+
+
+
+
+div#userCommentListDiv {
+    width: 95%;
+    margin: auto;
+    margin-top: 2%;
+    padding: 2% 2%;
+    background-color: white;
+    border: 1px solid rgb(200,200,200);
+    border-radius: 10px;
+}
+div#userCommentListDiv table{
+    width: 100%;
+    border-collapse: collapse;
+}
+div#userCommentListDiv table#selectedUserCommentHeader th{
+    background-color: black;
+    color: white;
+    padding: 5px 0px;
+}
+
+
+div#userCommentListDiv div#commentListScroll td {
+    text-align: center;
+    border-bottom: 1px solid rgb(230,230,230);
+}
+
+div#userCommentListDiv td.commentContents {
+    width: 77%;
+    height: 80px;
+}
+div#userCommentListDiv td.commentDate {
+    border-left: 1px solid rgb(230,230,230);
+}
+div#userCommentListDiv .commentContents {
+    width: 77%;
+}
+div#userCommentListDiv .commentDate {
+    width: 13%;
+}
+div#userCommentListDiv .commentControl {
+    width: 10%;
+}
+
+
+div#userCommentListDiv div#commentListScroll{
+    height: 25%;
+    overflow-y: auto;
+}
+div#userCommentListDiv div#commentListScroll table{
+    table-layout: fixed;
+}
+
+
+div#userCommentListDiv td.commentContents div {
+    width: 98%;
+    height: 95%;
+    margin: auto;
+    text-align: left;
+    overflow-y: auto;
+}
+
+
+
+div#userCommentListDiv div#commentListScroll td.commentControl input[type=button] {
+    width: 70%;
+    font-size: 1em;
+    padding: 10px 0px;
+    border: 1px solid rgb(200,200,200);
+    background-color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border ease 0.2s 0s, background-color ease 0.2s 0s;
+}
+div#userCommentListDiv div#commentListScroll td.commentControl input[type=button]:hover {
+    border: 1px solid rgb(150,150,150);
+    background-color: rgb(245,245,245);
+    transition: border ease 0.2s 0s, background-color ease 0.2s 0s;
+}

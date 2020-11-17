@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="DeparmentMapper">
+<mapper namespace="sampleMapper">
 
     <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
     <resultMap id="departmentMap" type="study.java.model.Department">

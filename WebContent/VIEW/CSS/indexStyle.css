@@ -1,0 +1,400 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+    font-family: "Noto Sans KR";
+}
+*:focus {
+    outline: none;
+}
+body {
+    background-image: url('../img/back/backimg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    transition: all ease 3s 0s;
+}
+
+div#mainDiv {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+}
+
+div.fiexdDiv {
+    position: fixed;
+}
+
+div#loginDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    width: 80%;
+    top: 10px;
+    right: 0px;
+    text-align: right;
+    padding: 10px;
+    padding-right: 30px;
+}
+div#loginDiv img {
+    padding: 5px;
+    margin-left: 10px;
+    padding-right: 6px;
+    border-radius: 50px;
+    background-color: rgba(0, 255, 106, 0.8);
+    border: 1px solid rgba(0, 255, 106, 0.5);
+    opacity: 0.8;
+    cursor: pointer;
+    transition: transform ease 1.5s 0.1s, border ease 0.7s 0.3s, box-shadow ease 0.5s 0s;
+}
+div#loginDiv img:hover {
+    transform: rotate(1.5turn);
+    border: 1px solid rgba(0, 255, 106, 0.5);
+    box-shadow: 0 0 0 0.03em rgba(0, 255, 106, 0.1), 0 0 0 0.06em rgba(0, 255, 106,0.1), 0 0 0 0.09em rgba(0, 255, 106,0.1), 0 0 0 0.12em rgba(0, 255, 106,0.1), 0 0 0 0.15em rgba(14, 1, 133, 0.1), 0 0 0 0.18em rgba(0, 255, 106,0.1), 0 0 0 0.21em rgba(0, 255, 106,0.1), 0 0 0 0.24em rgba(0, 255, 106,0.1), 0 0 0 0.27em rgba(0, 255, 106,0.1), 0 0 0 0.30em rgba(0, 255, 106,0.1);
+    transition: transform ease 0.7s 0s, border ease 0.5s 0s, box-shadow ease 0.3s 0.4s;
+}
+
+
+
+
+div#loginDiv input[type=text] {
+    width: 15%;
+    margin: 0px 5px;
+    font-size: 20px;
+    padding: 8px 10px;
+    opacity: 0.7;
+    border: 1px solid rgba(0,0,0,0.5);
+    border-radius: 50px;
+    height: 40px;
+    text-align: center;
+    transition: opacity ease 0.8s 0.2s, border ease 0.8s 0.2s, box-shadow ease 0.8s 0s;
+}
+div#loginDiv input[type=text]:focus {
+    border: 1px solid rgba(0, 255, 106, 0.5);
+    opacity: 1;
+    box-shadow: 0 0 0 0.03em rgba(0, 255, 106, 0.1), 0 0 0 0.06em rgba(0, 255, 106,0.1), 0 0 0 0.09em rgba(0, 255, 106,0.1), 0 0 0 0.12em rgba(0, 255, 106,0.1), 0 0 0 0.15em rgba(14, 1, 133, 0.1), 0 0 0 0.18em rgba(0, 255, 106,0.1), 0 0 0 0.21em rgba(0, 255, 106,0.1);
+    transition: opacity ease 0.8s 0s, border ease 0.8s 0s, box-shadow ease 0.6s 0.2s;
+}
+div#loginDiv input[type=password] {
+    width: 15%;
+    margin: 0px 5px;
+    font-size: 20px;
+    padding: 8px 10px;
+    opacity: 0.7;
+    border: 1px solid rgba(0,0,0,0.5);
+    border-radius: 50px;
+    height: 40px;
+    text-align: center;
+    transition: opacity ease 0.8s 0.2s, border ease 0.8s 0.2s, box-shadow ease 0.8s 0s;
+}
+div#loginDiv input[type=password]:focus {
+    border: 1px solid rgba(0, 255, 106, 0.5);
+    opacity: 1;
+    box-shadow: 0 0 0 0.03em rgba(0, 255, 106, 0.1), 0 0 0 0.06em rgba(0, 255, 106,0.1), 0 0 0 0.09em rgba(0, 255, 106,0.1), 0 0 0 0.12em rgba(0, 255, 106,0.1), 0 0 0 0.15em rgba(14, 1, 133, 0.1), 0 0 0 0.18em rgba(0, 255, 106,0.1), 0 0 0 0.21em rgba(0, 255, 106,0.1);
+    transition: opacity ease 0.8s 0s, border ease 0.8s 0s, box-shadow ease 0.6s 0.2s;
+}
+
+
+div#menubar {
+    top: 0px;
+    left: 0px;
+    width: 30%;
+    padding: 20px 20px;
+    flex-direction:column;
+}
+
+div#menubar input {
+    display: block;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    margin: 5px 5px;
+    top: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: top ease 0.8s 0s, opacity ease 0.8s 0s, border ease 0.6s 0s, box-shadow ease 0.6s 0s;
+}
+
+
+#menuOpen {
+    z-index: 9999;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+#menuLOL {
+    z-index: 5;
+    border: 2px solid rgb(0, 200, 255);
+    background-color: rgb(0, 200, 255);
+    color: rgb(0, 200, 255);
+    opacity: 0;
+}
+#menuBG {
+    z-index: 4;
+    border: 2px solid rgb(0, 255, 106);
+    background-color: rgb(0, 255, 106);
+    color: rgb(0, 255, 106);
+    opacity: 0;
+}
+#menuOW {
+    z-index: 3;
+    border: 2px solid rgb(255, 166, 0);
+    background-color: rgb(255, 166, 0);
+    color: rgb(255, 166, 0);
+    opacity: 0;
+}
+
+#menuOpen:hover {
+    box-shadow: 0 0 0 0.03em rgba(255, 255, 255, 0.1), 0 0 0 0.06em rgba(255, 255, 255,0.1), 0 0 0 0.09em rgba(255, 255, 255,0.1), 0 0 0 0.12em rgba(255, 255, 255,0.1), 0 0 0 0.15em rgba(255, 255, 255, 0.1), 0 0 0 0.18em rgba(255, 255, 255,0.1), 0 0 0 0.21em rgba(255, 255, 255,0.1), 0 0 0 0.05em rgb(255, 255, 255);
+    border: 1px solid white; 
+    transition: border ease 0.6s 0s, box-shadow ease 0.6s 0s;
+}
+
+
+#menuOpen:target~#menuLOL {
+    top: 85px;
+    opacity: 0.4;
+    transition: top ease 0.8s 0s, width ease 1.2s 0s, opacity ease 1.2s 0s, color ease 0.6s 0s, border ease 1s 0s;
+}
+#menuOpen:target~#menuBG {
+    top: 150px;
+    opacity: 0.4;
+    transition: top ease 0.8s 0s, width ease 1.2s 0s, opacity ease 1.2s 0s, color ease 0.6s 0s, border ease 1s 0s;
+}
+#menuOpen:target~#menuOW {
+    top: 215px;
+    opacity: 0.4;
+    transition: top ease 0.8s 0s, width ease 1.2s 0s, opacity ease 1.2s 0s, color ease 0.6s 0s, border ease 1s 0s;
+}
+
+
+#menuOpen:target~#menuLOL:hover {
+    width: 200px;
+    color: black;
+    border: 2px solid white;
+    opacity: 1;
+    transition: width ease 0.6s 0s, opacity ease 0.8s 0s, color ease 0.5s 0.2s, border ease 0.6s 0s;
+}
+#menuOpen:target~#menuBG:hover {
+    width: 200px;
+    color: black;
+    border: 2px solid white;
+    opacity: 1;
+    transition: width ease 0.6s 0s, opacity ease 0.8s 0s, color ease 0.5s 0.2s, border ease 0.6s 0s;
+}
+#menuOpen:target~#menuOW:hover {
+    width: 200px;
+    color: black;
+    border: 2px solid white;
+    opacity: 1;
+    transition: width ease 0.6s 0s, opacity ease 0.8s 0s, color ease 0.5s 0.2s, border ease 0.6s 0s;
+}
+
+
+
+div#loginDiv input[type=button]{
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 0px;
+    margin: 0px 10px;
+    cursor: pointer;
+    transition: box-shadow ease 0.5s 0s, transform ease 0.5s 0.75s, border ease 0.5s 0.2s, border-radius ease 0.6s 0.8s, width ease 0.4s 0.3s, color ease 0.5s 0s;
+}
+div#loginDiv input[type=button]:hover{
+    transform: rotate(2turn);
+    border-radius: 60px;
+    width: 200px;
+    box-shadow: 0 0 0 1px rgba(50,50,50, 0.6), 0 0 0 0.03em rgba(150, 150, 150, 0.2), 0 0 0 0.06em rgba(150, 150, 150, 0.2), 0 0 0 0.09em rgba(150, 150, 150, 0.2), 0 0 0 0.12em rgba(150, 150, 150, 0.2), 0 0 0 0.15em rgba(150, 150, 150, 0.2), 0 0 0 0.18em rgba(150, 150, 150, 0.2), 0 0 0 0.21em rgba(150, 150, 150, 0.2), 0 0 0 0.24em rgba(150, 150, 150, 0.1), 0 0 0 0.27em rgba(150, 150, 150, 0.1), 0 0 0 0.3em rgba(150, 150, 150, 0.1);
+    transition: box-shadow ease 0.6s 0.8s, transform ease 0.5s 0s, border ease 0.8s 0.2s, border-radius ease 0.6s 0s, width ease 0.4s 0.4s, color ease 0.4s 0s;
+}
+
+div#loginDiv input[type=button]#signup {
+    border: 2px solid rgb(192, 255, 132);
+    background-color: rgb(192, 255, 132);
+    color: black;
+}
+div#loginDiv input[type=button]#signup:hover {
+    color: black;
+}
+div#loginDiv input[type=button]#mypage {
+    border: 2px solid rgb(255, 120, 120);
+    background-color: rgb(255, 120, 120);
+    color: black;
+}
+div#loginDiv input[type=button]#mypage:hover {
+    color: black;
+}
+div#loginDiv input[type=button]#logout {
+    border: 2px solid rgb(183, 145, 255);
+    background-color: rgb(183, 145, 255);
+    color: black;
+}
+div#loginDiv input[type=button]#logout:hover {
+    color: black;
+}
+
+
+div#titleMove {
+    display: flex;
+    top: 35vh;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+div#titleMove p {
+    margin: 0 5px;
+    font-size: 12vh;
+    font-weight: bold;
+    font-family: "Noto Sans KR";
+    cursor: default;
+    transition: transform ease 1s 0s, color ease 1s 0.5s, text-shadow ease 2s 0.5s;
+}
+div#titleMove p:hover {
+    text-shadow: 0px 0px 0.1em rgba(0,0,0, 0.8), 0px 0px 0.2em rgba(255,182,193, 0.8), 0px 0px 0.3em rgba(255,182,193, 0.8), 0px 0px 0.4em rgba(255,182,193, 0.05), 0px 0px 0.5em rgba(255,182,193, 0.05), 0px 0px 0.6em rgba(255,182,193, 0.05), 0px 0px 0.7em rgba(255,182,193, 0.05), 0px 0px 0.8em rgba(255,182,193, 0.05), 0px 0px 0.9em rgba(255,182,193, 0.05), 0px 0px 1em rgba(255,182,193, 0.05), 0px 0px 1.2em rgba(255,182,193, 0.08);
+    transform: rotate(1turn);
+    color: rgb(255, 150, 150);
+    transition: transform ease 1s 0s, color ease 1s 0.5s, text-shadow ease 2s 0.5s;
+}
+
+.bgBlur:before {
+
+    content: '';
+    position: absolute;
+    top: 0; left:0; right:0; bottom:0;
+    background: inherit;
+    z-index:-1;
+  
+    filter:url(#blur);
+  
+}
+
+#signupDiv {
+    display: none;
+}
+
+#signupDiv:target {
+    display: block;
+    width: 100%;
+}
+
+#signupDiv:target img#logo {
+    position: fixed;
+    top: 35vh;
+    left: -35vw;
+    opacity: 0;
+    width: 15vw;
+    transition: left ease 2s 0s, opacity ease 2s 0.5s, transform ease 0.5s 0s;
+}
+#signupDiv:target img#logo:hover {
+    transform: rotate(0.1turn);
+    transition: transform ease 0.5s 0s;
+}
+
+#signupDiv:target img#exit {
+    position: fixed;
+    cursor: pointer;
+    top: 20px;
+    left: 20px;
+}
+
+
+#signupDiv:target div#signupFormBack {
+    z-index: 5;
+    position: fixed;
+    width: 0px;
+    opacity: 0;
+    height: 100%;
+    top: 0px;
+    right: 0px;
+    background-color: rgba(255,255,255,0.6);
+    filter: blur(1px);
+    border-left: 1px solid white;
+    transition: width ease 2s 0s, opacity ease 1.5s 0s;
+}
+#signupDiv:target form#signupForm {
+    z-index: 9998;
+    position: fixed;
+    width: 30%;
+    opacity: 0;
+    text-align: left;
+    top: 45%;
+    right: -35%;
+    transition: top ease 1.5s 0s, right ease 2s 0s, opacity ease 2s 0.2s;
+}
+#signupDiv:target form#signupForm input.inputTextStyle{
+    width: 40%;
+    margin: 8px 8px;
+    margin-bottom: 2px;
+    font-size: 1.5em;
+    padding: 8px 3px;
+    text-align: center;
+    border: 1px solid rgb(200, 200, 200);
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 15px;
+    box-shadow: none;
+    transition: border ease 1s 0s, background-color ease 1s 0s, box-shadow ease 1s 0s, color ease 1s 0s;
+}
+#signupDiv:target form#signupForm input.inputTextStyle:hover{
+    border: 1px solid rgb(150,150,150);
+    transition: border ease 0.2s 0s;
+}
+#signupDiv:target form#signupForm input.inputTextStyle:focus{
+    border: 1px solid rgb(70,70,70);
+    background-color: white;
+    box-shadow: 0 0 0 0.05em rgba(150,150,150,0.6), 0 0 0 0.1em rgba(200,200,200,0.5);
+    transition: border ease 0.8s 0s, background-color ease 0.8s 0s, box-shadow ease 0.8s 0s, color ease 0.8s 0s;
+}
+
+#signupDiv:target form#signupForm input.signupButtonStyle{
+    font-size: 1em;
+    padding: 3px 8px;
+    text-align: center;
+    border: 1px solid rgb(200,200,200);
+    background-color: rgb(255,255,255);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: border ease 0.5s 0s;
+}
+#signupDiv:target form#signupForm input.signupButtonStyle:hover{
+    border: 1px solid rgb(0,0,0);
+    transition: border ease 0.5s 0s;
+}
+#signupDiv:target form#signupForm span.labelSet{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#signupDiv:target form#signupForm legend#moreForm{
+    display: none;
+    opacity: 0;
+    transition: opacity ease 1.5s 0s;
+}
+
+#signupDiv:target form#signupForm p.signupLog{
+    width: 60%;
+    margin-left: 6%;
+    margin-bottom: 10px;
+    text-align: left;
+    color: black;
+    transition: color ease 0.5s 0s;
+}
+
+#signupDiv:target form#signupForm legend#optionForm{
+    display: none;
+    opacity: 0;
+    transition: opacity ease 1.5s 0s;
+}
+#signupDiv:target form#signupForm input#submitButton{
+    margin-left: 44%;
+    margin-top: -10px;
+    font-size: 1.5em;
+    padding: 6px 10px;
+}

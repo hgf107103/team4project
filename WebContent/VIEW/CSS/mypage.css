@@ -1,0 +1,269 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+    font-family: "Noto Sans KR";
+}
+*:focus {
+    outline: none;
+}
+
+.bgBlur:before {
+
+    content: '';
+    position: absolute;
+    top: 0; left:0; right:0; bottom:0;
+    background: inherit;
+    z-index:-1;
+  
+    filter:url(#blur);
+  
+  }
+
+div#smoke {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+}
+
+body {
+    background-image: url('../img/back/backimg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 10px;
+    transition: all ease 3s 0s;
+}
+
+section#mainSection {
+    box-shadow: 0 0 0 0.7em rgba(180,180,180,0.1), 0 0 0 0.6em rgba(180,180,180,0.1), 0 0 0 0.55em rgba(180,180,180,0.3), 0 0 0 0.5em rgba(180,180,180,0.1), 0 0 0 0.45em rgba(180,180,180,0.1), 0 0 0 0.4em rgba(180,180,180,0.1), 0 0 0 0.35em rgba(180,180,180,0.1), 0 0 0 0.3em rgba(180,180,180,0.1), 0 0 0 0.25em rgba(180,180,180,0.1), 0 0 0 0.2em rgba(180,180,180,0.3), 0 0 0 0.15em rgba(180,180,180,0.1);
+    border-left: 1px solid rgba(255,0,0, 0.6);
+    border-right: 1px solid rgba(255,0,0, 0.6);
+    margin: 0px auto;
+    width: 52vw;
+    height: 90vh;
+    padding: 5% 4%;
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+    top: 0;
+    left: 20vw;
+}
+
+
+
+input[type=button]#returnMainBtn{
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 0px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    border: 2px solid rgb(156, 255, 197);
+    background-color: rgb(156, 255, 197);
+    color: rgb(156, 255, 197);
+    transition: box-shadow ease 0.5s 0s, transform ease 1s 1.5s, border ease 1s 1s, border-radius ease 1s 1.5s, width ease 0.3s 1s, color ease 0.5s 0.2s;
+}
+input[type=button]#returnMainBtn:hover{
+    transform: rotate(2turn);
+    border-radius: 60px;
+    width: 200px;
+    color: black;
+    box-shadow: 0 0 0 1px rgba(50,50,50, 0.6), 0 0 0 0.03em rgba(150, 150, 150, 0.2), 0 0 0 0.06em rgba(150, 150, 150, 0.2), 0 0 0 0.09em rgba(150, 150, 150, 0.2), 0 0 0 0.12em rgba(150, 150, 150, 0.2), 0 0 0 0.15em rgba(150, 150, 150, 0.2), 0 0 0 0.18em rgba(150, 150, 150, 0.2), 0 0 0 0.21em rgba(150, 150, 150, 0.2), 0 0 0 0.24em rgba(150, 150, 150, 0.1), 0 0 0 0.27em rgba(150, 150, 150, 0.1), 0 0 0 0.3em rgba(150, 150, 150, 0.1);
+    transition: box-shadow ease 0.5s 1.4s, transform ease 1s 0s, border ease 1s 0.5s, border-radius ease 1s 0s, width ease 0.3s 0.8s, color ease 1s 1.2s;
+}
+
+
+
+
+section#mainSection img {
+    width:14vh;
+    height:14vh;
+    margin-right: 1vh;
+    border: 1px solid rgb(150, 255, 150);
+    border-radius: 200px;
+    box-shadow: 0 0 0 0.5em rgba(100, 255, 100, 0.2), 0 0 0 0.2em rgba(100, 255, 100, 0.4);
+    transition: margin-right ease 2s 1s, width ease 2s 1s, height ease 2s 1s, transform ease 3s 0s, border-radius ease 3s 0s, box-shadow ease 0.5s 2.8s, border ease 0.5s 2.7s;
+}
+section#mainSection img:hover {
+    width:15vh;
+    height:15vh;
+    margin-right: 0px;
+    border: 1px solid rgb(255, 100, 100);
+    border-radius: 0px;
+    transform: rotate(3turn);
+    box-shadow: 0 0 0 0.5em rgba(255, 100, 100, 0.2), 0 0 0 0.2em rgba(255, 100, 100, 0.4);
+    transition: margin-right ease 2s 1s, width ease 2s 1s, height ease 2s 1s, transform ease 3s 0s, border-radius ease 3s 0s, box-shadow ease 0.5s 2.8s, border ease 0.5s 2.7s;
+}
+
+
+div.flexDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+
+div#headFlex table{
+    margin-left: 5%;
+    width: 65%;
+    cursor: default;
+}
+
+div#headFlex table td {
+    text-align: center;
+    font-size: 1.3em;
+    background-color: white;
+    color: black;
+    padding: 2% 1%;
+    border-radius: 500px;
+    transition: all ease 0.2s 0.2s;
+}
+
+
+div#headFlex table td.tableHead {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+div#headFlex table td.tableHead:hover+td {
+    color: red;
+    transition: all ease 0.5s 0s;
+}
+
+
+div#pageTitleText {
+    cursor: default;
+    font-weight: bold;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,1);
+    text-shadow: 0px 0px 0.05em rgba(0,0,0,0.8), 0px 0px 0.1em rgba(100,100,100,0.8), 0px 0px 0.15em rgba(100,100,100,0.6), 0px 0px 0.2em rgba(100,100,100,0.2), 0px 0px 0.25em rgba(100,100,100,0.2), 0px 0px 0.3em rgba(100,100,100,0.2);
+    font-size: 6.5vh;
+    transition: all ease 0.5s 0s;
+}
+div#pageTitleText:hover {
+    color: red;
+    transition: all ease 2s 0s;
+}
+
+
+div#mainMenu {
+    width: 90%;
+    margin: auto;
+    margin-top: 7vh;
+}
+
+div#mainMenu table#mainTable{
+    width: 100%;
+    margin-bottom: 20px;
+}
+div#mainMenu table#mainTable tr td{
+    background-color: white;
+    text-align: center;
+}
+div#mainMenu table#mainTable tr td.tableMenu{
+    width: 30%;
+    border: 1px solid rgb(220,220,220);
+    border-radius: 100px;
+    padding: 8px 0px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color ease 0.3s 0s, color 0.3s 0s, font-weight ease 0.3s 0s;
+}
+div#mainMenu table#mainTable tr td.tableMenu:hover{
+    background-color: rgb(240,240,240);
+    transition: background-color ease 0.3s 0s;
+}
+div#mainMenu table#mainTable tr td.tableMenu:target{
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    transition: background-color ease 0.3s 0s, color 0.3s 0s, font-weight ease 0.3s 0s;
+}
+
+div#mainMenu table.showTables{
+    width: 100%;
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+
+div#mainMenu table.showTables tr th{
+    padding: 8px 10px;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-right: 1px solid white;
+    overflow: hidden;
+    font-size: 1.3em;
+    text-overflow: ellipsis;
+    cursor: default;
+}
+div#mainMenu table.showTables tr td{
+    text-align: center;
+    cursor: default;
+    border: 1px solid black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 7px 10px;
+    font-size: 1.2em;
+}
+
+
+div#mainMenu table.showTables tr {
+    background-color: white;
+    transition: background-color ease 0.3s 0s;
+} 
+div#mainMenu table.showTables tr:hover {
+    background-color: rgb(240,240,240);
+    transition: background-color ease 0.3s 0s;
+} 
+
+div#mainMenu table.showTables .contentWrite{
+    width: 70%;
+}
+div#mainMenu table.showTables td.contentWrite:hover{
+    color: red;
+    cursor: pointer;
+    width: 70%;
+}
+div#mainMenu table.showTables .contentDate{
+    width: 20%;
+}
+div#mainMenu table.showTables .contentIndex{
+    width: 10%;
+}
+
+div#pageNumberingDiv {
+    padding-top: 3vh;
+    text-align: center;
+}
+div#pageNumberingDiv p{
+    cursor: default;
+    font-size: 2.3em;
+}
+div#pageNumberingDiv p span{
+    display: inline-block;
+    margin: 0px 5px;
+    font-weight: bold;
+    color: rgb(150,150,150);
+    cursor: pointer;
+    transition: color ease 0.3s 0s;
+}
+div#pageNumberingDiv p span:hover{
+    color: rgb(50,50,50);
+    transition: color ease 0.3s 0s;
+}
+div#pageNumberingDiv p span#pageSelect{
+    color: red;
+    cursor: default;
+}

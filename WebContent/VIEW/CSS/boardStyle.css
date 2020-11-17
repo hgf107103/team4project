@@ -1,0 +1,271 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+    font-family: "Noto Sans KR";
+}
+*:focus {
+    outline: none;
+}
+
+body {
+    width: 1350px;
+    margin: 0px auto;
+    border-left: 2px solid rgb(250,250,250);
+    border-right: 2px solid rgb(250,250,250);
+    font-size: 10px;
+}
+
+header {
+    padding: 60px 0px;
+    margin: auto;
+    width: 95%;
+    border-bottom: 2px solid rgb(250,250,250);
+}
+
+header h1 {
+    color: rgb(20, 20, 80);
+    margin: 0px 3%;
+    cursor: default;
+    font-size: 6em;
+}
+header img {
+    width: 9%;
+    cursor: pointer;
+}
+header img:hover {
+    transform: rotate(0.02turn);
+}
+
+.flexBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+
+
+
+
+section#boardMainSection {
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+section#boardMainSection table#newContenWrite {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+section#boardMainSection table#newContenWrite td {
+    border: 1px solid black;
+    background-color: white;
+    padding: 5px 0px;
+    font-size: 1.08em;
+    text-align: center;
+    cursor: default;
+}
+section#boardMainSection table#newContenWrite td.emptySpace {
+    border: none;
+}
+section#boardMainSection table#newContenWrite td.menu {
+    width: 20%;
+}
+section#boardMainSection table#newContenWrite td.write {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+section#boardMainSection table#newContenWrite td textarea {
+    width: 98%;
+    border: none;
+    margin: 5px 0px;
+    padding: 10px 10px;
+    resize: none;
+    font-size: 0.9em;
+}
+
+section#boardMainSection table#newContenWrite td.buttonTd {
+    font-size: 1em;
+    font-weight: bold;
+    background-color: rgb(245,245,245);
+    color: rgba(0,0,0,0.7);
+    cursor: pointer;
+    transition: all ease 0.2s 0s;
+}
+section#boardMainSection table#newContenWrite td.buttonTd:hover {
+    background-color: rgb(230,230,230);
+    color: black;
+    transition: all ease 0.2s 0s;
+}
+
+
+
+section#boardMainSection div.board {
+    margin: auto;
+    padding: 50px 0px;
+    text-align: right;
+    width: 95%;
+    border-bottom: 1px solid rgb(245,245,245);
+}
+section#boardMainSection div.board table{
+    margin: auto;
+    border-collapse: collapse;
+}
+section#boardMainSection div.board table.tableNomal {
+    width: 100%;
+}
+
+section#boardMainSection div.board table.tableNomal td {
+    border: none;
+    cursor: default;
+}
+
+
+
+
+
+section#boardMainSection div.board table.userBoardContent td.boardSmallTd {
+    width: 8%;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-right: 1px solidblack;
+    padding: 50px 20px; 
+    font-size: 1.5em;
+}
+section#boardMainSection div.board table.userBoardContent td.showNameTd {
+    height: 3em;
+    border-bottom: 1px solid rgb(100,100,100);
+    background-color: rgba(250,250,250,0.8);
+    font-size: 1em;
+    text-align: left;
+    padding-left: 20px;
+}
+section#boardMainSection div.board table.userBoardContent td.showDateTd {
+    width: 15%;
+    border-bottom: 1px solid rgb(100,100,100);
+    background-color: rgba(240,240,240,0.8);
+    font-size: 1em;
+    text-align: center;
+}
+section#boardMainSection div.board table.userBoardContent td.showBoardTd {
+    background-color: rgba(248,248,255,0.8);
+    font-size: 1.1em;
+    text-align: left;
+    padding: 20px 25px;
+}
+
+
+
+
+
+section#boardMainSection div.board table.userBoardCommentTable td.showCommentWriterTd {
+    width: 20%;
+    background-color: rgba(255,250,250,0.8);
+    border-right: 1px solid rgb(150,150,150);
+    font-size: 1.05em;
+    padding: 5px 10px;
+    text-align: center;
+}
+section#boardMainSection div.board table.userBoardCommentTable td.showCommentTd {
+    background-color: rgba(255,250,250,0.8);
+    font-size: 1em;
+    padding: 10px 20px;
+    text-align: left;
+}
+section#boardMainSection div.board table.userBoardCommentTable td.commentDeleteTd {
+    background-color: rgba(255,250,250,0.8);
+    width: 10%;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color ease 0.2s 0s;
+}
+section#boardMainSection div.board table.userBoardCommentTable td.commentDeleteTd:hover {
+    background-color: rgba(200,200,200,0.8);
+    transition: background-color ease 0.2s 0s;
+}
+
+
+
+
+
+
+section#boardMainSection div.board table.userBoardCommentWriteTable td.writeCommentTd {
+    width: 85%;
+    text-align: center;
+    padding: 5px 0px;
+}
+section#boardMainSection div.board table.userBoardCommentWriteTable td.writeCommentTd textarea.commentTextarea {
+    width: 100%;
+    padding: 13px 12px;
+    resize: none;
+    text-align: left;
+    font-size: 0.9em;
+    border-top: 1px solid rgb(200,200,200);
+    border-bottom: 1px solid rgb(200,200,200);
+    border-left: none;
+    border-right: none;
+    border-radius: 10px;
+    transition: border ease 0.3s 0s;
+}
+section#boardMainSection div.board table.userBoardCommentWriteTable td.writeCommentTd textarea.commentTextarea:hover {
+    border-top: 1px solid rgb(150,150,150);
+    border-bottom: 1px solid rgb(150,150,150);
+    transition: border-top ease 0.3s 0s, border-bottom ease 0.3s 0s;
+}
+section#boardMainSection div.board table.userBoardCommentWriteTable td.submitCommentTd{
+    text-align: center;
+}
+section#boardMainSection div.board table.userBoardCommentWriteTable td.submitCommentTd input.commentWriteButton{
+    font-size: 1em;
+    padding: 8px 10px;
+    border: 1px solid rgb(150,150,150);
+    color: rgb(100,100,100);
+    font-weight: bold;
+    border-radius: 3px;
+    background-color: white;
+    cursor: pointer;
+    text-align: center;
+    transition: all ease 0.3s 0s;
+}
+section#boardMainSection div.board table.userBoardCommentWriteTable td.submitCommentTd input.commentWriteButton:hover{
+    border: 1px solid rgb(100,100,100);
+    background-color: white;
+    color: black;
+    transition: all ease 0.3s 0s;
+}
+
+
+
+section#boardMainSection div.board input.boardDeleteButton{
+    font-size: 1.5em;
+    padding: 3px 15px;
+    text-align: center;
+    margin: 3px 3px;
+    border: 1px solid rgb(150,150,150);
+    color: rgb(100,100,100);
+    font-weight: bold;
+    border-radius: 3px;
+    background-color: white;
+    cursor: pointer;
+    transition: all ease 0.3s 0s;
+}
+section#boardMainSection div.board input.boardDeleteButton:hover{
+    border: 1px solid rgb(100,100,100);
+    background-color: white;
+    color: black;
+    transition: all ease 0.3s 0s;
+}
+
+
+
+
+

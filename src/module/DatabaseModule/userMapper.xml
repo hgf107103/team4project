@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userMapper">
+
+    <resultMap id="userMap" type="object.userVO">
+    	<result property="userNumber" column="userNumber"/>
+    	<result property="userID" column="userID"/>
+    	<result property="userPassword" column="userPassword"/>
+    	<result property="userName" column="userName"/>
+    	<result property="userNickname" column="userNickname"/>
+    	<result property="userCreateDate" column="userCreateDate"/>
+    </resultMap>
+    
+   	<select id="isUserCheck" parameterType="object.userVO" resultMap="userMap">
+        SELECT * FROM userTable WHERE userID=#{userID};
+    </select>
+    
+    <insert id="insertUserID" parameterType="object.userVO" useGeneratedKeys="true" keyProperty="userNumber">
+    	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, userOutCheck, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, 0, 0, 0);
+    </insert>
+
+</mapper>
