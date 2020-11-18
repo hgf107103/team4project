@@ -17,7 +17,7 @@
     </select>
     
     <select id="isAdminUserCheck" parameterType="object.userVO" resultMap="userMap">
-    	SELECT * FROM userTable WHERE userID=#{userID} AND userPassword=#{userPassword} AND adminUserCheck=1;
+    	SELECT * FROM userTable WHERE userID=#{userID} AND userPassword=#{userPassword} AND adminUserCheck = 1;
     </select>
     
     <select id="isUserLogin" parameterType="object.userVO" resultMap="userMap">
@@ -25,7 +25,7 @@
     </select>
     
     <insert id="insertUserID" parameterType="object.userVO" useGeneratedKeys="true" keyProperty="userNumber">
-    	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, userOutCheck, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, 0, 0, 0);
+    	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, 0, 0);
     </insert>
     
     

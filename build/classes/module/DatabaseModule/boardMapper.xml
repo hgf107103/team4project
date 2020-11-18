@@ -10,5 +10,11 @@
     	<result property="boardText" column="boardText"/>
     	<result property="boardDate" column="boardDate"/>
     </resultMap>
-
+    
+    <insert id="insertBoard" parameterType="object.boardVO" useGeneratedKeys="true" keyProperty="boardNumber">
+    	INSERT INTO boardTable (userNumber, categoryNumber, boardText, boardDate) VALUES(#{userNumber}, #{categoryNumber}, #{boardText}, #{boardDate});
+    </insert>
+    
+    <!--  -->
+    
 </mapper>

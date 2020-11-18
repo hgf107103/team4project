@@ -20,17 +20,17 @@ function commentCountFunction(dom, CONTENT_MAX_SIZE) {
 }
 
 
-let boardCount = 3;
+let boardCount = 0;
 
 $(window).scroll(() => {
     //let board = null;
     if ($(window).scrollTop() + $(window).outerHeight() >= $(window).height()) {
         
         $.ajax({
-            url: "JS/sampleBoard.json",        //ajax로 불러올 파일의 주소.
-            cache: false,           //사용자캐시 사용 여부
-            dataType: "json",       //전달받을 데이터의 타입 (예 : XML, json, html 등)
-            success: (data) => {    //요청을 전달받은 후 실행될 기능
+            url: "JS/sampleBoard.json",
+            cache: false,
+            dataType: "json",
+            success: (data) => {
                 $.each (data.board, function (index, el) {
                     console.log(index);
                     $('#allBoard').append(boardTableStringReturn(el));
@@ -79,17 +79,25 @@ function newContents() {
         alert('입력된 내용이 없습니다.');
         return;
     }
-    const boardText = $('#newTextWrite').val().replace(/(\r\n\t|\n|\r\t)/gm," ");
+    const boardTextreplace = $('#newTextWrite').val().replace(/(\r\n\t|\n|\r\t)/gm," ");
 
-    $('#allBoard').html(
-    "<div class=board><input type='button' value='글 삭제' class='boardDeleteButton'>" + 
-    `<table class='userBoardContent tableNomal'><tr><td rowspan='2' class='boardSmallTd'>${boardCount}</td><td class="showNameTd">작성자 : 홍길동</td><td class="showDateTd">${nowDate.getFullYear()} ${nowDate.getMonth() + 1} ${nowDate.getDate()}</td></tr>` + 
-    `<tr><td class="showBoardTd" colspan="2">${boardText}</td></tr></table>` + 
-    `<table class="userBoardCommentTable tableNomal" id="comment${boardCount}"></table>` + 
-    `<table class="userBoardCommentWriteTable tableNomal"><tr><td class="writeCommentTd"><textarea class="commentTextarea" id="textarea${boardCount}" onkeyup="commentCountFunction(this, 150)"  rows="3" placeholder="댓글 입력"></textarea></td><td class="submitCommentTd"><input type="button" class="commentWriteButton" onclick="newComment('textarea${boardCount}','comment${boardCount}')" value="댓글쓰기"></td></tr></table>` + 
-    `</div>` + $('#allBoard').html());
-
-    alert('새 글이 등록되었습니다.');
-    $('#newTextWrite').val('');
-    boardCount++;
+    $.ajax({
+        url: `/addBoardServlet`,
+        type: "post",
+        data: {categoryName:$('#categoryName').val(),
+        		boardText:boardTextreplace},
+        cache: false,
+        dataType: "json",
+        success: (data) => {
+        	if(data.check == "success") {
+        		console.log('글쓰기 성공');
+        		alert('글쓰기 성공 테스트');
+        		window.location.reload();
+        	}
+        },
+        error: () => {
+        	console.log('오류발생');
+        	alert('글쓰기 실패');
+        }
+    });
 }

@@ -22,7 +22,7 @@
 <%if(request.getAttribute("categoryName") != null) { %>
     <div id="smoke">
         <div id="mainContentsDiv">
-            <input type="button" id="boardBtn" value="대화방" onclick="alert('<c:out value="${categoryALLName}"></c:out>')">
+            <input type="button" id="boardBtn" value="대화방" onclick="location.href = 'contents/board?categoryName=<c:out value='${categoryName}'></c:out>'">
             <input type="button" id="playLogBtn" value="전적검색" onclick="alert('아직 안만듬')">
             <input type="button" id="newsBtn" value="게임소식" onclick="alert('아직 안만듬')">
         </div>
