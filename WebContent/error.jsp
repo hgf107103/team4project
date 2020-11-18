@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:out value="${errorMessage}"></c:out>
-<input type="button" value="메인 페이지로 돌아가기" onclick="location.href = 'index.jsp'">
+<c:out value="오류메세지 : ${errorMessage}"></c:out>
+<input type="button" value="메인 페이지로 돌아가기" onclick="location.href = '/index.jsp'">
 </body>
 </html>

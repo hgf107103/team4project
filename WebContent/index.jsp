@@ -20,9 +20,9 @@
     </div>
     <div class="fiexdDiv callBlur" id="menubar">
         <input type="button" id="menuOpen" value="메뉴" onclick="menuOpenFunction()">
-        <input type="button" id="menuLOL" value="리그오브레전드" onclick="window.open('LOLcontents.html', '_blank')">
-        <input type="button" id="menuBG" value="배틀그라운드" onclick="alert('여긴 안만듬')">
-        <input type="button" id="menuOW" value="오버워치" onclick="alert('여긴 안만듬')">
+        <input type="button" id="menuLOL" value="리그오브레전드" onclick="window.open('contents?categoryName=LOL', '_blank')">
+        <input type="button" id="menuBG" value="배틀그라운드" onclick="window.open('contents?categoryName=BG', '_blank')">
+        <input type="button" id="menuOW" value="오버워치" onclick="window.open('contents?categoryName=OW', '_blank')">
     </div>
     <div class="fiexdDiv callBlur" id="titleMove">
         <p>샘</p>
