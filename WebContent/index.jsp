@@ -31,13 +31,13 @@
         <p>이</p>
         <p>틀</p>
     </div>
-    <div class="fiexdDiv callBlur" id="loginDiv">
+    <% if (session.getAttribute("userLogin") == null) {%>
+    <form class="fiexdDiv callBlur" id="loginDiv" name="loginForm">
         <input type="text" id="idInput" autocomplete="off" onkeyup="if (window.event.keyCode == 13) {loginFunction()}" placeholder="ID">
         <input type="password" id="pwdInput" onkeyup="if (window.event.keyCode == 13) {loginFunction()}" placeholder="PASSWORD">
         <img src="VIEW/img/icon/login.png" width="2.5%" alt="" onclick="loginFunction()">
         <input type="button" id="signup" onclick="showSignup(); location.href='#signupDiv'" onmouseenter="show('signup','rgb(192, 255, 132)', '회원가입')" onmouseout="out('signup','rgb(192, 255, 132)', 'NEW')" value="NEW">
-    </div>
-    <% if (session.getAttribute("userLogin") == null) {%>
+    </form>
     <div id="signupDiv">
         <img id="exit" src="VIEW/img/icon/out.png" width="45px" onclick="location.href='#menuCloss'; signupExit();" alt="">
         <img id="logo" src="VIEW/img/boardIcon/lolboard.png" alt="">
@@ -66,7 +66,7 @@
     <%} else if (session.getAttribute("userLogin") != null) {%>
     <div class="fiexdDiv" id="loginDiv">
         <input type="button" id="mypage" value="MY" onmouseenter="show('mypage','rgb(255, 120, 120)', '마이페이지')" onmouseout="out('mypage','rgb(255, 120, 120)', 'MY')" onclick="window.open('mypage.html#contentMenu', '_blank')">
-        <input type="button" id="logout" style="margin-right: 0px;" value="OUT"onmouseenter="show('logout', 'rgb(183, 145, 255)', '로그아웃')" onmouseout="out('logout', 'rgb(183, 145, 255)', 'OUT')" onclick="location.href='index.html'">
+        <input type="button" id="logout" style="margin-right: 0px;" value="OUT"onmouseenter="show('logout', 'rgb(183, 145, 255)', '로그아웃')" onmouseout="out('logout', 'rgb(183, 145, 255)', 'OUT')" onclick="logout()">
     </div>
     <%} %>
 </body>

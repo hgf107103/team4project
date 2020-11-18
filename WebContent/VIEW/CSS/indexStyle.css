@@ -23,11 +23,11 @@ div#mainDiv {
     background-color: rgba(255,255,255,0.3);
 }
 
-div.fiexdDiv {
+.fiexdDiv {
     position: fixed;
 }
 
-div#loginDiv {
+#loginDiv {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
@@ -39,7 +39,7 @@ div#loginDiv {
     padding: 10px;
     padding-right: 30px;
 }
-div#loginDiv img {
+#loginDiv img {
     padding: 5px;
     margin-left: 10px;
     padding-right: 6px;
@@ -50,7 +50,7 @@ div#loginDiv img {
     cursor: pointer;
     transition: transform ease 1.5s 0.1s, border ease 0.7s 0.3s, box-shadow ease 0.5s 0s;
 }
-div#loginDiv img:hover {
+#loginDiv img:hover {
     transform: rotate(1.5turn);
     border: 1px solid rgba(0, 255, 106, 0.5);
     box-shadow: 0 0 0 0.03em rgba(0, 255, 106, 0.1), 0 0 0 0.06em rgba(0, 255, 106,0.1), 0 0 0 0.09em rgba(0, 255, 106,0.1), 0 0 0 0.12em rgba(0, 255, 106,0.1), 0 0 0 0.15em rgba(14, 1, 133, 0.1), 0 0 0 0.18em rgba(0, 255, 106,0.1), 0 0 0 0.21em rgba(0, 255, 106,0.1), 0 0 0 0.24em rgba(0, 255, 106,0.1), 0 0 0 0.27em rgba(0, 255, 106,0.1), 0 0 0 0.30em rgba(0, 255, 106,0.1);
@@ -60,7 +60,7 @@ div#loginDiv img:hover {
 
 
 
-div#loginDiv input[type=text] {
+#loginDiv input[type=text] {
     width: 15%;
     margin: 0px 5px;
     font-size: 20px;
@@ -72,13 +72,13 @@ div#loginDiv input[type=text] {
     text-align: center;
     transition: opacity ease 0.8s 0.2s, border ease 0.8s 0.2s, box-shadow ease 0.8s 0s;
 }
-div#loginDiv input[type=text]:focus {
+#loginDiv input[type=text]:focus {
     border: 1px solid rgba(0, 255, 106, 0.5);
     opacity: 1;
     box-shadow: 0 0 0 0.03em rgba(0, 255, 106, 0.1), 0 0 0 0.06em rgba(0, 255, 106,0.1), 0 0 0 0.09em rgba(0, 255, 106,0.1), 0 0 0 0.12em rgba(0, 255, 106,0.1), 0 0 0 0.15em rgba(14, 1, 133, 0.1), 0 0 0 0.18em rgba(0, 255, 106,0.1), 0 0 0 0.21em rgba(0, 255, 106,0.1);
     transition: opacity ease 0.8s 0s, border ease 0.8s 0s, box-shadow ease 0.6s 0.2s;
 }
-div#loginDiv input[type=password] {
+#loginDiv input[type=password] {
     width: 15%;
     margin: 0px 5px;
     font-size: 20px;
@@ -90,7 +90,7 @@ div#loginDiv input[type=password] {
     text-align: center;
     transition: opacity ease 0.8s 0.2s, border ease 0.8s 0.2s, box-shadow ease 0.8s 0s;
 }
-div#loginDiv input[type=password]:focus {
+#loginDiv input[type=password]:focus {
     border: 1px solid rgba(0, 255, 106, 0.5);
     opacity: 1;
     box-shadow: 0 0 0 0.03em rgba(0, 255, 106, 0.1), 0 0 0 0.06em rgba(0, 255, 106,0.1), 0 0 0 0.09em rgba(0, 255, 106,0.1), 0 0 0 0.12em rgba(0, 255, 106,0.1), 0 0 0 0.15em rgba(14, 1, 133, 0.1), 0 0 0 0.18em rgba(0, 255, 106,0.1), 0 0 0 0.21em rgba(0, 255, 106,0.1);
@@ -196,7 +196,7 @@ div#menubar input {
 
 
 
-div#loginDiv input[type=button]{
+#loginDiv input[type=button]{
     width: 60px;
     height: 60px;
     font-size: 20px;
@@ -205,7 +205,7 @@ div#loginDiv input[type=button]{
     cursor: pointer;
     transition: box-shadow ease 0.5s 0s, transform ease 0.5s 0.75s, border ease 0.5s 0.2s, border-radius ease 0.6s 0.8s, width ease 0.4s 0.3s, color ease 0.5s 0s;
 }
-div#loginDiv input[type=button]:hover{
+#loginDiv input[type=button]:hover{
     transform: rotate(2turn);
     border-radius: 60px;
     width: 200px;
@@ -213,12 +213,12 @@ div#loginDiv input[type=button]:hover{
     transition: box-shadow ease 0.6s 0.8s, transform ease 0.5s 0s, border ease 0.8s 0.2s, border-radius ease 0.6s 0s, width ease 0.4s 0.4s, color ease 0.4s 0s;
 }
 
-div#loginDiv input[type=button]#signup {
+#loginDiv input[type=button]#signup {
     border: 2px solid rgb(192, 255, 132);
     background-color: rgb(192, 255, 132);
     color: black;
 }
-div#loginDiv input[type=button]#signup:hover {
+#loginDiv input[type=button]#signup:hover {
     color: black;
 }
 div#loginDiv input[type=button]#mypage {

@@ -78,7 +78,7 @@ public class signupServlet extends HttpServlet {
 			return;
 		} catch (Exception e) {
 			System.out.println("signipServlet POST Call : " + e);
-			request.setAttribute("errorMessage", "회원가입 오류 발생했습니다.");
+			request.setAttribute("errorMessage", "회원가입 오류");
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
 		}

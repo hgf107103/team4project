@@ -16,11 +16,8 @@ public class cryptoObject {
 		return new cryptoObject(str);
 	}
 	
-	public String getNormalString() {
-		return normalStr;
-	}
-	
 	public String getHashString() {
+		if(hashStr == null) setSHA256String();
 		return hashStr;
 	}
 	
