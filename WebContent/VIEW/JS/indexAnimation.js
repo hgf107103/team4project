@@ -46,24 +46,52 @@ function out(id, rgb, text) {
     }, 1100)
 }
 function loginFunction() {
-    if ($('#idInput').val() == 'admin' && $('#pwdInput').val() == '') {
-        window.open('master.html','title','height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes, status=no, titlebar=no, location=no, resizable=no');
-    
-        $('#idInput').val('');
-        return;
-    }
-
-    if ($('#idInput').val() != '') {
-        if ($('#pwdInput').val() != '') {
-            location.href = 'login.html';
-            return;
+	
+	if($('#idInput').val() == '') {
+		alert('아이디를 입력해 주십시오');
+		$('#idInput').focus();
+		return;
+	}
+	
+	if($('#pwdInput').val() == '') {
+		alert('비밀번호를 입력해 주십시오');
+		$('#pwdInput').focus();
+		return;
+	}
+	
+	$.ajax({
+        url: `/userLoginServlet`,
+        type: "post",
+        data: {userLoginID:$('#idInput').val(),
+        		userLoginPWD:$('#pwdInput').val()},
+        cache: false,
+        dataType: "json",
+        success: (data) => {
+        	if(data.check == "admin") {
+        		window.open('VIEW/MasterVIEW/masterPage.jsp','title','height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes, status=no, titlebar=no, location=no, resizable=no');
+                $('#idInput').val('');
+                return;
+        	}
+        	if(data.check == "loginSuccess") {
+        		alert('로그인 성공하셨습니다.');
+        		location.href = "index.jsp";
+        		return;
+        	}
+        	if(data.check == "idWrong") {
+        		alert('잘못된 아이디 입니다.');
+        		$('#idInput').focus();
+        		return;
+        	}
+        	if(data.check == "pwdWrong") {
+        		alert('잘못된 비밀번호 입니다.');
+        		$('#pwdInput').focus();
+        		return;
+        	}
+        },
+        error: () => {
+        	console.log('안녕2');
         }
-        alert('패스워드를 입력하십시오');
-        $('#pwdInput').focus()
-        return;
-    }
-    alert('아이디를 입력하십시오');
-    $('#idInput').focus()
+    });
 }
 
 function callblur() {
@@ -273,4 +301,12 @@ function signupSubmit() {
     }
     alert('아이디가 설정되지 않았습니다.');
     return;
+}
+
+
+function logout() {
+	let check = confirm('로그아웃 하시겠습니까?');
+	if(check) {
+		location.href = "logoutServlet";
+	}
 }

@@ -13,11 +13,21 @@
     </resultMap>
     
    	<select id="isUserCheck" parameterType="object.userVO" resultMap="userMap">
-        SELECT * FROM userTable WHERE userID=#{userID};
+        SELECT * FROM userTable WHERE userID=#{userID} AND adminUserCheck = 0;
+    </select>
+    
+    <select id="isAdminUserCheck" parameterType="object.userVO" resultMap="userMap">
+    	SELECT * FROM userTable WHERE userID=#{userID} AND userPassword=#{userPassword} AND adminUserCheck=1;
+    </select>
+    
+    <select id="isUserLogin" parameterType="object.userVO" resultMap="userMap">
+    	SELECT * FROM userTable WHERE userID=#{userID} AND userPassword=#{userPassword} AND adminUserCheck = 0;
     </select>
     
     <insert id="insertUserID" parameterType="object.userVO" useGeneratedKeys="true" keyProperty="userNumber">
     	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, userOutCheck, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, 0, 0, 0);
     </insert>
+    
+    
 
 </mapper>
