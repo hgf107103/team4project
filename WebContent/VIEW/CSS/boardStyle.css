@@ -194,6 +194,30 @@ section#boardMainSection div.board table.userBoardCommentTable td.commentDeleteT
 }
 
 
+section#boardMainSection div.board table.showCommentButtonTable {
+	width: 100%;
+	margin-top: 5px;
+}
+section#boardMainSection div.board table.showCommentButtonTable td{
+	width: 100%;
+	padding: 10px 0px;
+	background-color: red;
+	text-align: center;
+	border-radius: 100px;
+	background-color: rgba(255,250,250,0.8);
+	cursor: pointer;
+	transition: background-color ease 0.2s 0s;
+}
+section#boardMainSection div.board table.showCommentButtonTable td:hover{
+	background-color: rgba(255,230,230,0.8);
+	transition: background-color ease 0.2s 0s;
+}
+
+
+
+
+
+
 
 
 

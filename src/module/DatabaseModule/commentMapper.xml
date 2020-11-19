@@ -10,5 +10,19 @@
     	<result property="commentText" column="commentText"/>
     	<result property="commentDate" column="commentDate"/>
     </resultMap>
+    
+    <select id="callCommentList" parameterType="int" resultMap="commentMap">
+    	SELECT * FROM commentTable WHERE boardNumber = #{boardNumber}
+    </select>
+    
+    <insert id="insertComment" parameterType="object.commentVO" useGeneratedKeys="true" keyProperty="boardNumber">
+    	INSERT INTO commentTable (boardNumber, userNumber, commentText, commentDate) VALUES(#{boardNumber}, #{userNumber}, #{commentText}, #{commentDate});
+    </insert>
+    
+    <delete id="deleteComment" parameterType="object.commentVO">
+        DELETE FROM commentTable WHERE boardNumber=#{boardNumber} AND commentNumber = #{commentNumber} AND userNumber = #{userNumber};
+    </delete>
+    
+    
 
 </mapper>
