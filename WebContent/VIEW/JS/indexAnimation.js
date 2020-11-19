@@ -67,22 +67,22 @@ function loginFunction() {
         cache: false,
         dataType: "json",
         success: (data) => {
-        	if(data.check == "admin") {
+        	if(data.check === "admin") {
         		window.open('VIEW/MasterVIEW/masterPage.jsp','title','height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes, status=no, titlebar=no, location=no, resizable=no');
                 $('#idInput').val('');
                 return;
         	}
-        	if(data.check == "loginSuccess") {
+        	if(data.check === "loginSuccess") {
         		alert('로그인 성공하셨습니다.');
         		location.href = "index.jsp";
         		return;
         	}
-        	if(data.check == "idWrong") {
+        	if(data.check === "idWrong") {
         		alert('잘못된 아이디 입니다.');
         		$('#idInput').focus();
         		return;
         	}
-        	if(data.check == "pwdWrong") {
+        	if(data.check === "pwdWrong") {
         		alert('잘못된 비밀번호 입니다.');
         		$('#pwdInput').focus();
         		return;
@@ -103,7 +103,7 @@ function blurOut() {
 
 let strUrl = window.location.href;
 let strUrlTemp = strUrl.substr(window.location.href.length - 9 , window.location.href.length);
-if (strUrlTemp == 'signupDiv') {
+if (strUrlTemp === 'signupDiv') {
     location.href='#signupDiv';
     setTimeout(() => {
         showSignup();
@@ -160,7 +160,7 @@ function idCheck() {
         return;
     }
 
-    if ($('#signupIdInput').val() == '') {
+    if ($('#signupIdInput').val() === '') {
         $('#signupIdLog').text('아이디를 입력해주십시오.');
         $('#signupIdLog').css('color', 'rgb(255, 0, 0)');
         signupStatus.id = false;
@@ -173,7 +173,7 @@ function idCheck() {
         cache: false,
         dataType: "json",
         success: (data) => {
-            if(data.check == "true") {
+            if(data.check === "true") {
             	console.log('아이디 중복확인 성공');
             	$('#signupIdInput').css('color', 'rgb(0, 141, 7)');
                 $('#signupIdInput').css('background-color', 'rgb(240,240,240)');

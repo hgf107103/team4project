@@ -15,6 +15,16 @@
     	INSERT INTO boardTable (userNumber, categoryNumber, boardText, boardDate) VALUES(#{userNumber}, #{categoryNumber}, #{boardText}, #{boardDate});
     </insert>
     
-    <!--  -->
+    <select id="callBoardList" parameterType="object.boardVO" resultMap="boardMap">
+    	SELECT * FROM boardTable WHERE categoryNumber=#{categoryNumber}
+    	
+    	<choose>
+    		<when test="boardNumber > 0">
+    			AND boardNumber &lt; #{boardNumber}
+    		</when>
+    	</choose>
+    	
+    	ORDER BY boardNumber DESC LIMIT 5;
+    </select>
     
 </mapper>

@@ -2,7 +2,8 @@ package Controller.boardController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,23 +20,22 @@ import object.boardVO;
 import object.userVO;
 
 /**
- * Servlet implementation class addBoardServlet
+ * Servlet implementation class callBoardServlet
  */
-@WebServlet("/addBoardServlet")
-public class addBoardServlet extends HttpServlet {
+@WebServlet("/callBoardServlet")
+public class callBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-    public addBoardServlet() {
+    
+    public callBoardServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		System.out.println("addBoardServlet GET Call : 잘못된 영역 접근 입니다.");
+		System.out.println("callBoardServlet GET Call : 잘못된 영역 접근 입니다.");
 		request.setAttribute("errorMessage", "잘못된 접근");
 		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 		rd.forward(request, response);
@@ -48,19 +48,13 @@ public class addBoardServlet extends HttpServlet {
 		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
 		HttpSession session = request.getSession();
 		PrintWriter pw = response.getWriter();
-		String check = "false";
-		String dateString = "0";
 		try {
 			boardVO boardTemp = new boardVO();
-			
-			if(session.getAttribute("userLogin") == null) {
-				System.out.println("addBoardServlet POST Call : No Login");
-				request.setAttribute("errorMessage", "비로그인 접근");
-				RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-				rd.forward(request, response);
-				return;
-			}
+			int boardNumberParam = Integer.parseInt(request.getParameter("boardNumber"));
+			boardTemp.setBoardNumber(boardNumberParam);
 			int categoryNumber = 0;
+
+			System.out.println(2);
 			switch (request.getParameter("categoryName")) {
 			case "LOL":
 				categoryNumber = 1;
@@ -71,51 +65,51 @@ public class addBoardServlet extends HttpServlet {
 			case "OW":
 				categoryNumber = 3;
 				break;
+
 			default:
 				break;
 			}
-			userVO userTemp = (userVO)session.getAttribute("userLogin");
-			Date dateTemp = new Date(System.currentTimeMillis());
-			Date date = new Date((dateTemp.getTime() / (24 * 60 * 60 * 1000)) * (24 * 60 * 60 * 1000));
+			
+			boardTemp.setCategoryNumber(categoryNumber);
+			List<boardVO> list = sqlse.selectList("boardMapper.callBoardList", boardTemp);
 			
 			
-			if(userTemp.getUserStopDay().getTime() < date.getTime()) {
-				boardTemp.setUserNumber(userTemp.getUserNumber());
-				boardTemp.setCategoryNumber(categoryNumber);
-				boardTemp.setBoardText(request.getParameter("boardText"));
-				boardTemp.setBoardDate(date);
-				
-				int dbResultCheck = sqlse.insert("boardMapper.insertBoard", boardTemp);
-				
-				if(dbResultCheck > 0) {
-					check = "success";
-					sqlse.commit();
+			int lastNumber = 1;
+			if (list != null) {
+				pw.write("{");
+				pw.write("\"check\":\"success\",");
+				pw.write("\"board\":[");
+				for (int i = 0; i < list.size(); i++) {
+					userVO temp = sqlse.selectOne("userMapper.isBoardUserCheck", list.get(i).getUserNumber());
+					if (i == (list.size() - 1)) {
+						lastNumber = list.get(i).getBoardNumber();
+						pw.write("{");
+						pw.write("\"boardNumber\":\"" + list.get(i).getBoardNumber() + "\",");
+						pw.write("\"userName\":\"" + temp.getUserNickname() + "\",");
+						pw.write("\"boardText\":\"" + list.get(i).getBoardText() + "\",");
+						pw.write("\"boardDate\":\"" + list.get(i).getBoardDate() + "\"");
+						pw.write("}");
+						break;
+					}
+					pw.write("{");
+					pw.write("\"boardNumber\":\"" + list.get(i).getBoardNumber() + "\",");
+					pw.write("\"userName\":\"" + temp.getUserNickname() + "\",");
+					pw.write("\"boardText\":\"" + list.get(i).getBoardText() + "\",");
+					pw.write("\"boardDate\":\"" + list.get(i).getBoardDate() + "\"");
+					pw.write("},");
 				}
-				
-				System.out.println(boardTemp.toString());
+				pw.write("],");
+				pw.write("\"lastNumber\":\"" + lastNumber + "\"");
+				pw.write("}");
 			}
-			else if(userTemp.getUserStopDay().getTime() >= date.getTime()) {
-				check = "userStop";
-				dateString = userTemp.getUserStopDay().toString();
-			}
-			
-			
-		} catch (Exception e) {
-			System.out.println("addBoardServlet POST Call : " + e);
-			request.setAttribute("errorMessage", "새 글 쓰기 오류 발생");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
-		} finally {
-			System.out.println("글쓰기 종료");
-			
 			sqlse.close();
-			
-			pw.write("{");
-			pw.write("\"check\":\""+ check + "\",");
-			pw.write("\"dateString\":\""+ dateString + "\"");
-			pw.write("}");
-		};
-		
+
+		} catch (Exception e) {
+			/*System.out.println("callBoardServlet POST Call : " + e);
+			request.setAttribute("errorMessage", "글 불러오기 오류");
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);*/
+		}
 	}
 
 }

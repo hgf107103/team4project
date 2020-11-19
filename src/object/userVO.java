@@ -9,6 +9,8 @@ public class userVO {
 	private String userName;
 	private String userNickname;
 	private Date userCreateDate;
+	private Date userStopDay;
+	
 	public int getUserNumber() {
 		return userNumber;
 	}
@@ -45,11 +47,18 @@ public class userVO {
 	public void setUserCreateDate(Date userCreateDate) {
 		this.userCreateDate = userCreateDate;
 	}
+	public Date getUserStopDay() {
+		return userStopDay;
+	}
+	public void setUserStopDay(Date userStopDay) {
+		this.userStopDay = userStopDay;
+	}
 	@Override
 	public String toString() {
 		return "userVO [userNumber=" + userNumber + ", userID=" + userID + ", userPassword=" + userPassword
 				+ ", userName=" + userName + ", userNickname=" + userNickname + ", userCreateDate=" + userCreateDate
-				+ "]";
+				+ ", userStopDay=" + userStopDay + "]";
 	}
+	
 	
 }

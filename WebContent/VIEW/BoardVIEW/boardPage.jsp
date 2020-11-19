@@ -10,14 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
+	<input type="hidden" id="categoryName" value="<c:out value="${categoryName}"></c:out>">
+	<input type="hidden" id="boardNumber" value="0">
 	<header class="flexBox">
-        <img src="/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = '/index.jsp'" alt="" title="누르면 홈페이지로 이동">
+        <img src="/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="window.close()" alt="" title="누르면 홈페이지로 이동">
         <h1><c:out value="${categoryALLName}"></c:out> 유저 대화방</h1>
-        <img src="/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = '/index.jsp'" alt="" title="누르면 홈페이지로 이동">
+        <img src="/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="window.close()" alt="" title="누르면 홈페이지로 이동">
     </header>
     <section id="boardMainSection">
     	<%if(session.getAttribute("userLogin") != null) {%>
-    	<input type="hidden" id="categoryName" value="<c:out value="${categoryName}"></c:out>">
+    	
         <table id="newContenWrite">
             <tr>
                 <td class="menu write">새 글쓰기</td>

@@ -40,7 +40,7 @@
     </form>
     <div id="signupDiv">
         <img id="exit" src="VIEW/img/icon/out.png" width="45px" onclick="location.href='#menuCloss'; signupExit();" alt="">
-        <img id="logo" src="VIEW/img/boardIcon/lolboard.png" alt="">
+        <img id="logo" src="VIEW/img/boardIcon/boardLOL.png" alt="">
         <div id="signupFormBack"></div>
         <form id="signupForm" name="signupForm" action="signup" method="post">
         <label><span class="labelSet">　아이디</span><input type="text" id="signupIdInput" name="signupID" class="inputTextStyle" onkeyup="if (window.event.keyCode == 13) {idCheck()}" autocomplete="off"></label>
