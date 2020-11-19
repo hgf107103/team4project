@@ -10,5 +10,21 @@
     	<result property="boardText" column="boardText"/>
     	<result property="boardDate" column="boardDate"/>
     </resultMap>
-
+    
+    <insert id="insertBoard" parameterType="object.boardVO" useGeneratedKeys="true" keyProperty="boardNumber">
+    	INSERT INTO boardTable (userNumber, categoryNumber, boardText, boardDate) VALUES(#{userNumber}, #{categoryNumber}, #{boardText}, #{boardDate});
+    </insert>
+    
+    <select id="callBoardList" parameterType="object.boardVO" resultMap="boardMap">
+    	SELECT * FROM boardTable WHERE categoryNumber=#{categoryNumber}
+    	
+    	<choose>
+    		<when test="boardNumber > 0">
+    			AND boardNumber &lt; #{boardNumber}
+    		</when>
+    	</choose>
+    	
+    	ORDER BY boardNumber DESC LIMIT 5;
+    </select>
+    
 </mapper>

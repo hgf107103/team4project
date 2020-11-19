@@ -20,9 +20,9 @@
     </div>
     <div class="fiexdDiv callBlur" id="menubar">
         <input type="button" id="menuOpen" value="메뉴" onclick="menuOpenFunction()">
-        <input type="button" id="menuLOL" value="리그오브레전드" onclick="window.open('LOLcontents.html', '_blank')">
-        <input type="button" id="menuBG" value="배틀그라운드" onclick="alert('여긴 안만듬')">
-        <input type="button" id="menuOW" value="오버워치" onclick="alert('여긴 안만듬')">
+        <input type="button" id="menuLOL" value="리그오브레전드" onclick="window.open('contents?categoryName=LOL', '_blank')">
+        <input type="button" id="menuBG" value="배틀그라운드" onclick="window.open('contents?categoryName=BG', '_blank')">
+        <input type="button" id="menuOW" value="오버워치" onclick="window.open('contents?categoryName=OW', '_blank')">
     </div>
     <div class="fiexdDiv callBlur" id="titleMove">
         <p>샘</p>
@@ -40,7 +40,7 @@
     </form>
     <div id="signupDiv">
         <img id="exit" src="VIEW/img/icon/out.png" width="45px" onclick="location.href='#menuCloss'; signupExit();" alt="">
-        <img id="logo" src="VIEW/img/boardIcon/lolboard.png" alt="">
+        <img id="logo" src="VIEW/img/boardIcon/boardLOL.png" alt="">
         <div id="signupFormBack"></div>
         <form id="signupForm" name="signupForm" action="signup" method="post">
         <label><span class="labelSet">　아이디</span><input type="text" id="signupIdInput" name="signupID" class="inputTextStyle" onkeyup="if (window.event.keyCode == 13) {idCheck()}" autocomplete="off"></label>
