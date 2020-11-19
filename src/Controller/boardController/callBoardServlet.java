@@ -89,6 +89,7 @@ public class callBoardServlet extends HttpServlet {
 						lastNumber = list.get(i).getBoardNumber();
 						pw.write("{");
 						pw.write("\"boardNumber\":\"" + list.get(i).getBoardNumber() + "\",");
+						pw.write("\"userNumber\":\"" + temp.getUserNumber() + "\",");
 						pw.write("\"userName\":\"" + temp.getUserNickname() + "\",");
 						pw.write("\"boardText\":\"" + list.get(i).getBoardText() + "\",");
 						pw.write("\"boardDate\":\"" + list.get(i).getBoardDate() + "\",");
@@ -98,6 +99,7 @@ public class callBoardServlet extends HttpServlet {
 					}
 					pw.write("{");
 					pw.write("\"boardNumber\":\"" + list.get(i).getBoardNumber() + "\",");
+					pw.write("\"userNumber\":\"" + temp.getUserNumber() + "\",");
 					pw.write("\"userName\":\"" + temp.getUserNickname() + "\",");
 					pw.write("\"boardText\":\"" + list.get(i).getBoardText() + "\",");
 					pw.write("\"boardDate\":\"" + list.get(i).getBoardDate() + "\",");

@@ -28,4 +28,8 @@
 		GROUP BY T1.boardNumber ORDER BY T1.boardNumber DESC LIMIT 5;
     </select>
     
+    <delete id="deleteBoard" parameterType="object.boardVO">
+        DELETE FROM boardTable WHERE boardNumber=#{boardNumber} AND userNumber = #{userNumber};
+    </delete>
+    
 </mapper>

@@ -63,13 +63,13 @@ function boardTableStringReturn(boardObject) {
 		commentTableHtml = `<table class="showCommentButtonTable" id="showCommentButton${boardObject.boardNumber}"><tr><td id="showCommentButtonTd${boardObject.boardNumber}" onclick="callComment(${boardObject.boardNumber})">댓글보기(댓글 수 : ${boardObject.commentCount})</td></tr></table>`
 	}
 	
-	let returnBoard = `<div class="board">` +
-    `<input type="button" value="글 삭제" class="boardDeleteButton">` +
-    `<table class="userBoardContent tableNomal"><tr><td rowspan="2" class="boardSmallTd">${boardObject.boardNumber}</td>` +
+	let returnBoard = `<div class="board" id="boardID${boardObject.boardNumber}">` +
+    `<input type="button" value="글 삭제" class="boardDeleteButton" id="boardDeleteButton${boardObject.boardNumber}" onclick="deleteComment(${boardObject.boardNumber}, ${boardObject.userNumber})">` +
+    `<table class="userBoardContent tableNomal" id="userBoardContent${boardObject.boardNumber}"><tr><td rowspan="2" class="boardSmallTd">${boardObject.boardNumber}</td>` +
     `<td class="showNameTd">작성자 : ${boardObject.userName}</td><td class="showDateTd">${boardObject.boardDate}</td></tr>` + 
-    `<tr><td class="showBoardTd" colspan="2">${boardObject.boardText}</td></tr>` + 
+    `<tr><td class="showBoardTd" colspan="2">${boardObject.boardText}</td></tr></table>` + 
     `<table class="userBoardCommentTable tableNomal" id="comment${boardObject.boardNumber}"></table>${commentTableHtml}` + 
-    `<table class="userBoardCommentWriteTable tableNomal"><tr><td class="writeCommentTd"><textarea class="commentTextarea" id="textarea${boardObject.boardNumber}" onkeyup="commentCountFunction(this, 150)"  rows="3" placeholder="댓글 입력"></textarea></td>` + 
+    `<table class="userBoardCommentWriteTable tableNomal" id="commentWriter${boardObject.boardNumber}"><tr><td class="writeCommentTd"><textarea class="commentTextarea" id="textarea${boardObject.boardNumber}" onkeyup="commentCountFunction(this, 150)"  rows="3" placeholder="댓글 입력"></textarea></td>` + 
     `<td class="submitCommentTd"><input type="button" class="commentWriteButton" onclick="newComment(${boardObject.boardNumber})" value="댓글쓰기"></td></tr>` + 
     `</div>`;
     return returnBoard;
@@ -172,6 +172,46 @@ function deleteComment(cnumber, bnumber, unumber) {
     });
 }
 
+function deleteComment(bnumber, unumber) {
+	$.ajax({
+        url: `/deleteBoardServlet`,
+        type: "post",
+        data: {
+        	boardNumber:bnumber,
+        	userNumber:unumber
+        	},
+        cache: false,
+        dataType: "json",
+        success: (data) => {
+        	if(data.check == "notLogin") {
+        		alert('삭제 권한이 없습니다.\n비로그인 사용자입니다.');
+        		console.log(data.boardNumber);
+        		console.log();
+        		return;
+        	}
+        	if(data.check == "notYours") {
+        		alert('삭제 권한이 없습니다.\n자신의 댓글이 아닙니다.');
+        		console.log(data.boardNumber);
+        		return;
+        	}
+        	if(data.check == "success") {
+        		alert('삭제에 성공했습니다.');
+        		$(`#boardID${data.boardNumber}`).html('');
+        		$(`#boardID${data.boardNumber}`).css('display', 'none');
+        		return;
+        	}
+        	if(data.check == "fail") {
+        		alert('댓글 삭제에 실패했습니다.')
+        		return;
+        	}
+        },
+        error: () => {
+            console.log('오류발생');
+            alert('오류가 발생하였습니다.');
+        }
+    });
+}
+
 function newContents() {
     if ($('#newTextWrite').val() == '') {
         alert('입력된 내용이 없습니다.');
@@ -211,25 +251,29 @@ function newContents() {
 $(document).ready(() => {
 	console.log('준비 이벤트')
 	$.ajax({
-        url: `/callBoardServlet`,
-        type: "post",
-        data: {categoryName:$('#categoryName').val(),
-        		boardNumber:$('#boardNumber').val()},
-        cache: false,
-        dataType: "json",
-        success: (data) => {
-        	$('#boardNumber').val(data.lastNumber);
-        	$.each (data.board, function (index, el) {
-                $('#allBoard').append(boardTableStringReturn(el));
-            });
-        	if(data.sessionID == "null") {
-        		$('.userBoardCommentWriteTable').css('display', 'none');
-        	}
-        },
-        error: () => {
-        	console.log('오류발생');
-        	alert('글쓰기 실패');
-        }
-    });
+            url: `/callBoardServlet`,
+            type: "post",
+            data: {categoryName:$('#categoryName').val(),
+            		boardNumber:$('#boardNumber').val()},
+            cache: false,
+            dataType: "json",
+            success: (data) => {
+            	$('#boardNumber').val(data.lastNumber);
+            	$.each (data.board, function (index, el) {
+                    $('#allBoard').append(boardTableStringReturn(el));
+                });
+            	if(data.sessionID == "null") {
+            		$('.userBoardCommentWriteTable').css('display', 'none');
+            	}
+            	
+            	if(data.board.length < 5) {
+            		check = -10;
+            	}
+            },
+            error: () => {
+                console.log('오류발생');
+            }
+        });
+	
 	check = 1;
 })
