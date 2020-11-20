@@ -51,32 +51,52 @@ public class deleteBoardServlet extends HttpServlet {
 		String check = "false";
 		int number = 0;
 		try {
-			boardVO boardTemp = new boardVO();
 			int boardNumberParam = Integer.parseInt(request.getParameter("boardNumber"));
 			int userNumberParam = Integer.parseInt(request.getParameter("userNumber"));
+			
+			//System.out.println("b : " + boardNumberParam);
+			//System.out.println("u : " + userNumberParam);
 			
 			number = boardNumberParam;
 			
 			if (session.getAttribute("userLogin") == null) {
-				
+				//System.out.println("유저로그인 값없음");
 				check = "notLogin";
 				
 			} else if (session.getAttribute("userLogin") != null) {
 				
 				userVO sessionUser = (userVO)(session.getAttribute("userLogin"));
+				//System.out.println("세션 유저 불러옴 : " + sessionUser.toString());
 				userVO userTemp = sqlse.selectOne("userMapper.isBoardUserCheck",userNumberParam);
+				//System.out.println("DB유저가 있는지 확인함 : " + userTemp.toString());
 				
 				if (sessionUser.getUserID().equals(userTemp.getUserID()) && sessionUser.getUserNumber() == userTemp.getUserNumber()) {
 					
+					boardVO boardTemp = new boardVO();
 					boardTemp.setBoardNumber(boardNumberParam);
-					boardTemp.setUserNumber(userTemp.getUserNumber());
+					boardTemp.setUserNumber(sessionUser.getUserNumber());
 					
-					int deleteResult = sqlse.delete("boardMapper.deleteBoard", boardTemp);
-					if (deleteResult > 0) {
-						sqlse.commit();
-						check = "success";
-					} else if (deleteResult <= 0) {
-						check = "fail";
+					boardVO boardCommentCheck = sqlse.selectOne("boardMapper.callOneBoard", boardTemp);
+					
+					int nextCheck = 0;
+					if (boardCommentCheck.getCommentCount() > 0) {
+						int commentDeleteCheck = sqlse.delete("commentMapper.deleteAllComment", boardCommentCheck.getBoardNumber());
+						if (commentDeleteCheck > 0) {
+							sqlse.commit();
+						} else if(commentDeleteCheck <= 0) {
+							check = "commentDeleteFail";
+							nextCheck = 1;
+						}
+					}
+					
+					if(nextCheck == 0) {
+						int deleteResult = sqlse.delete("boardMapper.deleteBoard", boardTemp);
+						if (deleteResult > 0) {
+							sqlse.commit();
+							check = "success";
+						} else if (deleteResult <= 0) {
+							check = "fail";
+						}
 					}
 					
 				} else if (!sessionUser.getUserID().equals(userTemp.getUserID()) || sessionUser.getUserNumber() != userTemp.getUserNumber()) {
@@ -86,7 +106,6 @@ public class deleteBoardServlet extends HttpServlet {
 				
 			}
 			
-			sqlse.close();
 
 		} catch (Exception e) {
 			System.out.println("deleteCommentServlet POST Call : " + e);

@@ -49,7 +49,7 @@ $(window).scroll(() => {
             	}
             },
             error: () => {
-                console.log('오류발생');
+                console.log('글 갱신 오류발생');
             }
         });
         //
@@ -64,7 +64,7 @@ function boardTableStringReturn(boardObject) {
 	}
 	
 	let returnBoard = `<div class="board" id="boardID${boardObject.boardNumber}">` +
-    `<input type="button" value="글 삭제" class="boardDeleteButton" id="boardDeleteButton${boardObject.boardNumber}" onclick="deleteComment(${boardObject.boardNumber}, ${boardObject.userNumber})">` +
+    `<input type="button" value="글 삭제" class="boardDeleteButton" id="boardDeleteButton${boardObject.boardNumber}" onclick="deleteBoard(${boardObject.boardNumber}, ${boardObject.userNumber})">` +
     `<table class="userBoardContent tableNomal" id="userBoardContent${boardObject.boardNumber}"><tr><td rowspan="2" class="boardSmallTd">${boardObject.boardNumber}</td>` +
     `<td class="showNameTd">작성자 : ${boardObject.userName}</td><td class="showDateTd">${boardObject.boardDate}</td></tr>` + 
     `<tr><td class="showBoardTd" colspan="2">${boardObject.boardText}</td></tr></table>` + 
@@ -98,7 +98,7 @@ function callComment(number) {
             });
         },
         error: () => {
-            console.log('오류발생');
+            console.log('댓글 갱신 오류발생');
         }
     });
 }
@@ -126,13 +126,20 @@ function newComment(number) {
         	callComment(number);
         },
         error: () => {
-            console.log('오류발생');
+            console.log('새 댓글 오류발생');
             alert('오류가 발생하였습니다.');
         }
     });
 }
 
 function deleteComment(cnumber, bnumber, unumber) {
+	let userCheck = confirm(`정말로 ${bnumber}번 게시물의 댓글을 삭제하시겠습니까?\n주의 : 되돌릴 수 없습니다.`);
+	
+	if (!userCheck) {
+		alert('취소되었습니다.');
+		return;
+	}
+	
 	$.ajax({
         url: `/deleteCommentServlet`,
         type: "post",
@@ -166,13 +173,20 @@ function deleteComment(cnumber, bnumber, unumber) {
         	}
         },
         error: () => {
-            console.log('오류발생');
+            console.log('댓글삭제 오류발생');
             alert('오류가 발생하였습니다.');
         }
     });
 }
 
-function deleteComment(bnumber, unumber) {
+function deleteBoard(bnumber, unumber) {
+	let userCheck = confirm(`정말로 ${bnumber}번 게시물을 삭제하시겠습니까?\n주의 : 되돌릴 수 없으며, 댓글도 모두 삭제됩니다.`);
+	
+	if (!userCheck) {
+		alert('취소되었습니다.');
+		return;
+	}
+	
 	$.ajax({
         url: `/deleteBoardServlet`,
         type: "post",
@@ -204,9 +218,13 @@ function deleteComment(bnumber, unumber) {
         		alert('댓글 삭제에 실패했습니다.')
         		return;
         	}
+        	if(data.check == "commentDeleteFail") {
+        		alert('댓글이 존재해 글을 삭제할 수 없습니다.')
+        		return;
+        	}
         },
         error: () => {
-            console.log('오류발생');
+            console.log('게시글 삭제 오류발생');
             alert('오류가 발생하였습니다.');
         }
     });
@@ -239,8 +257,8 @@ function newContents() {
         	}
     		window.location.reload();
         },
-        error: (e) => {
-        	console.log('오류발생', e);
+        error: () => {
+        	console.log('글쓰기 오류발생');
         	alert('글쓰기 실패');
         }
     });
@@ -271,7 +289,7 @@ $(document).ready(() => {
             	}
             },
             error: () => {
-                console.log('오류발생');
+                console.log('글 갱신 오류발생');
             }
         });
 	

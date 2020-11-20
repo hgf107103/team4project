@@ -23,6 +23,10 @@
         DELETE FROM commentTable WHERE boardNumber=#{boardNumber} AND commentNumber = #{commentNumber} AND userNumber = #{userNumber};
     </delete>
     
+    <delete id="deleteAllComment" parameterType="int">
+    	DELETE FROM commentTable WHERE boardNumber=#{boardNumber};
+    </delete>
+    
     
 
 </mapper>

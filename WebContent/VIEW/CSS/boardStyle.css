@@ -29,12 +29,52 @@ header h1 {
     font-size: 6em;
 }
 header img {
-    width: 9%;
+    height: 120px;
     cursor: pointer;
 }
 header img:hover {
     transform: rotate(0.02turn);
 }
+
+div#categoryMoveMenu {
+	position: fixed;
+	top: 20px;
+	left: 15px;
+	padding: 10px 10px;
+	border: 1px solid rgb(200,200,200);
+	border-radius: 10px;
+	background-color: rgb(240,240,240);
+}
+
+div#categoryMoveMenu span {
+	display: block;
+	text-align: center;
+	font-size: 1.6em;
+}
+
+div#categoryMoveMenu input {
+	display: block;
+	width: 150px;
+	text-align: center;
+	font-size: 1.4em;
+	padding: 5px 0px;
+	margin-top: 8px;
+	background-color: rgb(0,0,0);
+	cursor: pointer;
+	border: 1px solid rgb(255,255,255);
+	color: white;
+	border-radius: 5px;
+    transition: border ease 0.2s 0s, background-color ease 0.2s 0s, color ease 0.2s 0s;
+}
+div#categoryMoveMenu input:hover {
+	background-color: rgb(255,255,255);
+	border: 1px solid rgb(0,0,0);
+	color: black;
+    transition: border ease 0.2s 0s, background-color ease 0.2s 0s, color ease 0.2s 0s;
+}
+
+
+
 
 .flexBox {
     display: flex;
