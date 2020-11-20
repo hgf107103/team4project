@@ -29,8 +29,8 @@ div#userListDiv {
     background-color: white;
     border-radius: 6px;
     width: 25%;
-    height: 92%;
-    margin-right: 2%;
+    height: 95%;
+    margin-right: 10px;
 }
 
 
@@ -94,8 +94,11 @@ div#userListDiv .userNick {
 
 
 div#userContentDiv {
-    width: 65%;
-    height: 92%;
+    width: 70%;
+    height: 95%;
+}
+div#userContentDiv div#userStatus{
+    margin-bottom: 10px;
 }
 
 
@@ -119,6 +122,9 @@ input[type=text].inputDefaultStyle:focus {
 }
 input[type=text]#userStopDay {
     width: 60px;
+}
+input[type=text]#userOut {
+    width: 120px;
 }
 
 input[type=button].inputDefaultStyle {
@@ -171,13 +177,8 @@ div#userContentDiv div#userControlDiv {
     background-color: rgb(255,255,255);
     border: 1px solid rgb(200,200,200);
     border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-items: flex-start;
-    justify-content: flex-start;
-    align-items: center;
     margin: 0px auto;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }
 
 div#userContentDiv div#userControlDiv label{
@@ -209,7 +210,7 @@ div#userBoardListDiv table#selectedUserBoardHeader th{
 }
 
 div#userBoardListDiv div#borderListScroll{
-    height: 45%;
+    height: 42%;
     overflow-y: auto;
 }
 
@@ -273,7 +274,7 @@ div#userBoardListDiv td.boardControl input[type=button]:hover {
 div#userCommentListDiv {
     width: 95%;
     margin: auto;
-    margin-top: 2%;
+    margin-top: 1%;
     padding: 2% 2%;
     background-color: white;
     border: 1px solid rgb(200,200,200);
@@ -314,7 +315,7 @@ div#userCommentListDiv .commentControl {
 
 
 div#userCommentListDiv div#commentListScroll{
-    height: 25%;
+    height: 26.5%;
     overflow-y: auto;
 }
 div#userCommentListDiv div#commentListScroll table{

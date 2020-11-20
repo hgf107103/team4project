@@ -1,3 +1,4 @@
+<%@page import="object.userVO"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -5,11 +6,21 @@
 <head>
     <meta charset="UTF-8">
     <title>메인화면</title>
-    <script src="JS/jquery-3.5.1.min.js"></script>
+    <script src="/project/VIEW/JS/jquery-3.5.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/masterPage.css">
+    <link rel="stylesheet" href="/project/VIEW/CSS/masterPage.css">
 </head>
 <body>
+<%	
+	/*if(session.getAttribute("userLogin") == null) {
+		response.sendError(403);
+		return;
+	}
+	System.out.println(session.getAttribute("userLogin"));
+	if(session.getAttribute("userLogin") != null) {
+		userVO userTemp = (userVO)(session.getAttribute("userLogin"));
+		System.out.println(userTemp.toString());
+		if(userTemp.getUserID() == "admin" || userTemp.getUserNumber() == 1) {*/%>
     <div id="userListDiv">
         <table id="userTableHeader">
             <tr>
@@ -26,165 +37,58 @@
     </div>
     <div id="userContentDiv">
         <div id="userControlDiv">
-            <label>선택된 유저</label><input id="selecteUserName" type="text" readonly class="inputDefaultStyle" draggable="false" value="홍길동">
-            <label>남은 정지 일수</label><input type="text" readonly id="userStopDay" class="inputDefaultStyle" draggable="false" value="0">
-            <select name="" id="">
-                <option value="null">정지일수</option>
-                <option value="1">1일</option>
-                <option value="3">3일</option>
-                <option value="7">7일</option>
-                <option value="14">14일</option>
-                <option value="30">30일</option>
-                <option value="365">365일</option>
-            </select>
-            <input type="button" class="inputDefaultStyle" value="정지추가" onclick="alert('아직 구현되지 않음')">
-            <input type="button" class="inputDefaultStyle" value="강제탈퇴" onclick="alert('아직 구현되지 않음')">
+            <div id="userStatus">
+            	<label>선택된 유저</label><input id="selecteUserName" type="text" readonly class="inputDefaultStyle" draggable="false" value="" placeholder="유저를 선택하시오">
+            	<label>남은 정지 일수</label><input type="text" readonly id="userStopDay" class="inputDefaultStyle" draggable="false" value="" placeholder="일">
+            	<label>현재 계정 상태</label><input type="text" readonly id="userOut" class="inputDefaultStyle" draggable="false" value="" placeholder="활성/비활성">
+            </div>
+            <div id="userDirectControl">
+            	
+            	<select name="" id="">
+                	<option value="0">정지일수</option>
+                	<option value="1">1일</option>
+                	<option value="3">3일</option>
+                	<option value="7">7일</option>
+                	<option value="14">14일</option>
+                	<option value="30">30일</option>
+                	<option value="365">365일</option>
+            	</select>
+            	<input type="button" class="inputDefaultStyle" value="제제일추가" onclick="alert('아직 구현되지 않음')">
+            	<input type="button" class="inputDefaultStyle" value="제제일삭감" onclick="alert('아직 구현되지 않음')">
+            	<input type="button" class="inputDefaultStyle" value="영구정지" onclick="alert('아직 구현되지 않음')">
+            	<input type="button" class="inputDefaultStyle" value="영구정지해제" onclick="alert('아직 구현되지 않음')">
+            </div>
         </div>
         <div id="userBoardListDiv">
             <table id="selectedUserBoardHeader">
                 <tr>
                     <th class="boardNumber">글번호</th>
-                    <th class="boardContents">내용</th>
+                    <th class="boardContents">글내용</th>
                     <th class="boardDate">날짜</th>
                     <th class="boardControl">삭제</th>
                 </tr>
             </table>
             <div id="borderListScroll">
                 <table id="selectedUserBoardList">
-                    <tr>
-                        <td class="boardNumber">1</td>
-                        <td class="boardContents">
-                            <div class="boardContesScroll">
-                                안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕
-                            </div>
-                        </td>
-                        <td class="boardDate">2020 11 14</td>
-                        <td class="boardControl">
-                            <input type="button" class="boardDeleteButton" value="삭제">
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td class="boardNumber">2</td>
-                        <td class="boardContents">
-                            <div class="boardContesScroll">
-                                샘플 문구 입니다.
-                            </div>
-                        </td>
-                        <td class="boardDate">2020 11 14</td>
-                        <td class="boardControl">
-                            <input type="button" class="boardDeleteButton" value="삭제">
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td class="boardNumber">3</td>
-                        <td class="boardContents">
-                            <div class="boardContesScroll">
-                                샘플 문구 입니다.
-                            </div>
-                        </td>
-                        <td class="boardDate">2020 11 14</td>
-                        <td class="boardControl">
-                            <input type="button" class="boardDeleteButton" value="삭제">
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td class="boardNumber">4</td>
-                        <td class="boardContents">
-                            <div class="boardContesScroll">
-                                샘플 문구 입니다.
-                            </div>
-                        </td>
-                        <td class="boardDate">2020 11 14</td>
-                        <td class="boardControl">
-                            <input type="button" class="boardDeleteButton" value="삭제">
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td class="boardNumber">5</td>
-                        <td class="boardContents">
-                            <div class="boardContesScroll">
-                                샘플 문구 입니다.
-                            </div>
-                        </td>
-                        <td class="boardDate">2020 11 14</td>
-                        <td class="boardControl">
-                            <input type="button" class="boardDeleteButton" value="삭제">
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td class="boardNumber">6</td>
-                        <td class="boardContents">
-                            <div class="boardContesScroll">
-                                샘플 문구 입니다.
-                            </div>
-                        </td>
-                        <td class="boardDate">2020 11 14</td>
-                        <td class="boardControl">
-                            <input type="button" class="boardDeleteButton" value="삭제">
-                        </td>
-                    </tr> 
+                    
                 </table>
             </div>
         </div>
         <div id="userCommentListDiv">
             <table id="selectedUserCommentHeader">
                 <tr>
-                    <th class="commentContents">내용</th>
+                    <th class="commentContents">댓글내용</th>
                     <th class="commentDate">날짜</th>
                     <th class="commentControl">삭제</th>
                 </tr>
             </table>
             <div id="commentListScroll">
                 <table id="selectedUserCommentList">
-                    <tr>
-                        <td class="commentContents">
-                            <div class="boardContesScroll">
-                                샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 샘플 댓글입니다. 
-                            </div>
-                        </td>
-                        <td class="commentDate">2020 11 14</td>
-                        <td class="commentControl">
-                            <input type="button" class="commentDeleteButton" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="commentContents">댓글 내용입니다</td>
-                        <td class="commentDate">2020 11 14</td>
-                        <td class="commentControl">
-                            <input type="button" class="commentDeleteButton" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="commentContents">댓글 내용입니다</td>
-                        <td class="commentDate">2020 11 14</td>
-                        <td class="commentControl">
-                            <input type="button" class="commentDeleteButton" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="commentContents">댓글 내용입니다</td>
-                        <td class="commentDate">2020 11 14</td>
-                        <td class="commentControl">
-                            <input type="button" class="commentDeleteButton" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="commentContents">댓글 내용입니다</td>
-                        <td class="commentDate">2020 11 14</td>
-                        <td class="commentControl">
-                            <input type="button" class="commentDeleteButton" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="commentContents">댓글 내용입니다</td>
-                        <td class="commentDate">2020 11 14</td>
-                        <td class="commentControl">
-                            <input type="button" class="commentDeleteButton" value="삭제">
-                        </td>
-                    </tr>
+                    
                 </table>
             </div>
         </div>
     </div>
+<%//}}%>
 </body>
 </html>

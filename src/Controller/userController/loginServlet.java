@@ -57,6 +57,7 @@ public class loginServlet extends HttpServlet {
 			
 			if(userAdminCheck != null) {
 				System.out.println("admin Login : " + userAdminCheck.toString());
+				session.setAttribute("userLogin", userAdminCheck);
 				check = "admin";
 			}
 			
