@@ -31,14 +31,7 @@ public class loginServlet extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		System.out.println("loginServlet GET Call : 잘못된 영역 접근 입니다.");
-		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		rd.forward(request, response);
+		response.sendError(400);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -94,15 +87,13 @@ public class loginServlet extends HttpServlet {
 				}
 				
 			}
+			sqlse.close();
 		} catch (Exception e) {
-			System.out.println("loginServlet POST Call : " + e);
-			request.setAttribute("errorMessage", "로그인 오류발생");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
+			sqlse.close();
+			response.sendError(400);
 		} finally {
 			System.out.println("로그인 종료");
 			
-			sqlse.close();
 			
 			pw.write("{");
 			pw.write("\"check\":\""+ check + "\"");

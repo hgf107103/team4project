@@ -31,14 +31,7 @@ public class deleteBoardServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		System.out.println("deleteBoardServlet GET Call : 잘못된 영역 접근 입니다.");
-		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		rd.forward(request, response);
+		response.sendError(400);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -105,15 +98,13 @@ public class deleteBoardServlet extends HttpServlet {
 				
 				
 			}
-			
+
+			sqlse.close();
 
 		} catch (Exception e) {
-			System.out.println("deleteCommentServlet POST Call : " + e);
-			request.setAttribute("errorMessage", "댓글 삭제 오류");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
-		} finally {
 			sqlse.close();
+			response.sendError(400);
+		} finally {
 			
 			pw.write("{");
 			pw.write("\"check\":\""+ check +"\",");
