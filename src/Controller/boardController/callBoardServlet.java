@@ -22,7 +22,7 @@ import object.userVO;
 /**
  * Servlet implementation class callBoardServlet
  */
-@WebServlet("/callBoardServlet")
+@WebServlet("/contents/board/call")
 public class callBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

@@ -18,7 +18,7 @@ import object.userVO;
 /**
  * Servlet implementation class signupCheckServlet
  */
-@WebServlet("/signupCheckServlet")
+@WebServlet("/user/signup/check")
 public class signupCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
@@ -28,6 +28,16 @@ public class signupCheckServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		System.out.println("signipServlet GET Call : 잘못된 영역 접근 입니다.");
+		request.setAttribute("errorMessage", "잘못된 접근");
+		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
@@ -57,16 +67,6 @@ public class signupCheckServlet extends HttpServlet {
 			pw.write("\"check\":\"" + check + "\"");
 			pw.write("}");
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		System.out.println("signipServlet GET Call : 잘못된 영역 접근 입니다.");
-		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		rd.forward(request, response);
 	}
 
 }

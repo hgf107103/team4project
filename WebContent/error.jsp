@@ -5,10 +5,60 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>에러페이지 - <%=response.getStatus() %></title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style type="text/css">
+	*{
+		margin: 0px 0px;
+		padding: 0px 0px;
+		cursor: default;
+		font-family: "Bebas Neue";
+	}
+	*:focus{
+		outline: none;
+	}
+	div {
+		margin: auto;
+		padding-top: 27vh;
+		text-align: center;
+	}
+	img {
+		transform: rotate(-2deg);
+    	transition: transform ease 0.2s 0s;
+	}
+	img:hover {
+		transform: rotate(1deg);
+    	transition: transform ease 0.2s 0s;
+	}
+	h1 {
+		font-size: 75px;
+	}
+	input {
+		font-family: "Noto Sans KR";
+		padding: 0px 10px;
+		padding-bottom: 6px;
+		font-size: 18px;
+		color: rgb(230,230,230);
+		background-color: white;
+		border: 2px solid white;
+		border-bottom: 2px solid rgb(230,230,230);
+		cursor: pointer;
+    	transition: border-bottom ease 0.4s 0s, color ease 0.4s 0s;
+	}
+	input:hover {
+		color: rgb(180,180,180);
+		border-bottom: 2px solid rgb(210,210,210);
+    	transition: border-bottom ease 0.4s 0s, color ease 0.4s 0s;
+	}
+	
+</style>
 </head>
 <body>
-<c:out value="오류메세지 : ${errorMessage}"></c:out>
-<input type="button" value="메인 페이지로 돌아가기" onclick="location.href = '/index.jsp'">
+<div>
+	<img alt="" src="VIEW/img/icon/errorpolo.png" onclick="">
+	<h1>ERROR - <%=response.getStatus() %></h1>
+	<input type="button" value="메인페이지로" onclick="location.href='/project/index.jsp';">
+</div>
 </body>
 </html>

@@ -22,7 +22,7 @@ import object.userVO;
 /**
  * Servlet implementation class callCommentServlet
  */
-@WebServlet("/callCommentServlet")
+@WebServlet("/contents/board/comment/call")
 public class callCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,7 +51,7 @@ public class callCommentServlet extends HttpServlet {
 		try {
 			int boardNumberParam = Integer.parseInt(request.getParameter("boardNumber"));
 			List<commentVO> list = sqlse.selectList("commentMapper.callCommentList", boardNumberParam);
-			
+			System.out.println(list);
 			if (list != null) {
 				pw.write("{");
 				pw.write("\"check\":\"success\",");

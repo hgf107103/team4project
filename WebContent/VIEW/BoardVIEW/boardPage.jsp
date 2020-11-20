@@ -4,24 +4,24 @@
 <html lang="ko" oncontextmenu="return false" ondragstart="return false" onselectstart='return false'>
 <head>
 <title><c:out value="${categoryALLName}"></c:out>보드</title>
-	<script src="/VIEW/JS/jquery-3.5.1.min.js"></script>
-    <script src="/VIEW/JS/boardScript.js"></script>
-    <link rel="stylesheet" href="/VIEW/CSS/boardStyle.css">
+	<script src="/project/VIEW/JS/jquery-3.5.1.min.js"></script>
+    <script src="/project/VIEW/JS/boardScript.js"></script>
+    <link rel="stylesheet" href="/project/VIEW/CSS/boardStyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 	<input type="hidden" id="categoryName" value="<c:out value="${categoryName}"></c:out>">
 	<input type="hidden" id="boardNumber" value="0">
 	<header class="flexBox">
-        <img src="/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = 'index.jsp'" alt="" title="누르면 홈페이지로 이동">
+        <img src="/project/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = '/project/index.jsp'" alt="" title="누르면 홈페이지로 이동">
         <h1><c:out value="${categoryALLName}"></c:out> 유저 대화방</h1>
-        <img src="/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = 'index.jsp'" alt="" title="누르면 홈페이지로 이동">
+        <img src="/project/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = '/project/index.jsp'" alt="" title="누르면 홈페이지로 이동">
     </header>
     <div id="categoryMoveMenu">
     	<span>게시판 이동</span>
-    	<input type="button" id="menuLOL" value="리그오브레전드" onclick="location.href = '/contents/board?categoryName=LOL'">
-        <input type="button" id="menuBG" value="배틀그라운드" onclick="location.href = '/contents/board?categoryName=BG'">
-        <input type="button" id="menuOW" value="오버워치" onclick="location.href = '/contents/board?categoryName=OW'">
+    	<input type="button" id="menuLOL" value="리그오브레전드" onclick="location.href = 'board?categoryName=LOL'">
+        <input type="button" id="menuBG" value="배틀그라운드" onclick="location.href = 'board?categoryName=BG'">
+        <input type="button" id="menuOW" value="오버워치" onclick="location.href = 'board?categoryName=OW'">
     </div>
     <section id="boardMainSection">
     	<%if(session.getAttribute("userLogin") != null) {%>

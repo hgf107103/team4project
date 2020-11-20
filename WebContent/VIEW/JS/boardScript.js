@@ -29,7 +29,7 @@ $(window).scroll(() => {
     if ($(window).scrollTop() + $(window).outerHeight() >= $(window).height()) {
         console.log('스크롤 이벤트')
         $.ajax({
-            url: `/callBoardServlet`,
+            url: `board/call`,
             type: "post",
             data: {categoryName:$('#categoryName').val(),
             		boardNumber:$('#boardNumber').val()},
@@ -80,20 +80,19 @@ function commentTableStringReturn(commentObject, boardNumber) {
 	return returnComment;
 }
 
+//댓글 갱신
 function callComment(number) {
 	$(`#showCommentButtonTd${number}`).text('서버에 연결중입니다.');
 	$.ajax({
-        url: `/callCommentServlet`,
+        url: `board/comment/call`,
         type: "post",
         data: {boardNumber:number},
         cache: false,
         dataType: "json",
         success: (data) => {
         	$(`#showCommentButton${number}`).css('display', 'none');
-        	console.log(data, " : ", data.boardNumber);
         	$(`#comment${number}`).html('');
         	$.each (data.comment, function (index, el) {
-                console.log(index, " : ", el);
                 $(`#comment${number}`).append(commentTableStringReturn(el, data.boardNumber));
             });
         },
@@ -103,17 +102,19 @@ function callComment(number) {
     });
 }
 
+//새 댓글
 function newComment(number) {
     if ( $(`#textarea${number}`).val() == '') {
         alert('입력된 내용이 없습니다.');
         return;
     }
+    const boardText = $(`#textarea${number}`).val().replace(/(\r\n\t|\n|\r\t)/gm," ");
     $.ajax({
-        url: `/addCommentServlet`,
+        url: `board/comment/add`,
         type: "post",
         data: {
         	boardNumber:number,
-        	commentText:$(`#textarea${number}`).val()
+        	commentText:boardText
         	},
         cache: false,
         dataType: "json",
@@ -132,6 +133,7 @@ function newComment(number) {
     });
 }
 
+//댓글 삭제
 function deleteComment(cnumber, bnumber, unumber) {
 	let userCheck = confirm(`정말로 ${bnumber}번 게시물의 댓글을 삭제하시겠습니까?\n주의 : 되돌릴 수 없습니다.`);
 	
@@ -141,7 +143,7 @@ function deleteComment(cnumber, bnumber, unumber) {
 	}
 	
 	$.ajax({
-        url: `/deleteCommentServlet`,
+        url: `board/comment/delete`,
         type: "post",
         data: {
         	boardNumber:bnumber,
@@ -179,6 +181,7 @@ function deleteComment(cnumber, bnumber, unumber) {
     });
 }
 
+//게시물 삭제
 function deleteBoard(bnumber, unumber) {
 	let userCheck = confirm(`정말로 ${bnumber}번 게시물을 삭제하시겠습니까?\n주의 : 되돌릴 수 없으며, 댓글도 모두 삭제됩니다.`);
 	
@@ -188,7 +191,7 @@ function deleteBoard(bnumber, unumber) {
 	}
 	
 	$.ajax({
-        url: `/deleteBoardServlet`,
+        url: `board/delete`,
         type: "post",
         data: {
         	boardNumber:bnumber,
@@ -230,6 +233,7 @@ function deleteBoard(bnumber, unumber) {
     });
 }
 
+//새글쓰기
 function newContents() {
     if ($('#newTextWrite').val() == '') {
         alert('입력된 내용이 없습니다.');
@@ -238,7 +242,7 @@ function newContents() {
     const boardTextreplace = $('#newTextWrite').val().replace(/(\r\n\t|\n|\r\t)/gm," ");
 
     $.ajax({
-        url: `/addBoardServlet`,
+        url: `board/add`,
         type: "post",
         data: {categoryName:$('#categoryName').val(),
         		boardText:boardTextreplace},
@@ -265,11 +269,11 @@ function newContents() {
 }
 
 
-
+//도큐먼트 준비 후 실행함수
 $(document).ready(() => {
 	console.log('준비 이벤트')
 	$.ajax({
-            url: `/callBoardServlet`,
+            url: `board/call`,
             type: "post",
             data: {categoryName:$('#categoryName').val(),
             		boardNumber:$('#boardNumber').val()},

@@ -21,7 +21,7 @@ import object.userVO;
 /**
  * Servlet implementation class addBoardServlet
  */
-@WebServlet("/addBoardServlet")
+@WebServlet("/contents/board/add")
 public class addBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -31,14 +31,17 @@ public class addBoardServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		/*request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		
 		System.out.println("addBoardServlet GET Call : 잘못된 영역 접근 입니다.");
 		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		rd.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
+		rd.forward(request, response);*/
+
+		response.setStatus(404);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

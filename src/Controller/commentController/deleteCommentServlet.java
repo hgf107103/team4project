@@ -22,7 +22,7 @@ import object.userVO;
 /**
  * Servlet implementation class deleteCommentServlet
  */
-@WebServlet("/deleteCommentServlet")
+@WebServlet("/contents/board/comment/delete")
 public class deleteCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

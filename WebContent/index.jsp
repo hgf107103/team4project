@@ -42,7 +42,7 @@
         <img id="exit" src="VIEW/img/icon/out.png" width="45px" onclick="location.href='#menuCloss'; signupExit();" alt="">
         <img id="logo" src="VIEW/img/boardIcon/boardLOL.png" alt="">
         <div id="signupFormBack"></div>
-        <form id="signupForm" name="signupForm" action="signup" method="post">
+        <form id="signupForm" name="signupForm" action="user/signup" method="post">
         <label><span class="labelSet">　아이디</span><input type="text" id="signupIdInput" name="signupID" class="inputTextStyle" onkeyup="if (window.event.keyCode == 13) {idCheck()}" autocomplete="off"></label>
             <input type="button" class="signupButtonStyle" onclick="idCheck()" value="중복확인">
             <p class="signupLog" id="signupIdLog">아이디 중복확인을 해주십시오</p>

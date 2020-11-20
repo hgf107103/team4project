@@ -21,7 +21,7 @@ import object.userVO;
 /**
  * Servlet implementation class deleteBoardServlet
  */
-@WebServlet("/deleteBoardServlet")
+@WebServlet("/contents/board/delete")
 public class deleteBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

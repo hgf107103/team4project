@@ -22,7 +22,7 @@ import object.userVO;
 /**
  * Servlet implementation class addCommentServlet
  */
-@WebServlet("/addCommentServlet")
+@WebServlet("/contents/board/comment/add")
 public class addCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
