@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -25,24 +26,23 @@ public class signupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		System.out.println("signipServlet GET Call : 잘못된 영역 접근 입니다.");
-		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		rd.forward(request, response);
+		response.sendError(400);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
 		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
 		
 		try {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
+			
+			if (session.getAttribute("userLogin") != null) {
+				response.sendError(400);
+				return;
+			}
 			
 			userVO userTemp = new userVO();
 			Date date = new Date(System.currentTimeMillis());
@@ -78,10 +78,8 @@ public class signupServlet extends HttpServlet {
 			pw.write("</script>");
 			return;
 		} catch (Exception e) {
-			System.out.println("signipServlet POST Call : " + e);
-			request.setAttribute("errorMessage", "회원가입 오류");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
+			sqlse.close();
+			response.sendError(400);
 		}
 	}
 

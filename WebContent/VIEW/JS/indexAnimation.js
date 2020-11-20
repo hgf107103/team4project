@@ -70,6 +70,7 @@ function loginFunction() {
         	if(data.check === "admin") {
         		window.open('VIEW/MasterVIEW/masterPage.jsp','title','height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes, status=no, titlebar=no, location=no, resizable=no');
                 $('#idInput').val('');
+                $('#pwdInput').val('');
                 return;
         	}
         	if(data.check === "loginSuccess") {
@@ -88,7 +89,7 @@ function loginFunction() {
         		return;
         	}
         	if(data.check === "stopUser") {
-        		alert('강제 삭제 조치된 아이디입니다.\n더는 사용할 수 없습니다.');
+        		alert('영구 정지 조치된 아이디입니다.\n더는 사용할 수 없습니다.\n해제를 원할 시에는 관리자에게 문의 바랍니다.');
         		$('#idInput').val();
         		$('#pwdInput').val();
         		return;

@@ -24,6 +24,10 @@ public class inContentsServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		try {
+			if (request.getParameter("categoryName") == null) {
+				response.sendError(400);
+				return;
+			}
 			
 			request.setAttribute("categoryName", request.getParameter("categoryName"));
 			switch (request.getParameter("categoryName")) {
@@ -37,7 +41,8 @@ public class inContentsServlet extends HttpServlet {
 				request.setAttribute("categoryALLName", "오버워치");
 				break;
 			default:
-				break;
+				response.sendError(404);
+				return;
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("VIEW/BoardVIEW/contentsSelectPage.jsp");
 			rd.forward(request, response);
@@ -50,14 +55,7 @@ public class inContentsServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		System.out.println("inContentsServlet POST Call : 잘못된 영역 접근 입니다.");
-		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		rd.forward(request, response);
+		response.sendError(400);
 	}
 
 }

@@ -32,14 +32,7 @@ public class callCommentServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		System.out.println("callCommentServlet GET Call : 잘못된 영역 접근 입니다.");
-		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		rd.forward(request, response);
+		response.sendError(400);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,10 +74,7 @@ public class callCommentServlet extends HttpServlet {
 			sqlse.close();
 
 		} catch (Exception e) {
-			System.out.println("callCommentServlet POST Call : " + e);
-			request.setAttribute("errorMessage", "글 불러오기 오류");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
+			response.sendError(400);
 		}
 	}
 

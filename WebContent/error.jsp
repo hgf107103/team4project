@@ -34,6 +34,11 @@
 	h1 {
 		font-size: 75px;
 	}
+	h2 {
+		font-family: "Noto Sans KR";
+		font-size: 20px;
+		padding-bottom: 13px;
+	}
 	input {
 		font-family: "Noto Sans KR";
 		padding: 0px 10px;
@@ -56,8 +61,20 @@
 </head>
 <body>
 <div>
-	<img alt="" src="VIEW/img/icon/errorpolo.png" onclick="">
+	<img alt="" src="/project/VIEW/img/icon/errorpolo.png" onclick="">
 	<h1>ERROR - <%=response.getStatus() %></h1>
+	<h2><% if(response.getStatus() == 400) { %>
+		잘못된 요청입니다.
+	<%} else if(response.getStatus() == 404) { %>
+		찾을 수 없는 페이지입니다.
+	<%} else if(response.getStatus() == 403) { %>
+		비인가된 사용자입니다.
+	<%} else if(response.getStatus() == 500) { %>
+		서버 처리 오류가 발생했습니다.
+	<%} else { %>
+		알 수 없는 오류가 발생했습니다.
+	<%} %>
+	</h2>
 	<input type="button" value="메인페이지로" onclick="location.href='/project/index.jsp';">
 </div>
 </body>

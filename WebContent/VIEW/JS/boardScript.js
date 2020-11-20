@@ -120,7 +120,7 @@ function newComment(number) {
         dataType: "json",
         success: (data) => {
         	if (data.check == "userStop") {
-				alert(`정지된 사용자입니다.\n정지일 : ${data.dateString}까지`);
+				alert(`제한된 사용자입니다.\n정지일 : ${data.dateString}까지`);
 			}
         	
         	$(`#textarea${number}`).val('');
@@ -165,7 +165,7 @@ function deleteComment(cnumber, bnumber, unumber) {
         		return;
         	}
         	if(data.check == "success") {
-        		alert('삭제에 성공했습니다.');
+        		alert('댓글을 삭제했습니다.');
         		callComment(data.boardNumber);
         		return;
         	}
@@ -212,7 +212,7 @@ function deleteBoard(bnumber, unumber) {
         		return;
         	}
         	if(data.check == "success") {
-        		alert('삭제에 성공했습니다.');
+        		alert('게시글을 삭제했습니다.');
         		$(`#boardID${data.boardNumber}`).html('');
         		$(`#boardID${data.boardNumber}`).css('display', 'none');
         		return;
@@ -253,17 +253,18 @@ function newContents() {
         		console.log('글쓰기 성공');
         	}
         	if(data.check === "userStop") {
-        		console.log('정지 유저');
-        		alert(`당신은 정지상태입니다.\n정지일 : ${data.dateString}까지`);
+        		console.log('제제 유저');
+        		alert(`제한된 사용자입니다.\n정지일 : ${data.dateString}까지`);
         	}
         	if(data.check === "false") {
         		console.log('글쓰기 실패');
+        		alert(`글 쓰기에 실패하였습니다.`);
         	}
     		window.location.reload();
         },
         error: () => {
         	console.log('글쓰기 오류발생');
-        	alert('글쓰기 실패');
+        	alert('글 쓰기에 오류가 발생하였습니다.');
         }
     });
 }
