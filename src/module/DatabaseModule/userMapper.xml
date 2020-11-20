@@ -11,6 +11,7 @@
     	<result property="userNickname" column="userNickname"/>
     	<result property="userCreateDate" column="userCreateDate"/>
     	<result property="userStopDay" column="userStopDay"/>
+    	<result property="userOutCheck" column="userOutCheck"/>
     </resultMap>
     
    	<select id="isUserCheck" parameterType="object.userVO" resultMap="userMap">
@@ -29,7 +30,7 @@
     </select>
     
     <insert id="insertUserID" parameterType="object.userVO" useGeneratedKeys="true" keyProperty="userNumber">
-    	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, 0, 0);
+    	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, userOutCheck, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, #{userStopDay}, 0, 0);
     </insert>
     
     

@@ -9,6 +9,7 @@
     	<result property="categoryNumber" column="categoryNumber" />
     	<result property="boardText" column="boardText"/>
     	<result property="boardDate" column="boardDate"/>
+    	<result property="commentCount" column="commentCount"/>
     </resultMap>
     
     <insert id="insertBoard" parameterType="object.boardVO" useGeneratedKeys="true" keyProperty="boardNumber">
@@ -16,15 +17,26 @@
     </insert>
     
     <select id="callBoardList" parameterType="object.boardVO" resultMap="boardMap">
-    	SELECT * FROM boardTable WHERE categoryNumber=#{categoryNumber}
-    	
-    	<choose>
+    	SELECT T1.*, COUNT(T2.commentNumber) AS commentCount
+		FROM boardTable AS T1 LEFT JOIN commentTable AS T2 ON T1.boardNumber = T2.boardNumber
+		WHERE categoryNumber = #{categoryNumber}
+		<choose>
     		<when test="boardNumber > 0">
-    			AND boardNumber &lt; #{boardNumber}
+    			AND T1.boardNumber &lt; #{boardNumber}
     		</when>
     	</choose>
-    	
-    	ORDER BY boardNumber DESC LIMIT 5;
+		GROUP BY T1.boardNumber ORDER BY T1.boardNumber DESC LIMIT 5;
     </select>
+    
+    <select id="callOneBoard" parameterType="object.boardVO" resultMap="boardMap">
+    	SELECT T1.*, COUNT(T2.commentNumber) AS commentCount
+		FROM boardTable AS T1 LEFT JOIN commentTable AS T2 ON T1.boardNumber = T2.boardNumber
+		WHERE T1.boardNumber = #{boardNumber} AND T1.userNumber = #{userNumber}
+		GROUP BY T1.boardNumber ORDER BY T1.boardNumber DESC LIMIT 5;
+    </select>
+    
+    <delete id="deleteBoard" parameterType="object.boardVO">
+        DELETE FROM boardTable WHERE boardNumber=#{boardNumber} AND userNumber = #{userNumber};
+    </delete>
     
 </mapper>

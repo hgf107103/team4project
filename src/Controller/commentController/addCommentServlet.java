@@ -1,4 +1,4 @@
-package Controller.boardController;
+package Controller.commentController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,34 +16,32 @@ import org.apache.ibatis.session.SqlSession;
 
 import module.DatabaseModule.MyBatisConnectionFactory;
 import object.boardVO;
+import object.commentVO;
 import object.userVO;
 
 /**
- * Servlet implementation class addBoardServlet
+ * Servlet implementation class addCommentServlet
  */
-@WebServlet("/contents/board/add")
-public class addBoardServlet extends HttpServlet {
+@WebServlet("/contents/board/comment/add")
+public class addCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-    public addBoardServlet() {
+    
+    public addCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		
-		System.out.println("addBoardServlet GET Call : 잘못된 영역 접근 입니다.");
+		System.out.println("addCommentServlet GET Call : 잘못된 영역 접근 입니다.");
 		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
-		rd.forward(request, response);*/
-
-		response.setStatus(404);
+		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+		rd.forward(request, response);
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -54,7 +52,8 @@ public class addBoardServlet extends HttpServlet {
 		String check = "false";
 		String dateString = "0";
 		try {
-			boardVO boardTemp = new boardVO();
+			commentVO commentTemp = new commentVO();
+			int boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 			
 			if(session.getAttribute("userLogin") == null) {
 				System.out.println("addBoardServlet POST Call : No Login");
@@ -63,39 +62,26 @@ public class addBoardServlet extends HttpServlet {
 				rd.forward(request, response);
 				return;
 			}
-			int categoryNumber = 0;
-			switch (request.getParameter("categoryName")) {
-			case "LOL":
-				categoryNumber = 1;
-				break;
-			case "BG":
-				categoryNumber = 2;
-				break;
-			case "OW":
-				categoryNumber = 3;
-				break;
-			default:
-				break;
-			}
+			
 			userVO userTemp = (userVO)session.getAttribute("userLogin");
 			Date dateTemp = new Date(System.currentTimeMillis());
 			Date date = new Date((dateTemp.getTime() / (24 * 60 * 60 * 1000)) * (24 * 60 * 60 * 1000));
 			
 			
 			if(userTemp.getUserStopDay().getTime() < date.getTime()) {
-				boardTemp.setUserNumber(userTemp.getUserNumber());
-				boardTemp.setCategoryNumber(categoryNumber);
-				boardTemp.setBoardText(request.getParameter("boardText"));
-				boardTemp.setBoardDate(date);
+				commentTemp.setBoardNumber(boardNumber);
+				commentTemp.setUserNumber(userTemp.getUserNumber());
+				commentTemp.setCommentText(request.getParameter("commentText"));
+				commentTemp.setCommentDate(date);
 				
-				int dbResultCheck = sqlse.insert("boardMapper.insertBoard", boardTemp);
+				int dbResultCheck = sqlse.insert("commentMapper.insertComment", commentTemp);
 				
 				if(dbResultCheck > 0) {
 					check = "success";
 					sqlse.commit();
 				}
 				
-				System.out.println(boardTemp.toString());
+				System.out.println(commentTemp.toString());
 			}
 			else if(userTemp.getUserStopDay().getTime() >= date.getTime()) {
 				check = "userStop";
@@ -104,12 +90,12 @@ public class addBoardServlet extends HttpServlet {
 			
 			
 		} catch (Exception e) {
-			System.out.println("addBoardServlet POST Call : " + e);
+			System.out.println("addCommentServlet POST Call : " + e);
 			request.setAttribute("errorMessage", "새 글 쓰기 오류 발생");
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
 		} finally {
-			System.out.println("글쓰기 종료");
+			System.out.println("댓글쓰기 종료");
 			
 			sqlse.close();
 			
@@ -118,7 +104,6 @@ public class addBoardServlet extends HttpServlet {
 			pw.write("\"dateString\":\""+ dateString + "\"");
 			pw.write("}");
 		};
-		
 	}
 
 }

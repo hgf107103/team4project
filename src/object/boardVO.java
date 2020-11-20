@@ -8,6 +8,7 @@ public class boardVO {
 	private int categoryNumber;
 	private String boardText;
 	private Date boardDate;
+	private int commentCount;
 	
 	public int getBoardNumber() {
 		return boardNumber;
@@ -39,11 +40,19 @@ public class boardVO {
 	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
+	public int getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
 	@Override
 	public String toString() {
 		return "boardVO [boardNumber=" + boardNumber + ", userNumber=" + userNumber + ", categoryNumber="
-				+ categoryNumber + ", boardText=" + boardText + ", boardDate=" + boardDate + "]";
+				+ categoryNumber + ", boardText=" + boardText + ", boardDate=" + boardDate + ", commentCount="
+				+ commentCount + "]";
 	}
+	
 	
 	
 	

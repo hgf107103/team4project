@@ -20,9 +20,9 @@
     </div>
     <div class="fiexdDiv callBlur" id="menubar">
         <input type="button" id="menuOpen" value="메뉴" onclick="menuOpenFunction()">
-        <input type="button" id="menuLOL" value="리그오브레전드" onclick="window.open('contents?categoryName=LOL', '_blank')">
-        <input type="button" id="menuBG" value="배틀그라운드" onclick="window.open('contents?categoryName=BG', '_blank')">
-        <input type="button" id="menuOW" value="오버워치" onclick="window.open('contents?categoryName=OW', '_blank')">
+        <input type="button" id="menuLOL" value="리그오브레전드" onclick="location.href = 'contents?categoryName=LOL'">
+        <input type="button" id="menuBG" value="배틀그라운드" onclick="location.href = 'contents?categoryName=BG'">
+        <input type="button" id="menuOW" value="오버워치" onclick="location.href = 'contents?categoryName=OW'">
     </div>
     <div class="fiexdDiv callBlur" id="titleMove">
         <p>샘</p>
@@ -42,7 +42,7 @@
         <img id="exit" src="VIEW/img/icon/out.png" width="45px" onclick="location.href='#menuCloss'; signupExit();" alt="">
         <img id="logo" src="VIEW/img/boardIcon/boardLOL.png" alt="">
         <div id="signupFormBack"></div>
-        <form id="signupForm" name="signupForm" action="signup" method="post">
+        <form id="signupForm" name="signupForm" action="user/signup" method="post">
         <label><span class="labelSet">　아이디</span><input type="text" id="signupIdInput" name="signupID" class="inputTextStyle" onkeyup="if (window.event.keyCode == 13) {idCheck()}" autocomplete="off"></label>
             <input type="button" class="signupButtonStyle" onclick="idCheck()" value="중복확인">
             <p class="signupLog" id="signupIdLog">아이디 중복확인을 해주십시오</p>

@@ -20,7 +20,7 @@ import object.userVO;
 /*	회원가입을 담당하는 서블릿입니다.
  * 	회원가입시 비밀번호를 암호화하는 cryptoObject가 사용되었으며
  * 	GET방식으로 불러오는 경우 ERROR 페이지로 redirect 되도록 해 주십시오  */
-@WebServlet("/signup")
+@WebServlet("/user/signup")
 public class signupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -55,6 +55,7 @@ public class signupServlet extends HttpServlet {
 			userTemp.setUserName(request.getParameter("signupName"));
 			userTemp.setUserNickname(request.getParameter("signupNickName"));
 			userTemp.setUserCreateDate(date);
+			userTemp.setUserStopDay(new Date(((date.getTime() / (24 * 60 * 60 * 1000)) * (24 * 60 * 60 * 1000)) - 1 * (24 * 60 * 60 * 1000)));
 			System.out.println(userTemp.toString());
 			
 			int sqlCheck = sqlse.insert("userMapper.insertUserID", userTemp);
@@ -67,13 +68,13 @@ public class signupServlet extends HttpServlet {
 			if(sqlCheck <= 0) {
 				pw.write("<script>");
 				pw.write("alert('회원가입 오류 발생했습니다.');");
-				pw.write("location.href='index.jsp';");
+				pw.write("location.href='/project/index.jsp';");
 				pw.write("</script>");
 				return;
 			}
 			pw.write("<script>");
 			pw.write("alert('회원가입 성공했습니다.');");
-			pw.write("location.href='index.jsp';");
+			pw.write("location.href='/project/index.jsp';");
 			pw.write("</script>");
 			return;
 		} catch (Exception e) {

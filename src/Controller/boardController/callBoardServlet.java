@@ -22,7 +22,7 @@ import object.userVO;
 /**
  * Servlet implementation class callBoardServlet
  */
-@WebServlet("/callBoardServlet")
+@WebServlet("/contents/board/call")
 public class callBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -45,16 +45,19 @@ public class callBoardServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
-		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
 		HttpSession session = request.getSession();
+		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
 		PrintWriter pw = response.getWriter();
 		try {
 			boardVO boardTemp = new boardVO();
 			int boardNumberParam = Integer.parseInt(request.getParameter("boardNumber"));
-			boardTemp.setBoardNumber(boardNumberParam);
 			int categoryNumber = 0;
-
-			System.out.println(2);
+			boardTemp.setBoardNumber(boardNumberParam);
+			String userID = "null";
+			if(session.getAttribute("userLogin") != null) {
+				userVO userTemp = (userVO)(session.getAttribute("userLogin"));
+				userID = userTemp.getUserName();
+			}
 			switch (request.getParameter("categoryName")) {
 			case "LOL":
 				categoryNumber = 1;
@@ -74,6 +77,7 @@ public class callBoardServlet extends HttpServlet {
 			List<boardVO> list = sqlse.selectList("boardMapper.callBoardList", boardTemp);
 			
 			
+			
 			int lastNumber = 1;
 			if (list != null) {
 				pw.write("{");
@@ -85,30 +89,35 @@ public class callBoardServlet extends HttpServlet {
 						lastNumber = list.get(i).getBoardNumber();
 						pw.write("{");
 						pw.write("\"boardNumber\":\"" + list.get(i).getBoardNumber() + "\",");
+						pw.write("\"userNumber\":\"" + temp.getUserNumber() + "\",");
 						pw.write("\"userName\":\"" + temp.getUserNickname() + "\",");
 						pw.write("\"boardText\":\"" + list.get(i).getBoardText() + "\",");
-						pw.write("\"boardDate\":\"" + list.get(i).getBoardDate() + "\"");
+						pw.write("\"boardDate\":\"" + list.get(i).getBoardDate() + "\",");
+						pw.write("\"commentCount\":\"" + list.get(i).getCommentCount() + "\"");
 						pw.write("}");
 						break;
 					}
 					pw.write("{");
 					pw.write("\"boardNumber\":\"" + list.get(i).getBoardNumber() + "\",");
+					pw.write("\"userNumber\":\"" + temp.getUserNumber() + "\",");
 					pw.write("\"userName\":\"" + temp.getUserNickname() + "\",");
 					pw.write("\"boardText\":\"" + list.get(i).getBoardText() + "\",");
-					pw.write("\"boardDate\":\"" + list.get(i).getBoardDate() + "\"");
+					pw.write("\"boardDate\":\"" + list.get(i).getBoardDate() + "\",");
+					pw.write("\"commentCount\":\"" + list.get(i).getCommentCount() + "\"");
 					pw.write("},");
 				}
 				pw.write("],");
-				pw.write("\"lastNumber\":\"" + lastNumber + "\"");
+				pw.write("\"lastNumber\":\"" + lastNumber + "\",");
+				pw.write("\"sessionID\":\"" + userID + "\"");
 				pw.write("}");
 			}
 			sqlse.close();
 
 		} catch (Exception e) {
-			/*System.out.println("callBoardServlet POST Call : " + e);
+			System.out.println("callBoardServlet POST Call : " + e);
 			request.setAttribute("errorMessage", "글 불러오기 오류");
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);*/
+			rd.forward(request, response);
 		}
 	}
 

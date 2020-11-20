@@ -10,6 +10,7 @@ public class userVO {
 	private String userNickname;
 	private Date userCreateDate;
 	private Date userStopDay;
+	private int userOutCheck;
 	
 	public int getUserNumber() {
 		return userNumber;
@@ -53,12 +54,19 @@ public class userVO {
 	public void setUserStopDay(Date userStopDay) {
 		this.userStopDay = userStopDay;
 	}
+	public int getUserOutCheck() {
+		return userOutCheck;
+	}
+	public void setUserOutCheck(int userOutCheck) {
+		this.userOutCheck = userOutCheck;
+	}
 	@Override
 	public String toString() {
 		return "userVO [userNumber=" + userNumber + ", userID=" + userID + ", userPassword=" + userPassword
 				+ ", userName=" + userName + ", userNickname=" + userNickname + ", userCreateDate=" + userCreateDate
-				+ ", userStopDay=" + userStopDay + "]";
+				+ ", userStopDay=" + userStopDay + ", userOutCheck=" + userOutCheck + "]";
 	}
+	
 	
 	
 }

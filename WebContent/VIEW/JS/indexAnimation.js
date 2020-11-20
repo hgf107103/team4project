@@ -60,7 +60,7 @@ function loginFunction() {
 	}
 	
 	$.ajax({
-        url: `/userLoginServlet`,
+        url: `user/login`,
         type: "post",
         data: {userLoginID:$('#idInput').val(),
         		userLoginPWD:$('#pwdInput').val()},
@@ -87,8 +87,15 @@ function loginFunction() {
         		$('#pwdInput').focus();
         		return;
         	}
+        	if(data.check === "stopUser") {
+        		alert('강제 삭제 조치된 아이디입니다.\n더는 사용할 수 없습니다.');
+        		$('#idInput').val();
+        		$('#pwdInput').val();
+        		return;
+        	}
         },
         error: () => {
+    		alert('오류가 발생하였습니다.');
         	console.log('알 수 없는 이유로 로그인에 실패했습니다.');
         }
     });
@@ -169,7 +176,11 @@ function idCheck() {
     
     $('#signupIdLog').text('서버와 통신하는 중입니다.');
     $.ajax({
-        url: `/signupCheckServlet?userid=${$('#signupIdInput').val()}`,
+        url: `user/signup/check`,
+        type: "post",
+        data: {
+        	userid:$('#signupIdInput').val()
+        	},
         cache: false,
         dataType: "json",
         success: (data) => {
@@ -198,8 +209,8 @@ function idCheck() {
         	return;
         },
         error: () => {
-        	console.log('오류 발생');
-        	alert('원인을 알 수 없는 오류가 발생했습니다.');
+        	console.log('아이디 체크 오류 발생');
+        	alert('아이디 체크 오류가 발생했습니다.');
         }
     });
 }
@@ -307,6 +318,6 @@ function signupSubmit() {
 function logout() {
 	let check = confirm('로그아웃 하시겠습니까?');
 	if(check) {
-		location.href = "logoutServlet";
+		location.href = "user/logout";
 	}
 }

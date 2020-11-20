@@ -13,7 +13,6 @@ body {
     background-size: cover;
     background-attachment: fixed;
     font-size: 10px;
-    transition: all ease 3s 0s;
 }
 
 div#smoke {

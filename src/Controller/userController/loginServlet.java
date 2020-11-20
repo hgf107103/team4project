@@ -20,7 +20,7 @@ import object.userVO;
 /**
  * Servlet implementation class loginServlet
  */
-@WebServlet("/userLoginServlet")
+@WebServlet("/user/login")
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -70,7 +70,7 @@ public class loginServlet extends HttpServlet {
 			else if(userAdminCheck == null) {
 				userVO useridCheck = sqlse.selectOne("userMapper.isUserCheck", userTemp);
 				
-				if(useridCheck != null) {
+				if(useridCheck != null && useridCheck.getUserOutCheck() == 0) {
 					userVO userCheck = sqlse.selectOne("userMapper.isUserLogin", userTemp);
 					
 					if(userCheck != null) {
@@ -83,9 +83,14 @@ public class loginServlet extends HttpServlet {
 						check = "pwdWrong";
 					}
 				}
-				else if(useridCheck == null) {
+				else if(useridCheck == null && useridCheck.getUserOutCheck() == 0) {
 					System.out.println("Login Fail : idWrong");
 					check = "idWrong";
+				}
+				
+				if(useridCheck.getUserOutCheck() == 1) {
+					System.out.println("Login Fail : stopUser");
+					check = "stopUser";
 				}
 				
 			}

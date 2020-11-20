@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class logoutServlet
  */
-@WebServlet("/logoutServlet")
+@WebServlet("/user/logout")
 public class logoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -23,13 +23,13 @@ public class logoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("userLogin");
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("/project/index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("userLogin");
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("/project/index.jsp");
 	}
 
 }
