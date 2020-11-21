@@ -58,7 +58,7 @@ public class addCommentServlet extends HttpServlet {
 			Date date = new Date((dateTemp.getTime() / (24 * 60 * 60 * 1000)) * (24 * 60 * 60 * 1000));
 			
 			
-			if(userTemp.getUserStopDay().getTime() < date.getTime()) {
+			if(userTemp.getUserStopDay().getTime() <= date.getTime()) {
 				commentTemp.setBoardNumber(boardNumber);
 				commentTemp.setUserNumber(userTemp.getUserNumber());
 				commentTemp.setCommentText(request.getParameter("commentText"));
