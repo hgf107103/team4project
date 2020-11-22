@@ -27,6 +27,10 @@
     	DELETE FROM commentTable WHERE boardNumber=#{boardNumber};
     </delete>
     
+    <select id="oneUserCommentList" parameterType="int" resultMap="commentMap">
+    	SELECT * FROM commentTable WHERE userNumber = ${userNumber} ORDER BY commentNumber ASC;
+    </select>
+    
     
 
 </mapper>

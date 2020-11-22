@@ -69,8 +69,7 @@ function loginFunction() {
         success: (data) => {
         	if(data.check === "admin") {
         		window.open('master','title','height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes, status=no, titlebar=no, location=no, resizable=no');
-                $('#idInput').val('');
-                $('#pwdInput').val('');
+        		location.href = "index.jsp";
                 return;
         	}
         	if(data.check === "loginSuccess") {
@@ -214,7 +213,9 @@ function idCheck() {
         },
         error: () => {
         	console.log('아이디 체크 오류 발생');
-        	alert('아이디 체크 오류가 발생했습니다.');
+        	$('#signupIdLog').text('오류가 발생했습니다.');
+        	$('#signupIdLog').css('color', 'rgb(255, 0, 0)');
+        	$('#signupIdInput').focus();
         }
     });
 }
@@ -292,29 +293,66 @@ function nicknameCheck() {
         signupStatus.nickname = false;
         return;
     }
-    $('#signupNickNameLog').text('올바른 닉네임입니다.')
-    $('#signupNickNameLog').css('color', 'rgb(0, 141, 7)');
-    signupStatus.nickname = true;
+    
+    $('#signupNickNameLog').text('닉네임을 입력하십시오')
+    $('#signupNickNameLog').css('color', 'rgb(0, 0, 0)');
+    
 }
 
 function signupSubmit() {
     if (signupStatus.id) {
         if (signupStatus.pwd) {
             if (signupStatus.name) {
-                if (signupStatus.nickname) {
+            	
+            	$.ajax({
+                    url: `user/signup/nickcheck`,
+                    type: "post",
+                    data: {
+                    	userNickname:$('#signupNickName').val()
+                    	},
+                    cache: false,
+                    dataType: "json",
+                    success: (data) => {
+
+                    	console.log(data)
+                    	if(data.check == "true") {
+                        	console.log('성공')
+                    		$('#signupNickNameLog').text('올바른 닉네임입니다.')
+                    	    $('#signupNickNameLog').css('color', 'rgb(0, 141, 7)');
+                    	    signupStatus.nickname = true;
+                    	}
+                    	if(data.check == "false") {
+                        	console.log('실패')
+                    		$('#signupNickNameLog').text('이미 존재하는 닉네임입니다.')
+                    	    $('#signupNickNameLog').css('color', 'rgb(255, 0, 0)');
+                    	    signupStatus.nickname = false;
+                    	}
+                    },
+                    error: () => {
+                    	console.log('오류')
+                    	$('#signupNickNameLog').text('오류가 발생했습니다.')
+                	    $('#signupNickNameLog').css('color', 'rgb(255, 0, 0)');
+                	    signupStatus.nickname = false;
+                    }
+                });
+            	
+                if (signupStatus.nickname && !regExpNickName($('#signupNickName').val())) {
                     document.signupForm.submit();
+                	console.log('성공!')
                     return;
                 }
-                alert('닉네임이 설정되지 않았습니다.');
+                $('#signupNickNameLog').text('잘못된 닉네임입니다.')
+        	    $('#signupNickNameLog').css('color', 'rgb(255, 0, 0)');
+        	    signupStatus.nickname = false;
                 return;
             }
-            alert('이름이 설정되지 않았습니다.');
+            alert('이름이 잘못되었습니다.');
             return;
         }
-        alert('비밀번호가 설정되지 않았습니다.');
+        alert('비밀번호가 잘못되었습니다.');
         return;
     }
-    alert('아이디가 설정되지 않았습니다.');
+    alert('아이디가 잘못되었습니다.');
     return;
 }
 

@@ -44,7 +44,7 @@ public class masterUserListServlet extends HttpServlet {
 		try {
 			if (session.getAttribute("userLogin") != null) {
 				userVO userTemp = (userVO)(session.getAttribute("userLogin"));
-				userVO userCheck = sqlse.selectOne("isAdminUserCheck", userTemp);
+				userVO userCheck = sqlse.selectOne("userMapper.isAdminUserCheck", userTemp);
 				
 				if (userCheck == null) {
 					pw.write("{");

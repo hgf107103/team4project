@@ -46,17 +46,17 @@
             </div>
             <div id="userDirectControl">
             	
-            	<select name="" id="">
+            	<select name="" id="selectUserStopDayList">
                 	<option value="0">정지일수</option>
                 	<option value="1">1일</option>
                 	<option value="3">3일</option>
                 	<option value="7">7일</option>
                 	<option value="14">14일</option>
-                	<option value="30">30일</option>
-                	<option value="365">365일</option>
+                	<option value="30">한달</option>
+                	<option value="365">일년</option>
             	</select>
-            	<input type="button" class="inputDefaultStyle" value="제제일추가" onclick="alert('아직 구현되지 않음')">
-            	<input type="button" class="inputDefaultStyle" value="제제일삭감" onclick="alert('아직 구현되지 않음')">
+            	<input type="button" class="inputDefaultStyle" value="제제일추가" onclick="updateStopDay()">
+            	<input type="button" class="inputDefaultStyle" value="제제해제" onclick="alert('아직 구현되지 않음')">
             	<input type="button" class="inputDefaultStyle" value="영구정지" onclick="alert('아직 구현되지 않음')">
             	<input type="button" class="inputDefaultStyle" value="영구정지해제" onclick="alert('아직 구현되지 않음')">
             </div>

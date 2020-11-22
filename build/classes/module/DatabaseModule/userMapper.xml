@@ -17,6 +17,9 @@
    	<select id="isUserCheck" parameterType="object.userVO" resultMap="userMap">
         SELECT * FROM userTable WHERE userID=#{userID} AND adminUserCheck = 0;
     </select>
+    <select id="isUserNickNameCheck" parameterType="object.userVO" resultMap="userMap">
+        SELECT * FROM userTable WHERE userNickname=#{userNickname};
+    </select>
    	<select id="isBoardUserCheck" parameterType="int" resultMap="userMap">
         SELECT * FROM userTable WHERE userNumber=#{userNumber} AND adminUserCheck = 0;
     </select>
@@ -36,6 +39,10 @@
     <insert id="insertUserID" parameterType="object.userVO" useGeneratedKeys="true" keyProperty="userNumber">
     	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, userOutCheck, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, #{userStopDay}, 0, 0);
     </insert>
+    
+    <update id="updateUserStopDay" parameterType="object.userVO">
+        UPDATE userTable SET userStopDay = #{userStopDay} WHERE userNumber = #{userNumber};
+    </update>
     
     
 

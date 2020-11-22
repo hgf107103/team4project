@@ -39,4 +39,8 @@
         DELETE FROM boardTable WHERE boardNumber=#{boardNumber} AND userNumber = #{userNumber};
     </delete>
     
+    <select id="oneUserBoardList" parameterType="int" resultMap="boardMap">
+    	SELECT * FROM boardTable WHERE userNumber = ${userNumber} ORDER BY boardNumber ASC;
+    </select>
+    
 </mapper>

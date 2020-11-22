@@ -224,6 +224,10 @@ div#userBoardListDiv div#borderListScroll table#selectedUserBoardList td{
     border-bottom: 1px solid rgb(230,230,230);
     overflow-y: auto;
 }
+div#userBoardListDiv div#borderListScroll table#selectedUserBoardList td.emptyList{
+    padding: 100px 0px;
+	font-size: 1.5em;
+}
 
 
 div#userBoardListDiv .boardNumber {
@@ -348,4 +352,11 @@ div#userCommentListDiv div#commentListScroll td.commentControl input[type=button
     border: 1px solid rgb(150,150,150);
     background-color: rgb(245,245,245);
     transition: border ease 0.2s 0s, background-color ease 0.2s 0s;
+}
+
+
+
+table#selectedUserCommentList td.emptyList {
+	padding: 100px 0px;
+	font-size: 1.5em;
 }
