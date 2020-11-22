@@ -41,7 +41,7 @@ public class loginServlet extends HttpServlet {
 		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
 		PrintWriter pw = response.getWriter();
 		HttpSession session = request.getSession();
-		String check = null;
+		String check = "fail";
 		try {
 			
 			cryptoObject crypto = cryptoObject.getInstence(request.getParameter("userLoginPWD"));
@@ -64,32 +64,33 @@ public class loginServlet extends HttpServlet {
 			else if(userAdminCheck == null) {
 				userVO useridCheck = sqlse.selectOne("userMapper.isUserCheck", userTemp);
 				
-				if(useridCheck != null && useridCheck.getUserOutCheck() == 0) {
-					userVO userCheck = sqlse.selectOne("userMapper.isUserLogin", userTemp);
-					
-					if(userCheck != null) {
-						System.out.println("Login Success : " + userCheck.toString());
-						check = "loginSuccess";
-						session.setAttribute("userLogin", userCheck);
-					}
-					else if(userCheck == null) {
-						System.out.println("Login Fail : pwdWrong");
-						check = "pwdWrong";
+				if(useridCheck != null) {
+					if(useridCheck.getUserOutCheck() == 0) {
+						userVO userCheck = sqlse.selectOne("userMapper.isUserLogin", userTemp);
+						
+						if(userCheck != null) {
+							System.out.println("Login Success : " + userCheck.toString());
+							check = "loginSuccess";
+							session.setAttribute("userLogin", userCheck);
+						}
+						else if(userCheck == null) {
+							System.out.println("Login Fail : pwdWrong");
+							check = "pwdWrong";
+						}
+					} else if(useridCheck.getUserOutCheck() == 1) {
+						System.out.println("Login Fail : stopUser");
+						check = "stopUser";
 					}
 				}
-				else if(useridCheck == null && useridCheck.getUserOutCheck() == 0) {
+				else if(useridCheck == null) {
 					System.out.println("Login Fail : idWrong");
 					check = "idWrong";
-				}
-				
-				if(useridCheck.getUserOutCheck() == 1) {
-					System.out.println("Login Fail : stopUser");
-					check = "stopUser";
 				}
 				
 			}
 			sqlse.close();
 		} catch (Exception e) {
+			System.out.println("로그인 오류 : " + e);
 			sqlse.close();
 			response.sendError(400);
 		} finally {

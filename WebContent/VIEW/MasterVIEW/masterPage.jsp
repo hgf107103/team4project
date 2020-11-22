@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>메인화면</title>
     <script src="/project/VIEW/JS/jquery-3.5.1.min.js"></script>
+    <script src="/project/VIEW/JS/masterScript.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/project/VIEW/CSS/masterPage.css">
 </head>
@@ -38,23 +39,24 @@
     <div id="userContentDiv">
         <div id="userControlDiv">
             <div id="userStatus">
-            	<label>선택된 유저</label><input id="selecteUserName" type="text" readonly class="inputDefaultStyle" draggable="false" value="" placeholder="유저를 선택하시오">
-            	<label>남은 정지 일수</label><input type="text" readonly id="userStopDay" class="inputDefaultStyle" draggable="false" value="" placeholder="일">
-            	<label>현재 계정 상태</label><input type="text" readonly id="userOut" class="inputDefaultStyle" draggable="false" value="" placeholder="활성/비활성">
+            	<input id="selecteUserNumber" type="hidden" readonly draggable="false" value="0">
+            	<label>선택된 유저</label><input id="selecteUserID" type="text" readonly class="inputDefaultStyle" draggable="false" value="" placeholder="유저를 선택하시오">
+            	<label>남은 정지 일수</label><input type="text" readonly id="selecteUserStopDay" class="inputDefaultStyle" draggable="false" value="" placeholder="일">
+            	<label>현재 계정 상태</label><input type="text" readonly id="selecteUserStatus" class="inputDefaultStyle" draggable="false" value="" placeholder="활성/비활성">
             </div>
             <div id="userDirectControl">
             	
-            	<select name="" id="">
+            	<select name="" id="selectUserStopDayList">
                 	<option value="0">정지일수</option>
                 	<option value="1">1일</option>
                 	<option value="3">3일</option>
                 	<option value="7">7일</option>
                 	<option value="14">14일</option>
-                	<option value="30">30일</option>
-                	<option value="365">365일</option>
+                	<option value="30">한달</option>
+                	<option value="365">일년</option>
             	</select>
-            	<input type="button" class="inputDefaultStyle" value="제제일추가" onclick="alert('아직 구현되지 않음')">
-            	<input type="button" class="inputDefaultStyle" value="제제일삭감" onclick="alert('아직 구현되지 않음')">
+            	<input type="button" class="inputDefaultStyle" value="제제일추가" onclick="updateStopDay()">
+            	<input type="button" class="inputDefaultStyle" value="제제해제" onclick="alert('아직 구현되지 않음')">
             	<input type="button" class="inputDefaultStyle" value="영구정지" onclick="alert('아직 구현되지 않음')">
             	<input type="button" class="inputDefaultStyle" value="영구정지해제" onclick="alert('아직 구현되지 않음')">
             </div>

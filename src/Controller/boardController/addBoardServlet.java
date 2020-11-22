@@ -74,7 +74,7 @@ public class addBoardServlet extends HttpServlet {
 			Date date = new Date((dateTemp.getTime() / (24 * 60 * 60 * 1000)) * (24 * 60 * 60 * 1000));
 			
 			
-			if(userTemp.getUserStopDay().getTime() < date.getTime()) {
+			if(userTemp.getUserStopDay().getTime() <= date.getTime()) {
 				boardTemp.setUserNumber(userTemp.getUserNumber());
 				boardTemp.setCategoryNumber(categoryNumber);
 				boardTemp.setBoardText(request.getParameter("boardText"));

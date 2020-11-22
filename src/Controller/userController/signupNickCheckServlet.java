@@ -3,7 +3,6 @@ package Controller.userController;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,21 +15,19 @@ import module.DatabaseModule.MyBatisConnectionFactory;
 import object.userVO;
 
 /**
- * Servlet implementation class signupCheckServlet
+ * Servlet implementation class signupNickCheckServlet
  */
-@WebServlet("/user/signup/check")
-public class signupCheckServlet extends HttpServlet {
+@WebServlet("/user/signup/nickcheck")
+public class signupNickCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-    public signupCheckServlet() {
+    
+    public signupNickCheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendError(400);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -38,17 +35,16 @@ public class signupCheckServlet extends HttpServlet {
 		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
 		boolean check = false;
 		try {
-			System.out.println("회원가입 아이디 체크 : " + request.getParameter("userid"));
 			userVO userTemp = new userVO();
-			userTemp.setUserID(request.getParameter("userid"));
-			userVO userOut = sqlse.selectOne("userMapper.isUserCheck", userTemp);
-			
-			if(userOut == null || userOut.getUserID() == null) check = true;
-			
-			System.out.println(request.getParameter("userid") + "아이디 체크 결과 : " + check);
+			userTemp.setUserNickname(request.getParameter("userNickname"));
+			userVO userOut = sqlse.selectOne("userMapper.isUserNickNameCheck", userTemp);
+			if(userOut == null) {
+				check = true;
+			}
+			System.out.println(request.getParameter("userNickname") + "아이디 체크 결과 : " + check);
 			sqlse.close();
 		} catch (Exception e) {
-			System.out.println("회원가입 아이디 체크 : " + e);
+			System.out.println(e);
 			sqlse.close();
 			response.sendError(400);
 			
