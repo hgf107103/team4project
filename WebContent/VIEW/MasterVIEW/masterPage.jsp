@@ -53,7 +53,7 @@
                 	<option value="365">일년</option>
             	</select>
             	<input type="button" class="inputDefaultStyle" value="제제일추가" onclick="updateStopDay()">
-            	<input type="button" class="inputDefaultStyle" value="제제해제" onclick="alert('아직 구현되지 않음')">
+            	<input type="button" class="inputDefaultStyle" value="제제해제" onclick="resetStopDay()">
             	<input type="button" class="inputDefaultStyle" value="영구정지" onclick="updateUserOut()">
             	<input type="button" class="inputDefaultStyle" value="영구정지해제" onclick="updateUserBack()">
             </div>
