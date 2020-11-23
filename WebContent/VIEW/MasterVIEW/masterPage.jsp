@@ -13,15 +13,12 @@
 </head>
 <body>
 <%	
-	/*if(session.getAttribute("userLogin") == null) {
+	if(session.getAttribute("userLogin") == null) {
 		response.sendError(403);
-		return;
 	}
-	System.out.println(session.getAttribute("userLogin"));
-	if(session.getAttribute("userLogin") != null) {
-		userVO userTemp = (userVO)(session.getAttribute("userLogin"));
-		System.out.println(userTemp.toString());
-		if(userTemp.getUserID() == "admin" || userTemp.getUserNumber() == 1) {*/%>
+%>
+	<c:if test="${userLogin.userID eq 'admin'}">
+	<c:if test="${userLogin.userNumber == 1}">
     <div id="userListDiv">
         <table id="userTableHeader">
             <tr>
@@ -56,15 +53,9 @@
                 	<option value="365">일년</option>
             	</select>
             	<input type="button" class="inputDefaultStyle" value="제제일추가" onclick="updateStopDay()">
-<<<<<<< Updated upstream
-            	<input type="button" class="inputDefaultStyle" value="제제해제" onclick="alert('아직 구현되지 않음')">
-            	<input type="button" class="inputDefaultStyle" value="영구정지" onclick="alert('아직 구현되지 않음')">
-            	<input type="button" class="inputDefaultStyle" value="영구정지해제" onclick="alert('아직 구현되지 않음')">
-=======
             	<input type="button" class="inputDefaultStyle" value="제제해제" onclick="resetStopDay()">
             	<input type="button" class="inputDefaultStyle" value="영구정지" onclick="updateUserOut()">
             	<input type="button" class="inputDefaultStyle" value="영구정지해제" onclick="updateUserBack()">
->>>>>>> Stashed changes
             </div>
         </div>
         <div id="userBoardListDiv">
@@ -97,6 +88,7 @@
             </div>
         </div>
     </div>
-<%//}}%>
+    </c:if>
+    </c:if>
 </body>
 </html>

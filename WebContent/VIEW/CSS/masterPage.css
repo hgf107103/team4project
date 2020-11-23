@@ -8,15 +8,16 @@
     outline: none;
 }
 body {
-    margin: auto;
-    width: 1700px;
-    height: 980px;
+    width: 1800px;
+    height: 1100px;
+    padding-top: 20px;
+    padding-left: 20px;
     background-color: rgb(235,235,235);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    align-items: flex-start;
     font-size: 10px;
 }
 
@@ -95,7 +96,7 @@ div#userListDiv .userNick {
 
 div#userContentDiv {
     width: 70%;
-    height: 95%;
+    height: 95%; 
 }
 div#userContentDiv div#userStatus{
     margin-bottom: 10px;
@@ -319,7 +320,7 @@ div#userCommentListDiv .commentControl {
 
 
 div#userCommentListDiv div#commentListScroll{
-    height: 238px;
+    height: 250px;
     overflow-y: auto;
 }
 div#userCommentListDiv div#commentListScroll table{

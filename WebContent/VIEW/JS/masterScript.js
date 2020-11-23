@@ -25,16 +25,16 @@ function getUserList() {
         		return;
         	}
         	if(data.check == 'noAdmin') {
-        		console.log('어드민이 아닌 사용자의 요청을 받음')
+        		console.error('어드민이 아닌 사용자의 요청을 받음')
         		return;
         	}
         	if(data.check == 'noUser') {
-        		console.log('비로그인 사용자의 요청을 받음')
+        		console.error('비로그인 사용자의 요청을 받음')
         		return;
         	}
         },
         error: () => {
-            console.log('유저리스트 갱신 오류발생');
+            console.error('유저리스트 갱신 오류발생');
         }
     });
 }
@@ -93,16 +93,16 @@ function userSelect() {
         		return;
         	}
         	if(data.check == 'noAdmin') {
-        		console.log('어드민이 아닌 사용자의 요청을 받음')
+        		console.error('어드민이 아닌 사용자의 요청을 받음')
         		return;
         	}
         	if(data.check == 'noSelected') {
-        		console.log('비로그인 사용자의 요청을 받음')
+        		console.error('비로그인 사용자의 요청을 받음')
         		return;
         	}
         },
         error: () => {
-            console.log('유저리스트 갱신 오류발생');
+            console.error('유저리스트 갱신 오류발생');
         }
     });
 }
@@ -145,15 +145,16 @@ function boardDelete(boardNumber) {
         		userSelect();
         	}
         	if(data.check != "success") {
-        		console.log('삭제에 실패했습니다.')
+        		console.error('삭제에 실패했습니다.')
         		userSelect();
         	}
         },
         error: () => {
-            console.log('유저리스트 갱신 오류발생');
+            console.error('게시물 삭제 오류발생');
         }
     });
 }
+
 
 
 function resetStopDay() {
@@ -226,9 +227,14 @@ function updateStopDay() {
 		return;
 	}
 	
+	let check = confirm(`${localUserID}유저의 제제일을 증가시키겠습니까?`);
+	if(!check) {
+		alert('취소되었습니다.');
+		return;
+	}
 	
 	$.ajax({
-        url: `master/user/board/stopDay`,
+        url: `master/user/stopUp`,
         type: "post",
         data: {
         	addDay:$("#selectUserStopDayList option:selected").val(),
@@ -239,20 +245,144 @@ function updateStopDay() {
         success: (data) => {
         	console.log(data);
         	if(data.check == "success") {
-        		alert('업데이트에 성공했습니다.');
+        		alert('제제일 업데이트에 성공했습니다.');
         		getUserList();
         		localUserStopDay += data.plusDay;
         		userSelect();
+        		return;
+        	}
+        	if(data.check == "outUser") {
+        		alert('영구정지된 유저는 제제할수 없습니다.');
+        		console.error('제제일 업데이트에 실패했습니다.');
+        		getUserList();
+        		return;
+        	}
+        	if(data.check == "notAdmin") {
+        		alert('당신은 어드민 유저가 아닙니다.');
+        		console.error('제제일 업데이트에 실패했습니다.');
+        		getUserList();
+        		return;
         	}
         	if(data.check != "success") {
-        		console.log('삭제에 실패했습니다.');
+        		alert('제제일 업데이트에 실패했습니다.');
+        		console.error('제제일 업데이트에 실패했습니다.');
         		getUserList();
+        		return;
         	}
         },
         error: () => {
-            console.log('유저리스트 갱신 오류발생');
+            console.error('유저 제제일 갱신 오류발생');
         }
     });
 }
 
 
+
+function updateUserOut() {
+	
+	if(localUserID == "" || localUserID == null) {
+		alert('유저를 선택해주십시오');
+		return;
+	}
+	
+	let check = confirm(`${localUserID}유저를 영구정지시키시겠습니까?`);
+	if(!check) {
+		alert('취소되었습니다.');
+		return;
+	}
+	
+	$.ajax({
+		url: `master/user/out`,
+		type: "post",
+		data: {
+			userNumber:localUserNumber
+		},
+		cache: false,
+		dataType: "json",
+		success: (data) => {
+			console.log(data);
+			if(data.check == "success") {
+				alert('영구정지에 성공했습니다.');
+				localUserStatus = "영구정지";
+				localUserStopDay = 0;
+				userSelect();
+				getUserList();
+				console.log('영구정지 업데이트에 성공했습니다.');
+				return;
+			}
+			if(data.check == "outUser") {
+				alert('이미 영구정지된 유저입니다.');
+				console.error('영구정지 업데이트에 실패했습니다.');
+				return;
+			}
+			if(data.check == "notAdmin") {
+				alert('당신은 어드민 유저가 아닙니다.');
+				console.error('영구정지 업데이트에 실패했습니다.');
+				return;
+			}
+			if(data.check != "success") {
+				alert('영구정지 업데이트에 실패했습니다.');
+				console.error('영구정지 업데이트에 실패했습니다.');
+				return;
+			}
+		},
+		error: () => {
+			console.error('유저 영구정지 갱신 오류발생');
+		}
+	});
+}
+
+
+function updateUserBack() {
+	
+	if(localUserID == "" || localUserID == null) {
+		alert('유저를 선택해주십시오');
+		return;
+	}
+	
+	let check = confirm(`${localUserID}유저를 복귀시키겠습니까?`);
+	if(!check) {
+		alert('취소되었습니다.');
+		return;
+	}
+	
+	$.ajax({
+		url: `master/user/back`,
+		type: "post",
+		data: {
+			userNumber:localUserNumber
+		},
+		cache: false,
+		dataType: "json",
+		success: (data) => {
+			console.log(data);
+			if(data.check == "success") {
+				alert('다시 활성화 되었습니다.');
+				localUserStatus = "활성";
+				localUserStopDay = 0;
+				userSelect();
+				getUserList();
+				console.log('활성화 업데이트에 성공했습니다.');
+				return;
+			}
+			if(data.check == "alreadyUser") {
+				alert('이미 활성화 되어있는 유저입니다.');
+				console.error('활성화 업데이트에 실패했습니다.');
+				return;
+			}
+			if(data.check == "notAdmin") {
+				alert('당신은 어드민 유저가 아닙니다.');
+				console.error('활성화 업데이트에 실패했습니다.');
+				return;
+			}
+			if(data.check != "success") {
+				alert('활성화 업데이트에 실패했습니다.');
+				console.error('활성화 업데이트에 실패했습니다.');
+				return;
+			}
+		},
+		error: () => {
+			console.error('유저 활성화 갱신 오류발생');
+		}
+	});
+}
