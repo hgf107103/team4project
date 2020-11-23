@@ -156,6 +156,64 @@ function boardDelete(boardNumber) {
 }
 
 
+function resetStopDay() {
+	if(localUserID == "" || localUserID == null) {
+		alert('유저를 선택해주십시오');
+		return;
+	}
+	if(localUserStopDay <= 0) {
+		alert('이 유저는 이미 제제일이 없습니다.');
+		return;
+	}
+	
+	let check = confirm(`${localUserID}유저의 제제일을 초기화하겠습니까?`);
+	if(!check) {
+		alert('취소되었습니다.');
+		return;
+	}
+	$.ajax({
+        url: `master/user/stopReset`,
+        type: "post",
+        data: {
+        	userNumber:localUserNumber
+        },
+        cache: false,
+        dataType: "json",
+        success: (data) => {
+        	console.log(data);
+        	if(data.check == "success") {
+        		alert('제제일 초기화에 성공했습니다.');
+        		localUserStopDay = 0;
+        		getUserList();
+        		userSelect();
+        		return;
+        	}
+        	if(data.check == "outUser") {
+        		alert('영구정지된 유저는 초기화할수 없습니다.');
+        		console.error('초기화 업데이트에 실패했습니다.');
+        		getUserList();
+        		return;
+        	}
+        	if(data.check == "notAdmin") {
+        		alert('당신은 어드민 유저가 아닙니다.');
+        		console.error('초기화 업데이트에 실패했습니다.');
+        		getUserList();
+        		return;
+        	}
+        	if(data.check != "success") {
+        		alert('제제일 업데이트에 실패했습니다.');
+        		console.error('제제일 업데이트에 실패했습니다.');
+        		getUserList();
+        		return;
+        	}
+        },
+        error: () => {
+            console.error('유저 제제일 갱신 오류발생');
+        }
+    });
+	
+}
+
 function updateStopDay() {
 	console.log($("#selectUserStopDayList option:selected").val());
 	
