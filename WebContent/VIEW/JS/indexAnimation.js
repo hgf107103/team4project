@@ -68,7 +68,6 @@ function loginFunction() {
         dataType: "json",
         success: (data) => {
         	if(data.check === "admin") {
-        		window.open('master','title','height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes, status=no, titlebar=no, location=no, resizable=no');
         		location.href = "index.jsp";
                 return;
         	}
@@ -231,12 +230,12 @@ function regExpId(str) {
 }
 
 function regExpNickName(str) {
-    const idReg = new RegExp('(?!^[0-0]*$)^([가-힣||ㄱ-ㅎ||ㅏ-ㅣ||a-z||A-Z||0-9||あ-ん||?~!@#$%^&*]{0,15})$', 'gm');
+    const idReg = new RegExp('(?!^[0-0]*$)^([가-힣||ㄱ-ㅎ||ㅏ-ㅣ||a-z||A-Z||0-9||あ-ん||?~!@#$%^&*]{1,15})$', 'gm');
     return idReg.test(str);
 }
 
 function regExpName(str) {
-    const idReg = new RegExp('(?!^[0-9]*$)^([가-힣]{0,6})$', 'gm');
+    const idReg = new RegExp('(?!^[0-9]*$)^([가-힣]{1,6})$', 'gm');
     return idReg.test(str);
 }
 

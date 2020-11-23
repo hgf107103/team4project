@@ -18,12 +18,14 @@
 <body class="bgBlur">
     <div id="mainDiv">
     </div>
+    <c:if test="${userLogin.userID ne 'admin'}">
     <div class="fiexdDiv callBlur" id="menubar">
         <input type="button" id="menuOpen" value="메뉴" onclick="menuOpenFunction()">
         <input type="button" id="menuLOL" value="리그오브레전드" onclick="location.href = 'contents?categoryName=LOL'">
         <input type="button" id="menuBG" value="배틀그라운드" onclick="location.href = 'contents?categoryName=BG'">
         <input type="button" id="menuOW" value="오버워치" onclick="location.href = 'contents?categoryName=OW'">
     </div>
+    </c:if>
     <div class="fiexdDiv callBlur" id="titleMove">
         <p>샘</p>
         <p>플</p>
@@ -35,7 +37,7 @@
     <form class="fiexdDiv callBlur" id="loginDiv" name="loginForm">
         <input type="text" id="idInput" autocomplete="off" onkeyup="if (window.event.keyCode == 13) {loginFunction()}" placeholder="ID">
         <input type="password" id="pwdInput" onkeyup="if (window.event.keyCode == 13) {loginFunction()}" placeholder="PASSWORD">
-        <img src="VIEW/img/icon/login.png" width="2.5%" alt="" onclick="loginFunction()">
+        <img src="VIEW/img/icon/login.png" width="3.5%" alt="" onclick="loginFunction()">
         <input type="button" id="signup" onclick="showSignup(); location.href='#signupDiv'" onmouseenter="show('signup','rgb(192, 255, 132)', '회원가입')" onmouseout="out('signup','rgb(192, 255, 132)', 'NEW')" value="NEW">
     </form>
     <div id="signupDiv">
@@ -65,8 +67,21 @@
     </div>
     <%} else if (session.getAttribute("userLogin") != null) {%>
     <div class="fiexdDiv" id="loginDiv">
-        <input type="button" id="mypage" value="MY" onmouseenter="show('mypage','rgb(255, 120, 120)', '마이페이지')" onmouseout="out('mypage','rgb(255, 120, 120)', 'MY')" onclick="window.open('mypage.html#contentMenu', '_blank')">
+    	<c:choose>
+    	<c:when test="${userLogin.userID ne 'admin'}">
+    		<input type="button" id="mypage" value="MY" onmouseenter="show('mypage','rgb(255, 120, 120)', '마이페이지')" onmouseout="out('mypage','rgb(255, 120, 120)', 'MY')" onclick="window.open('mypage.html#contentMenu', '_blank')">
+    	</c:when>
+        <c:when test="${userLogin.userID eq 'admin'}">
+    		<input type="button" id="mypage" value="AD" onmouseenter="show('mypage','rgb(255, 120, 120)', '관리자페이지')" onmouseout="out('mypage','rgb(255, 120, 120)', 'AD')" onclick="window.open('master','title','height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes, status=no, titlebar=no, location=no, resizable=no');">
+    	</c:when>
+    	<c:otherwise></c:otherwise>
+    	</c:choose>
         <input type="button" id="logout" style="margin-right: 0px;" value="OUT"onmouseenter="show('logout', 'rgb(183, 145, 255)', '로그아웃')" onmouseout="out('logout', 'rgb(183, 145, 255)', 'OUT')" onclick="logout()">
+    </div>
+    <div class="fiexdDiv" id="loginStatus">
+    	<p>
+    		<span><c:out value="${userLogin.userNickname}"></c:out></span>님 환영합니다.
+    	</p>
     </div>
     <%} %>
 </body>

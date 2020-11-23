@@ -43,7 +43,7 @@ public class masterUserBoardListServlet extends HttpServlet {
 		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
 		String check = "fail";
 		try {
-			System.out.println("masterUserBoardListServlet : " + request.getParameter("userNumber"));
+			//System.out.println("masterUserBoardListServlet : " + request.getParameter("userNumber"));
 			int userNumber = Integer.parseInt(request.getParameter("userNumber"));
 			
 			if (session.getAttribute("userLogin") != null) {

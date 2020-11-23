@@ -20,7 +20,7 @@ import object.userVO;
 /**
  * Servlet implementation class masterFixedUserStopdayServlet
  */
-@WebServlet("/master/user/board/stopDay")
+@WebServlet("/master/user/stopUp")
 public class masterFixedUserStopdayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -46,6 +46,10 @@ public class masterFixedUserStopdayServlet extends HttpServlet {
 			int userNumberParam = Integer.parseInt(request.getParameter("userNumber"));
 			int addDay = Integer.parseInt(request.getParameter("addDay"));
 			
+			if (addDay <= 0) {
+				return;
+			}
+			
 			if (session.getAttribute("userLogin") == null) {
 				//System.out.println("유저로그인 값없음");
 				check = "notLogin";
@@ -64,54 +68,58 @@ public class masterFixedUserStopdayServlet extends HttpServlet {
 						check = "fail";
 					}
 					if(userMain != null) {
-						
-						Date dateTemp = new Date((System.currentTimeMillis() / (24 * 60 * 60 * 1000)) * (24 * 60 * 60 * 1000));
-						//현재시간 나머지 잔시간 배제
-						
-						//현재 시간이 userMain의 시간보다 적으면 dateTemp를 userMain의 시간으로 변경함
-						if(dateTemp.getTime() < userMain.getUserStopDay().getTime()) {
-							dateTemp.setTime(userMain.getUserStopDay().getTime());
+						if(userMain.getUserOutCheck() == 1 || userMain.getUserOutCheck() < 0) {
+							check = "outUser";
 						}
-						//System.out.println(dateTemp);
-						//System.out.println(dateTemp.getTime());
-						
-						//현재시간 + (추가할 날짜 * 밀리초)
-						Date lastDateTemp = new Date(dateTemp.getTime() + (addDay * (24 * 60 * 60 * 1000)));
-						//System.out.println(lastDateTemp);
-						//System.out.println(lastDateTemp.getTime());
-						
-						if(addDay >= 30) {
-							if(addDay == 30) {
-								lastDateTemp.setTime(dateTemp.getTime());
-								lastDateTemp.setMonth(lastDateTemp.getMonth() + 1);
-							}
-							else if(addDay == 365) {
-								lastDateTemp.setTime(dateTemp.getTime());
-								lastDateTemp.setYear(lastDateTemp.getYear() + 1);
-							}
-							//System.out.println("asd" + lastDateTemp);
-							//System.out.println("asd" + lastDateTemp.getTime());
-						}
-						
-						//유저 스톱시간과 유저 넘버를 조정
-						userVO lastUserTemp = new userVO();
-						lastUserTemp.setUserStopDay(lastDateTemp);
-						lastUserTemp.setUserNumber(userNumberParam);
-						//System.out.println(lastUserTemp.toString());
-						
-						//DB작업
-						int updateCheck = sqlse.update("userMapper.updateUserStopDay", lastUserTemp);
-						System.out.println(updateCheck);
-						if(updateCheck > 0) {
-							check = "success";
-							sqlse.commit();
+						else if(userMain.getUserOutCheck() == 0) {
+							Date dateTemp = new Date((System.currentTimeMillis() / (24 * 60 * 60 * 1000)) * (24 * 60 * 60 * 1000));
+							//현재시간 나머지 잔시간 배제
 							
-							number = (int) ((lastDateTemp.getTime() / (24 * 60 * 60 * 1000)) - (dateTemp.getTime() / (24 * 60 * 60 * 1000)));
+							//현재 시간이 userMain의 시간보다 적으면 dateTemp를 userMain의 시간으로 변경함
+							if(dateTemp.getTime() < userMain.getUserStopDay().getTime()) {
+								dateTemp.setTime(userMain.getUserStopDay().getTime());
+							}
+							//System.out.println(dateTemp);
+							//System.out.println(dateTemp.getTime());
 							
-							if(number < 0) {
-								number = 0;
+							//현재시간 + (추가할 날짜 * 밀리초)
+							Date lastDateTemp = new Date(dateTemp.getTime() + (addDay * (24 * 60 * 60 * 1000)));
+							//System.out.println(lastDateTemp);
+							//System.out.println(lastDateTemp.getTime());
+							
+							if(addDay >= 30) {
+								if(addDay <= 31) {
+									lastDateTemp.setTime(dateTemp.getTime());
+									lastDateTemp.setMonth(lastDateTemp.getMonth() + 1);
+								}
+								else if(addDay >= 32) {
+									lastDateTemp.setTime(dateTemp.getTime());
+									lastDateTemp.setYear(lastDateTemp.getYear() + 1);
+								}
+								//System.out.println("asd" + lastDateTemp);
+								//System.out.println("asd" + lastDateTemp.getTime());
 							}
 							
+							//유저 스톱시간과 유저 넘버를 조정
+							userVO lastUserTemp = new userVO();
+							lastUserTemp.setUserStopDay(lastDateTemp);
+							lastUserTemp.setUserNumber(userNumberParam);
+							//System.out.println(lastUserTemp.toString());
+							
+							//DB작업
+							int updateCheck = sqlse.update("userMapper.updateUserStopDay", lastUserTemp);
+							System.out.println(updateCheck);
+							if(updateCheck > 0) {
+								check = "success";
+								sqlse.commit();
+								
+								number = (int) ((lastDateTemp.getTime() / (24 * 60 * 60 * 1000)) - (dateTemp.getTime() / (24 * 60 * 60 * 1000)));
+								
+								if(number < 0) {
+									number = 0;
+								}
+								
+							}
 						}
 					}
 				}
@@ -123,7 +131,7 @@ public class masterFixedUserStopdayServlet extends HttpServlet {
 			pw.write("\"plusDay\":"+ number);
 			pw.write("}");
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("masterFixedUserStopdayServlet ERROR : " + e);
 			sqlse.close();
 			response.sendError(400);
 		}

@@ -47,8 +47,8 @@ public class loginServlet extends HttpServlet {
 			cryptoObject crypto = cryptoObject.getInstence(request.getParameter("userLoginPWD"));
 			crypto.setSHA256String();
 			
-			System.out.println("userLoginID : " + request.getParameter("userLoginID"));
-			System.out.println("userLoginPWD : " + crypto.getHashString());
+			//System.out.println("userLoginID : " + request.getParameter("userLoginID"));
+			//System.out.println("userLoginPWD : " + crypto.getHashString());
 			userVO userTemp = new userVO();
 			userTemp.setUserID(request.getParameter("userLoginID"));
 			userTemp.setUserPassword(crypto.getHashString());
@@ -56,7 +56,7 @@ public class loginServlet extends HttpServlet {
 			userVO userAdminCheck = sqlse.selectOne("userMapper.isAdminUserCheck", userTemp);
 			
 			if(userAdminCheck != null) {
-				System.out.println("admin Login : " + userAdminCheck.toString());
+				//System.out.println("admin Login : " + userAdminCheck.toString());
 				session.setAttribute("userLogin", userAdminCheck);
 				check = "admin";
 			}
@@ -69,21 +69,21 @@ public class loginServlet extends HttpServlet {
 						userVO userCheck = sqlse.selectOne("userMapper.isUserLogin", userTemp);
 						
 						if(userCheck != null) {
-							System.out.println("Login Success : " + userCheck.toString());
+							//System.out.println("Login Success : " + userCheck.toString());
 							check = "loginSuccess";
 							session.setAttribute("userLogin", userCheck);
 						}
 						else if(userCheck == null) {
-							System.out.println("Login Fail : pwdWrong");
+							//System.out.println("Login Fail : pwdWrong");
 							check = "pwdWrong";
 						}
 					} else if(useridCheck.getUserOutCheck() == 1) {
-						System.out.println("Login Fail : stopUser");
+						//System.out.println("Login Fail : stopUser");
 						check = "stopUser";
 					}
 				}
 				else if(useridCheck == null) {
-					System.out.println("Login Fail : idWrong");
+					//System.out.println("Login Fail : idWrong");
 					check = "idWrong";
 				}
 				

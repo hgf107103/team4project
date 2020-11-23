@@ -32,7 +32,7 @@ div#mainDiv {
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
-    width: 80%;
+    width: 60%;
     top: 10px;
     right: 0px;
     text-align: right;
@@ -57,14 +57,42 @@ div#mainDiv {
     transition: transform ease 0.7s 0s, border ease 0.5s 0s, box-shadow ease 0.3s 0.4s;
 }
 
+#loginStatus {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    width: 60%;
+    top: 80px;
+    right: 0px;
+    text-align: right;
+    padding: 10px;
+    padding-right: 30px;
+}
+
+#loginStatus p {
+	display: inline-block;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: rgb(0,0,0);
+	text-shadow: 0px 0px 0.1em rgba(255,255,255, 0.8), 0px 0px 0.3em rgba(255,255,255, 0.5);
+	padding-right: 5px;
+	cursor: default;
+}
+#loginStatus p span {
+	display: inline-block;
+	padding-right: 10px;
+	color: red;
+}
+
 
 
 
 #loginDiv input[type=text] {
-    width: 15%;
+    width: 20%;
     margin: 0px 5px;
     font-size: 20px;
-    padding: 8px 10px;
+    padding: 10px 10px;
     opacity: 0.7;
     border: 1px solid rgba(0,0,0,0.5);
     border-radius: 50px;
@@ -79,10 +107,10 @@ div#mainDiv {
     transition: opacity ease 0.8s 0s, border ease 0.8s 0s, box-shadow ease 0.6s 0.2s;
 }
 #loginDiv input[type=password] {
-    width: 15%;
+    width: 20%;
     margin: 0px 5px;
     font-size: 20px;
-    padding: 8px 10px;
+    padding: 10px 10px;
     opacity: 0.7;
     border: 1px solid rgba(0,0,0,0.5);
     border-radius: 50px;
