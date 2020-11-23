@@ -44,6 +44,12 @@
         UPDATE userTable SET userStopDay = #{userStopDay} WHERE userNumber = #{userNumber};
     </update>
     
+    <update id="updateUserOutDay" parameterType="int">
+        UPDATE userTable SET userOutCheck = 1 WHERE userNumber = #{userNumber};
+    </update>
     
+    <update id="updateUserBackDay" parameterType="int">
+        UPDATE userTable SET userOutCheck = 0 WHERE userNumber = #{userNumber};
+    </update>
 
 </mapper>
