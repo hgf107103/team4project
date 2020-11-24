@@ -18,7 +18,7 @@
 <body class="bgBlur">
     <div id="mainDiv">
     </div>
-    <c:if test="${userLogin.userID ne 'admin'}">
+    <c:if test="${userLogin.adminUserCheck != 1}">
     <div class="fiexdDiv callBlur" id="menubar">
         <input type="button" id="menuOpen" value="메뉴" onclick="menuOpenFunction()">
         <input type="button" id="menuLOL" value="리그오브레전드" onclick="location.href = 'contents?categoryName=LOL'">
@@ -68,10 +68,10 @@
     <%} else if (session.getAttribute("userLogin") != null) {%>
     <div class="fiexdDiv" id="loginDiv">
     	<c:choose>
-    	<c:when test="${userLogin.userID ne 'admin'}">
-    		<input type="button" id="mypage" value="MY" onmouseenter="show('mypage','rgb(255, 120, 120)', '마이페이지')" onmouseout="out('mypage','rgb(255, 120, 120)', 'MY')" onclick="window.open('mypage.html#contentMenu', '_blank')">
+    	<c:when test="${userLogin.adminUserCheck != 1}">
+    		<input type="button" id="mypage" value="MY" onmouseenter="show('mypage','rgb(255, 120, 120)', '마이페이지')" onmouseout="out('mypage','rgb(255, 120, 120)', 'MY')" onclick="window.open('user/mypage', '_blank')">
     	</c:when>
-        <c:when test="${userLogin.userID eq 'admin'}">
+        <c:when test="${userLogin.adminUserCheck == 1}">
     		<input type="button" id="mypage" value="AD" onmouseenter="show('mypage','rgb(255, 120, 120)', '관리자페이지')" onmouseout="out('mypage','rgb(255, 120, 120)', 'AD')" onclick="window.open('master','title','height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes, status=no, titlebar=no, location=no, resizable=no');">
     	</c:when>
     	<c:otherwise></c:otherwise>

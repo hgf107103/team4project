@@ -11,6 +11,7 @@ public class userVO {
 	private Date userCreateDate;
 	private Date userStopDay;
 	private int userOutCheck;
+	private int adminUserCheck;
 	
 	public int getUserNumber() {
 		return userNumber;
@@ -60,11 +61,17 @@ public class userVO {
 	public void setUserOutCheck(int userOutCheck) {
 		this.userOutCheck = userOutCheck;
 	}
+	public int getAdminUserCheck() {
+		return adminUserCheck;
+	}
+	public void setAdminUserCheck(int adminUserCheck) {
+		this.adminUserCheck = adminUserCheck;
+	}
 	@Override
 	public String toString() {
 		return "userVO [userNumber=" + userNumber + ", userID=" + userID + ", userPassword=" + userPassword
 				+ ", userName=" + userName + ", userNickname=" + userNickname + ", userCreateDate=" + userCreateDate
-				+ ", userStopDay=" + userStopDay + ", userOutCheck=" + userOutCheck + "]";
+				+ ", userStopDay=" + userStopDay + ", userOutCheck=" + userOutCheck + adminUserCheck +"]";
 	}
 	
 	

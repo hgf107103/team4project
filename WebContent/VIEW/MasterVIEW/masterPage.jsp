@@ -5,7 +5,7 @@
 <html lang="ko" oncontextmenu="return false" ondragstart="return false" onselectstart='return false'>
 <head>
     <meta charset="UTF-8">
-    <title>메인화면</title>
+    <title>관리자 페이지</title>
     <script src="/project/VIEW/JS/jquery-3.5.1.min.js"></script>
     <script src="/project/VIEW/JS/masterScript.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -17,8 +17,7 @@
 		response.sendError(403);
 	}
 %>
-	<c:if test="${userLogin.userID eq 'admin'}">
-	<c:if test="${userLogin.userNumber == 1}">
+	<c:if test="${userLogin.adminUserCheck == 1}">
     <div id="userListDiv">
         <table id="userTableHeader">
             <tr>
@@ -88,7 +87,6 @@
             </div>
         </div>
     </div>
-    </c:if>
     </c:if>
 </body>
 </html>

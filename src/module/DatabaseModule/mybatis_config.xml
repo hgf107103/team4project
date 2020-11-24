@@ -18,5 +18,6 @@
         <mapper resource="module/DatabaseModule/boardMapper.xml"/>
         <mapper resource="module/DatabaseModule/commentMapper.xml"/>
         <mapper resource="module/DatabaseModule/userMapper.xml"/>
+        <mapper resource="module/DatabaseModule/userInfoMapper.xml"/>
     </mappers>
 </configuration>

@@ -43,4 +43,7 @@
     	SELECT * FROM boardTable WHERE userNumber = ${userNumber} ORDER BY boardNumber ASC;
     </select>
     
+    <select id="one" parameterType="int" resultMap="boardMap">
+    </select>
+    
 </mapper>

@@ -12,10 +12,11 @@
     	<result property="userCreateDate" column="userCreateDate"/>
     	<result property="userStopDay" column="userStopDay"/>
     	<result property="userOutCheck" column="userOutCheck"/>
+    	<result property="adminUserCheck" column="adminUserCheck"/>
     </resultMap>
     
    	<select id="isUserCheck" parameterType="object.userVO" resultMap="userMap">
-        SELECT * FROM userTable WHERE userID=#{userID} AND adminUserCheck = 0;
+        SELECT * FROM userTable WHERE userID=#{userID};
     </select>
     <select id="isUserNickNameCheck" parameterType="object.userVO" resultMap="userMap">
         SELECT * FROM userTable WHERE userNickname=#{userNickname};

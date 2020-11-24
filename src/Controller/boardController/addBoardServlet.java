@@ -16,6 +16,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import module.DatabaseModule.MyBatisConnectionFactory;
 import object.boardVO;
+import object.userInfoVO;
 import object.userVO;
 
 /**
@@ -70,6 +71,18 @@ public class addBoardServlet extends HttpServlet {
 				break;
 			}
 			userVO userTemp = (userVO)session.getAttribute("userLogin");
+			
+			userInfoVO infoTemp = sqlse.selectOne("userInfoMapper.callUserInfo", userTemp.getUserNumber());
+			
+			
+			
+			/*if (infoTemp.getBoardCount() >= 30) {
+				check = "overCount";
+				int commentDeleteCheck = sqlse.delete("commentMapper.deleteAllComment", userTemp.getUserNumber());
+			}*/
+			
+			
+			
 			Date dateTemp = new Date(System.currentTimeMillis());
 			Date date = new Date((dateTemp.getTime() / (24 * 60 * 60 * 1000)) * (24 * 60 * 60 * 1000));
 			
@@ -83,7 +96,9 @@ public class addBoardServlet extends HttpServlet {
 				int dbResultCheck = sqlse.insert("boardMapper.insertBoard", boardTemp);
 				
 				if(dbResultCheck > 0) {
-					check = "success";
+					if(!check.equals("overCount")) {
+						check = "success";
+					}
 					sqlse.commit();
 				}
 				

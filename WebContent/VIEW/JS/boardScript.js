@@ -175,7 +175,7 @@ function deleteComment(cnumber, bnumber, unumber) {
         	}
         },
         error: () => {
-            console.log('댓글삭제 오류발생');
+            console.error('댓글삭제 오류발생');
             alert('오류가 발생하였습니다.');
         }
     });
@@ -202,13 +202,10 @@ function deleteBoard(bnumber, unumber) {
         success: (data) => {
         	if(data.check == "notLogin") {
         		alert('삭제 권한이 없습니다.\n비로그인 사용자입니다.');
-        		console.log(data.boardNumber);
-        		console.log();
         		return;
         	}
         	if(data.check == "notYours") {
         		alert('삭제 권한이 없습니다.\n자신의 댓글이 아닙니다.');
-        		console.log(data.boardNumber);
         		return;
         	}
         	if(data.check == "success") {
@@ -227,7 +224,7 @@ function deleteBoard(bnumber, unumber) {
         	}
         },
         error: () => {
-            console.log('게시글 삭제 오류발생');
+            console.error('게시글 삭제 오류발생');
             alert('오류가 발생하였습니다.');
         }
     });
@@ -253,17 +250,21 @@ function newContents() {
         		console.log('글쓰기 성공');
         	}
         	if(data.check === "userStop") {
-        		console.log('제제 유저');
+        		console.error('제제 유저');
         		alert(`제한된 사용자입니다.\n정지일 : ${data.dateString}까지`);
         	}
         	if(data.check === "false") {
-        		console.log('글쓰기 실패');
+        		console.error('글쓰기 실패');
         		alert(`글 쓰기에 실패하였습니다.`);
+        	}
+        	if(data.check === "overCount") {
+        		console.error('글쓰기 실패');
+        		alert(`글쓰기 성공\n쓴 글이 30개를 초과하여 이전에 작성한 글이 삭제되었습니다.`);
         	}
     		window.location.reload();
         },
         error: () => {
-        	console.log('글쓰기 오류발생');
+        	console.error('글쓰기 오류발생');
         	alert('글 쓰기에 오류가 발생하였습니다.');
         }
     });

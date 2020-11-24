@@ -1,23 +1,36 @@
-function showMenu(text) {
-    $('#mainTableShow').text(text);
-}
-
 function messagePopupOpen() {
-    let win = window.open("userMessage.html#reception", "PopupWin", "width=600,height=601");
+    let message = window.open("userMessage.html#reception", "PopupWin", "width=600,height=601");
 }
 
-function getURLID() {
-    let strUrl = window.location.href;
-    let strUrlTemp = strUrl.substr(window.location.href.length - 11 , 7);
-    return strUrlTemp;
-}
+$(document).ready(() => {
+	getUserInfo();
+})
 
-function setStyle(tableName) {
-    const list = ['content', 'comment'];
-    list.forEach((value, index, array) => {
-        $(`#${value}Table`).css('display', 'none');
-        if (value == tableName) {
-            $(`#${tableName}Table`).css('display', 'table');
+
+function getUserInfo() {
+	$.ajax({
+        url: `mypage/info`,
+        type: "post",
+        cache: false,
+        dataType: "json",
+        success: (data) => {
+        	if(data.check == 'success') {
+        		console.log('갱신 성공')
+        		$('#userBoardCount').text(`${data.boardCount}개`);
+        		$('#userCommentCount').text(`${data.commentCount}개`);
+        		return;
+        	}
+        	if(data.check == 'notLogin') {
+        		console.error('로그인 되어 있지 않음')
+        		return;
+        	}
+        	if(data.check != 'success') {
+        		console.error('정보 갱신 실패')
+        		return;
+        	}
+        },
+        error: () => {
+            console.error('유저리스트 갱신 오류발생');
         }
     });
 }

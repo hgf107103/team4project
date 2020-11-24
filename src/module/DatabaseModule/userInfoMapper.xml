@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userInfoMapper">
+
+    <resultMap id="infoMap" type="object.userInfoVO">
+    	<result property="userNumber" column="userNumber"/>
+    	<result property="boardCount" column="boardCount"/>
+    	<result property="commentCount" column="commentCount" />
+    </resultMap>
+    
+    <select id="callUserInfo" parameterType="int" resultMap="infoMap">
+    	SELECT T5.userNumber, boardCount, commentCount
+		FROM (SELECT T1.userNumber, COUNT(T2.boardNumber) AS boardCount
+		FROM userTable AS T1 LEFT JOIN boardTable AS T2 ON T1.userNumber = T2.userNumber
+		GROUP BY T1.userNumber) AS T5 LEFT JOIN (SELECT T3.userNumber, COUNT(T4.commentNumber) AS commentCount
+		FROM userTable AS T3 LEFT JOIN commentTable AS T4 ON T3.userNumber = T4.userNumber
+		GROUP BY T3.userNumber ) AS T6 ON T5.userNumber = T6.userNumber WHERE T5.userNumber = ${userNumber}
+    </select>
+    
+</mapper>

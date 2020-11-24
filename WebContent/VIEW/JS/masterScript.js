@@ -118,7 +118,7 @@ function returnBoardList(boardObject) {
 function returnCommentList(commentObject) {
 	let returnString = `<tr><td class=commentContents>${commentObject.text}</td>` + 
 	`<td class=commentDate>${commentObject.date}</td>` + 
-	`<td class=commentControl><input type="button" class="commentDeleteButton" value="삭제"></td></tr>`;
+	`<td class=commentControl><input type="button" class="commentDeleteButton" value="삭제" onclick="commentDelete(${commentObject.board}, ${commentObject.number})"></td></tr>`;
 	return returnString;
 }
 
@@ -155,6 +155,34 @@ function boardDelete(boardNumber) {
     });
 }
 
+
+function commentDelete(boardNumber, commentNumber) {
+	$.ajax({
+        url: `master/user/comment/delete`,
+        type: "post",
+        data: {
+        	boardNumber:boardNumber,
+        	commentNumber:commentNumber,
+        	userNumber:localUserNumber
+        },
+        cache: false,
+        dataType: "json",
+        success: (data) => {
+        	console.log(data.check);
+        	if(data.check == "success") {
+        		alert('삭제에 성공했습니다.');
+        		userSelect();
+        	}
+        	if(data.check != "success") {
+        		console.error('삭제에 실패했습니다.')
+        		userSelect();
+        	}
+        },
+        error: () => {
+            console.error('게시물 삭제 오류발생');
+        }
+    });
+}
 
 
 function resetStopDay() {

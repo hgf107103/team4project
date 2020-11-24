@@ -93,6 +93,7 @@ public class masterUserBoardListServlet extends HttpServlet {
 						for (int i = 0; i < commentList.size(); i++) {
 							if (i == (commentList.size() - 1)) {
 								pw.write("{");
+								pw.write("\"board\":\"" + commentList.get(i).getBoardNumber() + "\",");
 								pw.write("\"number\":\"" + commentList.get(i).getCommentNumber() + "\",");
 								pw.write("\"text\":\"" + commentList.get(i).getCommentText() + "\",");
 								pw.write("\"date\":\"" + commentList.get(i).getCommentDate() + "\"");
@@ -101,6 +102,7 @@ public class masterUserBoardListServlet extends HttpServlet {
 							}
 							
 							pw.write("{");
+							pw.write("\"board\":\"" + commentList.get(i).getBoardNumber() + "\",");
 							pw.write("\"number\":\"" + commentList.get(i).getCommentNumber() + "\",");
 							pw.write("\"text\":\"" + commentList.get(i).getCommentText() + "\",");
 							pw.write("\"date\":\"" + commentList.get(i).getCommentDate() + "\"");
