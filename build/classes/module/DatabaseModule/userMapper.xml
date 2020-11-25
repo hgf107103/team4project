@@ -22,7 +22,7 @@
         SELECT * FROM userTable WHERE userNickname=#{userNickname};
     </select>
    	<select id="isBoardUserCheck" parameterType="int" resultMap="userMap">
-        SELECT * FROM userTable WHERE userNumber=#{userNumber} AND adminUserCheck = 0;
+        SELECT * FROM userTable WHERE userNumber=#{userNumber};
     </select>
     
     <select id="isAdminUserCheck" parameterType="object.userVO" resultMap="userMap">

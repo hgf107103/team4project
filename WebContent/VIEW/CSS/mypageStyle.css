@@ -175,7 +175,7 @@ div#mainContentsDiv {
 	margin-top: 3vh;
 	width: 99%;
 	height: 62%;
-	overflow-y: auto;
+	overflow-y: scroll;
 	background-color: rgba(255,255,255,0.7);
 }
 
@@ -225,7 +225,7 @@ div#mainContentsDiv .number {
 div#mainContentsDiv .text {
 	width: 68%;
 }
-div#mainContentsDiv .control {
+div#mainContentsDiv .date {
 	width: 20%;
 }
 div#mainContentsDiv table#mainContentsTable td.emptyTd {

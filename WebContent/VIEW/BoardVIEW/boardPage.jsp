@@ -8,6 +8,8 @@
     <script src="/project/VIEW/JS/boardScript.js"></script>
     <link rel="stylesheet" href="/project/VIEW/CSS/boardStyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/project/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/project/favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<input type="hidden" id="categoryName" value="<c:out value="${categoryName}"></c:out>">

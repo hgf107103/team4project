@@ -45,13 +45,16 @@ public class callBoardServlet extends HttpServlet {
 		try {
 			boardVO boardTemp = new boardVO();
 			int boardNumberParam = Integer.parseInt(request.getParameter("boardNumber"));
+			//System.out.println(1);
 			int categoryNumber = 0;
 			boardTemp.setBoardNumber(boardNumberParam);
 			String userID = "null";
+			//System.out.println(2);
 			if(session.getAttribute("userLogin") != null) {
 				userVO userTemp = (userVO)(session.getAttribute("userLogin"));
 				userID = userTemp.getUserName();
 			}
+			//System.out.println(3);
 			switch (request.getParameter("categoryName")) {
 			case "LOL":
 				categoryNumber = 1;
@@ -66,10 +69,10 @@ public class callBoardServlet extends HttpServlet {
 			default:
 				break;
 			}
-			
+			//System.out.println(4);
 			boardTemp.setCategoryNumber(categoryNumber);
 			List<boardVO> list = sqlse.selectList("boardMapper.callBoardList", boardTemp);
-			
+			//System.out.println(5);
 			
 			
 			int lastNumber = 1;
@@ -77,8 +80,10 @@ public class callBoardServlet extends HttpServlet {
 				pw.write("{");
 				pw.write("\"check\":\"success\",");
 				pw.write("\"board\":[");
+				//System.out.println(6);
 				for (int i = 0; i < list.size(); i++) {
 					userVO temp = sqlse.selectOne("userMapper.isBoardUserCheck", list.get(i).getUserNumber());
+					//System.out.println(i + " : " + temp + " // " + list.get(i));
 					if (i == (list.size() - 1)) {
 						lastNumber = list.get(i).getBoardNumber();
 						pw.write("{");
@@ -109,9 +114,8 @@ public class callBoardServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			System.out.println("callBoardServlet POST Call : " + e);
-			request.setAttribute("errorMessage", "글 불러오기 오류");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
+			sqlse.close();
+			response.sendError(400);
 		}
 	}
 

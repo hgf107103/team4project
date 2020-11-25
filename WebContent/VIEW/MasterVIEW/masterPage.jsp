@@ -10,6 +10,8 @@
     <script src="/project/VIEW/JS/masterScript.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/project/VIEW/CSS/masterPage.css">
+    <link rel="shortcut icon" href="/project/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/project/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <%	

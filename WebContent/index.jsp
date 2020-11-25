@@ -8,7 +8,10 @@
     <script src="VIEW/JS/jquery-3.5.1.min.js"></script>
     <script src="VIEW/JS/indexAnimation.js"></script>
     <link rel="stylesheet" href="VIEW/CSS/indexStyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Amatic+SC&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/project/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/project/favicon.ico" type="image/x-icon">
 </head>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
     <filter id="blur">
@@ -26,12 +29,9 @@
         <input type="button" id="menuOW" value="오버워치" onclick="location.href = 'contents?categoryName=OW'">
     </div>
     </c:if>
-    <div class="fiexdDiv callBlur" id="titleMove">
-        <p>샘</p>
-        <p>플</p>
-        <p>타</p>
-        <p>이</p>
-        <p>틀</p>
+    <div class="fiexdDiv" id="titleMove">
+        <p>RTGC</p>
+        <span>Real　Time　Game　Community</span>
     </div>
     <% if (session.getAttribute("userLogin") == null) {%>
     <form class="fiexdDiv callBlur" id="loginDiv" name="loginForm">

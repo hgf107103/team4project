@@ -108,7 +108,8 @@ function newComment(number) {
         alert('입력된 내용이 없습니다.');
         return;
     }
-    const boardText = $(`#textarea${number}`).val().replace(/(\r\n\t|\n|\r\t)/gm," ");
+    const boardTextreplace = $(`#textarea${number}`).val().replace(/(\r\n\t|\n|\r\t)/gm," ");
+    const boardText = boardTextreplace.replace(/(<|>|$)/gm," ");
     $.ajax({
         url: `board/comment/add`,
         type: "post",
@@ -236,8 +237,8 @@ function newContents() {
         alert('입력된 내용이 없습니다.');
         return;
     }
-    const boardTextreplace = $('#newTextWrite').val().replace(/(\r\n\t|\n|\r\t)/gm," ");
-
+    const textreplace = $('#newTextWrite').val().replace(/(\r\n\t|\n|\r\t)/gm," ");
+    const boardTextreplace = textreplace.replace(/(<|>|$)/gm," ");
     $.ajax({
         url: `board/add`,
         type: "post",

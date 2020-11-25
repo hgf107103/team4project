@@ -31,6 +31,8 @@
     	SELECT * FROM commentTable WHERE userNumber = ${userNumber} ORDER BY commentNumber ASC;
     </select>
     
-    
+    <select id="myPageCommentList" parameterType="int" resultMap="commentMap">
+    	SELECT * FROM commentTable WHERE userNumber = ${userNumber} ORDER BY commentNumber DESC;
+    </select>
 
 </mapper>

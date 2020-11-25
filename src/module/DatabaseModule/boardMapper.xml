@@ -43,7 +43,15 @@
     	SELECT * FROM boardTable WHERE userNumber = ${userNumber} ORDER BY boardNumber ASC;
     </select>
     
-    <select id="one" parameterType="int" resultMap="boardMap">
+    <select id="lastBoard" parameterType="int" resultMap="boardMap">
+    	SELECT T1.*, COUNT(T2.commentNumber) AS commentCount FROM boardTable AS T1 LEFT JOIN commentTable AS T2
+		ON T1.boardNumber = T2.boardNumber
+		WHERE T1.userNumber = ${userNumber}
+		GROUP BY T1.boardNumber ORDER BY T1.boardNumber ASC LIMIT 1;
+    </select>
+    
+    <select id="myPageBoardList" parameterType="int" resultMap="boardMap">
+    	SELECT * FROM boardTable WHERE userNumber=${userNumber} ORDER BY boardNumber DESC;
     </select>
     
 </mapper>

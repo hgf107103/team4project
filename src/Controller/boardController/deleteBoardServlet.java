@@ -100,16 +100,15 @@ public class deleteBoardServlet extends HttpServlet {
 			}
 
 			sqlse.close();
-
-		} catch (Exception e) {
-			sqlse.close();
-			response.sendError(400);
-		} finally {
-			
 			pw.write("{");
 			pw.write("\"check\":\""+ check +"\",");
 			pw.write("\"boardNumber\":\""+ number + "\"");
 			pw.write("}");
+			
+		} catch (Exception e) {
+			System.out.println("deleteBoardServlet POST ERROR : " + e);
+			sqlse.close();
+			response.sendError(400);
 		}
 	}
 

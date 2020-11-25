@@ -105,9 +105,11 @@ function loginFunction() {
 
 function callblur() {
     $('.callBlur').css('display','none');
+    $('#titleMove').css('display', 'none');
 }
 function blurOut() {
     $('.callBlur').css('display','flex');
+    $('#titleMove').css('display', 'block');
 }
 
 let strUrl = window.location.href;
@@ -293,53 +295,77 @@ function nicknameCheck() {
         return;
     }
     
-    $('#signupNickNameLog').text('닉네임을 입력하십시오')
-    $('#signupNickNameLog').css('color', 'rgb(0, 0, 0)');
+    $.ajax({
+        url: `user/signup/nickcheck`,
+        type: "post",
+        data: {
+        	userNickname:$('#signupNickName').val()
+        	},
+        cache: false,
+        dataType: "json",
+        success: (data) => {
+
+        	if(data.check == "true") {
+            	console.log('성공')
+        		$('#signupNickNameLog').text('올바른 닉네임입니다.')
+        	    $('#signupNickNameLog').css('color', 'rgb(0, 141, 7)');
+        	    signupStatus.nickname = true;
+        	    
+        	}
+        	if(data.check == "false") {
+            	console.log('실패')
+        		$('#signupNickNameLog').text('이미 존재하는 닉네임입니다.')
+        	    $('#signupNickNameLog').css('color', 'rgb(255, 0, 0)');
+        	    signupStatus.nickname = false;
+        	}
+        },
+        error: () => {
+        	console.log('오류')
+        	$('#signupNickNameLog').text('오류가 발생했습니다.')
+    	    $('#signupNickNameLog').css('color', 'rgb(255, 0, 0)');
+    	    signupStatus.nickname = false;
+        }
+    });
     
 }
+
 
 function signupSubmit() {
     if (signupStatus.id) {
         if (signupStatus.pwd) {
             if (signupStatus.name) {
-            	
-            	$.ajax({
-                    url: `user/signup/nickcheck`,
-                    type: "post",
-                    data: {
-                    	userNickname:$('#signupNickName').val()
-                    	},
-                    cache: false,
-                    dataType: "json",
-                    success: (data) => {
+            	if (signupStatus.nickname) {
+            		$.ajax({
+            	        url: `user/signup`,
+            	        type: "post",
+            	        data: {
+            	        	signupID:$('#signupIdInput').val(),
+            	        	signupPWD:$('#signupPwd').val(),
+            	        	signupName:$('#signupName').val(),
+            	        	signupNickName:$('#signupNickName').val()
+            	        	},
+            	        cache: false,
+            	        dataType: "json",
+            	        success: (data) => {
 
-                    	console.log(data)
-                    	if(data.check == "true") {
-                        	console.log('성공')
-                    		$('#signupNickNameLog').text('올바른 닉네임입니다.')
-                    	    $('#signupNickNameLog').css('color', 'rgb(0, 141, 7)');
-                    	    signupStatus.nickname = true;
-                    	}
-                    	if(data.check == "false") {
-                        	console.log('실패')
-                    		$('#signupNickNameLog').text('이미 존재하는 닉네임입니다.')
-                    	    $('#signupNickNameLog').css('color', 'rgb(255, 0, 0)');
-                    	    signupStatus.nickname = false;
-                    	}
-                    },
-                    error: () => {
-                    	console.log('오류')
-                    	$('#signupNickNameLog').text('오류가 발생했습니다.')
-                	    $('#signupNickNameLog').css('color', 'rgb(255, 0, 0)');
-                	    signupStatus.nickname = false;
-                    }
-                });
-            	
-                if (signupStatus.nickname && !regExpNickName($('#signupNickName').val())) {
-                    document.signupForm.submit();
-                	console.log('성공!')
+            	        	if(data.check == "success") {
+            	            	console.log('회원가입 성공')
+            	            	alert('회원가입되었습니다.');
+            	        	}
+            	        	if(data.check == "fail") {
+            	            	console.error('회원가입 실패');
+            	            	alert('회원가입에 실패하였습니다.');
+            	        	}
+            	        	location.href = "index.jsp";
+            	        },
+            	        error: () => {
+            	        	console.error('회원가입 오류 발생');
+            	        }
+            	    });
+                	console.log('회원가입 성공')
                     return;
                 }
+                
                 $('#signupNickNameLog').text('잘못된 닉네임입니다.')
         	    $('#signupNickNameLog').css('color', 'rgb(255, 0, 0)');
         	    signupStatus.nickname = false;

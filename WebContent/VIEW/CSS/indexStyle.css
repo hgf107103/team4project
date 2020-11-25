@@ -268,29 +268,42 @@ div#loginDiv input[type=button]#logout:hover {
 
 
 div#titleMove {
-    display: flex;
     top: 35vh;
     width: 100%;
     text-align: center;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 div#titleMove p {
+	display: inline-block;
     margin: 0 5px;
-    font-size: 12vh;
+    font-size: 14vh;
     font-weight: bold;
-    font-family: "Noto Sans KR";
+    text-shadow: 0px 0px 0.05em rgba(255,255,255,0.8), 0px 0px 0.1em rgba(255,255,255,0.8), 0px 0px 0.2em rgba(255,255,255,0.5);
+    font-family: "Amatic SC";
     cursor: default;
-    transition: transform ease 1s 0s, color ease 1s 0.5s, text-shadow ease 2s 0.5s;
+    
 }
-div#titleMove p:hover {
+/*div#titleMove p:hover {
     text-shadow: 0px 0px 0.1em rgba(0,0,0, 0.8), 0px 0px 0.2em rgba(255,182,193, 0.8), 0px 0px 0.3em rgba(255,182,193, 0.8), 0px 0px 0.4em rgba(255,182,193, 0.05), 0px 0px 0.5em rgba(255,182,193, 0.05), 0px 0px 0.6em rgba(255,182,193, 0.05), 0px 0px 0.7em rgba(255,182,193, 0.05), 0px 0px 0.8em rgba(255,182,193, 0.05), 0px 0px 0.9em rgba(255,182,193, 0.05), 0px 0px 1em rgba(255,182,193, 0.05), 0px 0px 1.2em rgba(255,182,193, 0.08);
     transform: rotate(1turn);
     color: rgb(255, 150, 150);
     transition: transform ease 1s 0s, color ease 1s 0.5s, text-shadow ease 2s 0.5s;
+}*/
+div#titleMove span{
+    display: block;
+    opacity: 0;
+    font-size: 4vh;
+    color: white;
+    text-shadow: 0px 0px 0.05em rgba(0,0,0,1), 0px 0px 0.1em rgba(0,0,0,0.8), 0px 0px 0.2em rgba(0,0,0,0.5);
+    font-family: "Amatic SC";
+	transition: opacity ease 1s 0s;
 }
+
+div#titleMove p:hover ~ span {
+	opacity: 1;
+	transition: opacity ease 1s 0s;
+}
+
 
 .bgBlur:before {
 

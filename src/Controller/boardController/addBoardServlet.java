@@ -76,10 +76,31 @@ public class addBoardServlet extends HttpServlet {
 			
 			
 			
-			/*if (infoTemp.getBoardCount() >= 30) {
+			if (infoTemp.getBoardCount() >= 30) {
 				check = "overCount";
-				int commentDeleteCheck = sqlse.delete("commentMapper.deleteAllComment", userTemp.getUserNumber());
-			}*/
+				boardVO boardCountTemp = sqlse.selectOne("boardMapper.lastBoard", userTemp.getUserNumber());
+				System.out.println("bct : " + boardCountTemp);
+				if(boardCountTemp != null) {
+					if(boardCountTemp.getCommentCount() > 0) {
+						
+						int boardCommentDelete = sqlse.delete("commentMapper.deleteAllComment", boardCountTemp.getBoardNumber());
+						
+						if(boardCommentDelete < 0) {
+							response.sendError(400);
+							return;
+						}
+						sqlse.commit();
+					}
+				}
+				
+				int boardDeleteCheck = sqlse.delete("boardMapper.deleteBoard", boardCountTemp);
+				
+				if(boardDeleteCheck <= 0) {
+					response.sendError(400);
+					return;
+				}
+				sqlse.commit();
+			}
 			
 			
 			
@@ -109,22 +130,17 @@ public class addBoardServlet extends HttpServlet {
 				dateString = userTemp.getUserStopDay().toString();
 			}
 			
-			
-		} catch (Exception e) {
-			System.out.println("addBoardServlet POST Call : " + e);
-			request.setAttribute("errorMessage", "새 글 쓰기 오류 발생");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
-		} finally {
-			System.out.println("글쓰기 종료");
-			
 			sqlse.close();
 			
 			pw.write("{");
 			pw.write("\"check\":\""+ check + "\",");
 			pw.write("\"dateString\":\""+ dateString + "\"");
 			pw.write("}");
-		};
+		} catch (Exception e) {
+			System.out.println("addBoardServlet POST Call : " + e);
+			sqlse.close();
+			response.sendError(400);
+		}
 		
 	}
 

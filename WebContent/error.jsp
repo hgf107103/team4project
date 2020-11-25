@@ -7,6 +7,8 @@
 <title>에러페이지 - <%=response.getStatus() %></title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="/project/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/project/favicon.ico" type="image/x-icon">
 <style type="text/css">
 	*{
 		margin: 0px 0px;

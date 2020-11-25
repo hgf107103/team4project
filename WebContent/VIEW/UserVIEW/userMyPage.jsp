@@ -9,6 +9,8 @@
     <script src="/project/VIEW/JS/mypageScript.js"></script>
     <link rel="stylesheet" href="/project/VIEW/CSS/mypageStyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/project/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/project/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <%	
@@ -23,7 +25,10 @@
                 <table>
                     <tr>
                         <td class="tableHead">이름</td>
-                        <td><c:out value="${userLogin.userName}"></c:out></td>
+                        <td>
+                        	<c:out value="${userLogin.userName}"></c:out>
+                        	<input type="hidden" id="userNameHidden" value="<c:out value="${userLogin.userNickname}"></c:out>">
+                        </td>
                         <td class="tableHead">닉네임</td>
                         <td style="border-bottom: 1px solid rgb(200,200,200);"><c:out value="${userLogin.userNickname}"></c:out></td>
                     </tr>
@@ -40,8 +45,8 @@
             <div id="mainMenu">
                 <table id="contentTable">
                     <tr>
-                        <td class="tableMenu" id="contentMenu" onclick="location.href = '#contentMenu';">내 게시물</td>
-                        <td class="tableMenu" id="commentMenu" onclick="location.href = '#commentMenu';">내 댓글</td>
+                        <td class="tableMenu" id="contentMenu" onclick="location.href = '#contentMenu'; getBoardList();">내 게시물</td>
+                        <td class="tableMenu" id="commentMenu" onclick="location.href = '#commentMenu'; getCommentList();">내 댓글</td>
                         <td class="tableMenu" onclick="messagePopupOpen()">쪽지</td>
                     </tr>
                 </table>
@@ -50,7 +55,7 @@
                     	<tr>
                     		<th class="number">번호</th>
                     		<th class="text">내용</th>
-                    		<th class="control">삭제</th>
+                    		<th class="control">작성일</th>
                     	</tr>
                 	</table>
                 	<table class="showTables" id="mainContentsTable">

@@ -33,11 +33,13 @@ public class signupServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
-		
+		String check = "fail";
 		try {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
+			
+			System.out.println(1);
 			
 			if (session.getAttribute("userLogin") != null) {
 				response.sendError(400);
@@ -62,22 +64,23 @@ public class signupServlet extends HttpServlet {
 			System.out.println(sqlCheck);
 			
 			sqlse.commit();
-			sqlse.close();
+			
 			PrintWriter pw = response.getWriter();
 			
 			if(sqlCheck <= 0) {
-				pw.write("<script>");
-				pw.write("alert('회원가입 오류 발생했습니다.');");
-				pw.write("location.href='/project/index.jsp';");
-				pw.write("</script>");
-				return;
+				check = "fail";
 			}
-			pw.write("<script>");
-			pw.write("alert('회원가입 성공했습니다.');");
-			pw.write("location.href='/project/index.jsp';");
-			pw.write("</script>");
+			if(sqlCheck > 0) {
+				check = "success";
+			}
+			
+			sqlse.close();
+			pw.write("{");
+			pw.write("\"check\":\"" + check + "\"");
+			pw.write("}");
 			return;
 		} catch (Exception e) {
+			System.out.println(e);
 			sqlse.close();
 			response.sendError(400);
 		}

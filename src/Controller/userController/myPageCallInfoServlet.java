@@ -66,7 +66,7 @@ public class myPageCallInfoServlet extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("masterResetUserStopdayServlet ERROR : " + e);
+			System.out.println("masterResetUserStopdayServlet POST ERROR : " + e);
 			sqlse.close();
 			response.sendError(400);
 		}
