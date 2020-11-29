@@ -15,9 +15,9 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="module/DatabaseModule/boardMapper.xml"/>
-        <mapper resource="module/DatabaseModule/commentMapper.xml"/>
-        <mapper resource="module/DatabaseModule/userMapper.xml"/>
-        <mapper resource="module/DatabaseModule/userInfoMapper.xml"/>
+        <mapper resource="Module/databaseModule/boardMapper.xml"/>
+        <mapper resource="Module/databaseModule/commentMapper.xml"/>
+        <mapper resource="Module/databaseModule/userMapper.xml"/>
+        <mapper resource="Module/databaseModule/userInfoMapper.xml"/>
     </mappers>
 </configuration>

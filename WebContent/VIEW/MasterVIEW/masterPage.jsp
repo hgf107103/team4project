@@ -1,4 +1,4 @@
-<%@page import="object.userVO"%>
+<%@page import="Object.userVO"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -39,13 +39,13 @@
             <div id="userStatus">
             	<input id="selecteUserNumber" type="hidden" readonly draggable="false" value="0">
             	<label>선택된 유저</label><input id="selecteUserID" type="text" readonly class="inputDefaultStyle" draggable="false" value="" placeholder="유저를 선택하시오">
-            	<label>남은 정지 일수</label><input type="text" readonly id="selecteUserStopDay" class="inputDefaultStyle" draggable="false" value="" placeholder="일">
+            	<label>남은 제제 일수</label><input type="text" readonly id="selecteUserStopDay" class="inputDefaultStyle" draggable="false" value="" placeholder="일">
             	<label>현재 계정 상태</label><input type="text" readonly id="selecteUserStatus" class="inputDefaultStyle" draggable="false" value="" placeholder="활성/비활성">
             </div>
             <div id="userDirectControl">
             	
             	<select name="" id="selectUserStopDayList">
-                	<option value="0">정지일수</option>
+                	<option value="0">제제일수</option>
                 	<option value="1">1일</option>
                 	<option value="3">3일</option>
                 	<option value="7">7일</option>

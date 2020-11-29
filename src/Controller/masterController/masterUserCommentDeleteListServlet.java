@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.commentVO;
-import object.userVO;
+import Object.commentVO;
+import Object.userVO;
+import Module.databaseModule.MyBatisConnectionFactory;
 
 
 @WebServlet("/master/user/comment/delete")

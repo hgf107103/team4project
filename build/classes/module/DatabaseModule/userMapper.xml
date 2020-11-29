@@ -3,7 +3,7 @@
 
 <mapper namespace="userMapper">
 
-    <resultMap id="userMap" type="object.userVO">
+    <resultMap id="userMap" type="Object.userVO">
     	<result property="userNumber" column="userNumber"/>
     	<result property="userID" column="userID"/>
     	<result property="userPassword" column="userPassword"/>
@@ -15,33 +15,33 @@
     	<result property="adminUserCheck" column="adminUserCheck"/>
     </resultMap>
     
-   	<select id="isUserCheck" parameterType="object.userVO" resultMap="userMap">
+   	<select id="isUserCheck" parameterType="Object.userVO" resultMap="userMap">
         SELECT * FROM userTable WHERE userID=#{userID};
     </select>
-    <select id="isUserNickNameCheck" parameterType="object.userVO" resultMap="userMap">
+    <select id="isUserNickNameCheck" parameterType="Object.userVO" resultMap="userMap">
         SELECT * FROM userTable WHERE userNickname=#{userNickname};
     </select>
    	<select id="isBoardUserCheck" parameterType="int" resultMap="userMap">
         SELECT * FROM userTable WHERE userNumber=#{userNumber};
     </select>
     
-    <select id="isAdminUserCheck" parameterType="object.userVO" resultMap="userMap">
+    <select id="isAdminUserCheck" parameterType="Object.userVO" resultMap="userMap">
     	SELECT * FROM userTable WHERE userID=#{userID} AND userPassword=#{userPassword} AND adminUserCheck = 1;
     </select>
     
-    <select id="isUserLogin" parameterType="object.userVO" resultMap="userMap">
+    <select id="isUserLogin" parameterType="Object.userVO" resultMap="userMap">
     	SELECT * FROM userTable WHERE userID=#{userID} AND userPassword=#{userPassword} AND adminUserCheck = 0;
     </select>
     
-    <select id="isUserList" parameterType="object.userVO" resultMap="userMap">
+    <select id="isUserList" parameterType="Object.userVO" resultMap="userMap">
     	SELECT * FROM userTable WHERE adminUserCheck = 0 ORDER BY userNumber ASC;
     </select>
     
-    <insert id="insertUserID" parameterType="object.userVO" useGeneratedKeys="true" keyProperty="userNumber">
+    <insert id="insertUserID" parameterType="Object.userVO" useGeneratedKeys="true" keyProperty="userNumber">
     	INSERT INTO userTable (userID, userPassword, userName, userNickname, userCreateDate, userStopDay, userOutCheck, adminUserCheck) VALUES(#{userID}, #{userPassword}, #{userName}, #{userNickname}, #{userCreateDate}, #{userStopDay}, 0, 0);
     </insert>
     
-    <update id="updateUserStopDay" parameterType="object.userVO">
+    <update id="updateUserStopDay" parameterType="Object.userVO">
         UPDATE userTable SET userStopDay = #{userStopDay} WHERE userNumber = #{userNumber};
     </update>
     

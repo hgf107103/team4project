@@ -1,4 +1,4 @@
-package module.CryptoModule;
+package Module.cryptoModule;
 
 public class cryptoTest {
 

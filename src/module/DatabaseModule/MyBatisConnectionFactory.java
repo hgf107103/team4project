@@ -1,4 +1,4 @@
-package module.DatabaseModule;
+package Module.databaseModule;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -13,7 +13,7 @@ public class MyBatisConnectionFactory {
 	
 	static {
 		try {
-			Reader reader = Resources.getResourceAsReader("module/DatabaseModule/mybatis_config.xml");
+			Reader reader = Resources.getResourceAsReader("Module/databaseModule/mybatis_config.xml");
 			
 			if (sqlSessionFactory == null) {
 				System.out.println("sqlSessionFactory Build Start");

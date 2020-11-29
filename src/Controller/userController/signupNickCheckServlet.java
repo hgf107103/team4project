@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.userVO;
+import Module.databaseModule.MyBatisConnectionFactory;
+import Object.userVO;
 
 /**
  * Servlet implementation class signupNickCheckServlet

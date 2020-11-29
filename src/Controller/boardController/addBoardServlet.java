@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.boardVO;
-import object.userInfoVO;
-import object.userVO;
+import Object.boardVO;
+import Object.userInfoVO;
+import Object.userVO;
+import Module.databaseModule.MyBatisConnectionFactory;
 
 /**
  * Servlet implementation class addBoardServlet
@@ -50,10 +50,7 @@ public class addBoardServlet extends HttpServlet {
 			boardVO boardTemp = new boardVO();
 			
 			if(session.getAttribute("userLogin") == null) {
-				System.out.println("addBoardServlet POST Call : No Login");
-				request.setAttribute("errorMessage", "비로그인 접근");
-				RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-				rd.forward(request, response);
+				response.sendError(403);
 				return;
 			}
 			int categoryNumber = 0;

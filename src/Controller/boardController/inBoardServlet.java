@@ -49,10 +49,7 @@ public class inBoardServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/VIEW/BoardVIEW/boardPage.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
-			System.out.println("inBoardServlet GET Call : 게시판 이동 오류발생");
-			request.setAttribute("errorMessage", "잘못된 접근");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
+			response.sendError(403);
 		}
 	}
 

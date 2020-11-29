@@ -1,4 +1,4 @@
-package module.CryptoModule;
+package Module.cryptoModule;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

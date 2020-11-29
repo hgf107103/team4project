@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.boardVO;
-import object.commentVO;
-import object.userVO;
+import Object.boardVO;
+import Object.commentVO;
+import Object.userVO;
+import Module.databaseModule.MyBatisConnectionFactory;
 
 /**
  * Servlet implementation class callCommentServlet

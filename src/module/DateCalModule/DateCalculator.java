@@ -1,4 +1,4 @@
-package module.DateCalModule;
+package Module.dateCalModule;
 
 import java.sql.Date;
 

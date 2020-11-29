@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.boardVO;
-import object.commentVO;
-import object.userVO;
+import Object.boardVO;
+import Object.commentVO;
+import Object.userVO;
+import Module.databaseModule.MyBatisConnectionFactory;
 
 /**
  * Servlet implementation class deleteCommentServlet
@@ -31,14 +31,7 @@ public class deleteCommentServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		System.out.println("deleteCommentServlet GET Call : 잘못된 영역 접근 입니다.");
-		request.setAttribute("errorMessage", "잘못된 접근");
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		rd.forward(request, response);
+		response.sendError(404);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,19 +79,14 @@ public class deleteCommentServlet extends HttpServlet {
 			}
 			
 			sqlse.close();
-
-		} catch (Exception e) {
-			System.out.println("deleteCommentServlet POST Call : " + e.getStackTrace());
-			request.setAttribute("errorMessage", "댓글 삭제 오류");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
-		} finally {
-			sqlse.close();
 			
 			pw.write("{");
 			pw.write("\"check\":\""+ check +"\",");
 			pw.write("\"boardNumber\":\""+ number + "\"");
 			pw.write("}");
+		} catch (Exception e) {
+			sqlse.close();
+			response.sendError(403);
 		}
 	}
 

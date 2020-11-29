@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.userVO;
+import Object.userVO;
+import Module.databaseModule.MyBatisConnectionFactory;
 
 /**
  * Servlet implementation class inMasterServlet

@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.userInfoVO;
-import object.userVO;
+import Module.databaseModule.MyBatisConnectionFactory;
+import Object.userInfoVO;
+import Object.userVO;
 
 @WebServlet("/user/mypage/info")
 public class myPageCallInfoServlet extends HttpServlet {

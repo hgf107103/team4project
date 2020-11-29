@@ -30,9 +30,7 @@
         </div>
     </div>
 <%} else if (request.getAttribute("categoryName") == null) {
-	request.setAttribute("errorMessage", "잘못된 접근");
-	RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
-	rd.forward(request, response);
+	response.sendError(404);
 } %>
 </body>
 </html>

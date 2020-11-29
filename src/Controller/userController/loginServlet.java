@@ -13,9 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.CryptoModule.cryptoObject;
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.userVO;
+import Object.userVO;
+import Module.cryptoModule.cryptoObject;
+import Module.databaseModule.MyBatisConnectionFactory;
 
 /**
  * Servlet implementation class loginServlet
@@ -89,18 +89,15 @@ public class loginServlet extends HttpServlet {
 				
 			}
 			sqlse.close();
-		} catch (Exception e) {
-			System.out.println("로그인 오류 : " + e);
-			sqlse.close();
-			response.sendError(400);
-		} finally {
-			System.out.println("로그인 종료");
-			
 			
 			pw.write("{");
 			pw.write("\"check\":\""+ check + "\"");
 			pw.write("}");
-		};
+		} catch (Exception e) {
+			System.out.println("로그인 오류 : " + e);
+			sqlse.close();
+			response.sendError(400);
+		}
 		
 		
 		

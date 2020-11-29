@@ -3,7 +3,7 @@
 
 <mapper namespace="userInfoMapper">
 
-    <resultMap id="infoMap" type="object.userInfoVO">
+    <resultMap id="infoMap" type="Object.userInfoVO">
     	<result property="userNumber" column="userNumber"/>
     	<result property="boardCount" column="boardCount"/>
     	<result property="commentCount" column="commentCount" />

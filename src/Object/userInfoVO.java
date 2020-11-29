@@ -1,9 +1,9 @@
-package object;
+package Object;
 
 public class userInfoVO {
-	int userNumber;
-	int boardCount;
-	int commentCount;
+	private int userNumber;
+	private int boardCount;
+	private int commentCount;
 	public int getUserNumber() {
 		return userNumber;
 	}

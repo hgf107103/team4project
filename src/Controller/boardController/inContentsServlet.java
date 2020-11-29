@@ -47,10 +47,7 @@ public class inContentsServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("VIEW/BoardVIEW/contentsSelectPage.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
-			System.out.println("inContentsServlet GET Call : 잘못된 영역 접근 입니다.");
-			request.setAttribute("errorMessage", "콘텐츠 접근 에러");
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
+			response.sendError(403);
 		}
 	}
 

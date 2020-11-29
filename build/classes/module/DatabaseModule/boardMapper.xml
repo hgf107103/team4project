@@ -3,7 +3,7 @@
 
 <mapper namespace="boardMapper">
 
-    <resultMap id="boardMap" type="object.boardVO">
+    <resultMap id="boardMap" type="Object.boardVO">
     	<result property="boardNumber" column="boardNumber"/>
     	<result property="userNumber" column="userNumber"/>
     	<result property="categoryNumber" column="categoryNumber" />
@@ -12,11 +12,11 @@
     	<result property="commentCount" column="commentCount"/>
     </resultMap>
     
-    <insert id="insertBoard" parameterType="object.boardVO" useGeneratedKeys="true" keyProperty="boardNumber">
+    <insert id="insertBoard" parameterType="Object.boardVO" useGeneratedKeys="true" keyProperty="boardNumber">
     	INSERT INTO boardTable (userNumber, categoryNumber, boardText, boardDate) VALUES(#{userNumber}, #{categoryNumber}, #{boardText}, #{boardDate});
     </insert>
     
-    <select id="callBoardList" parameterType="object.boardVO" resultMap="boardMap">
+    <select id="callBoardList" parameterType="Object.boardVO" resultMap="boardMap">
     	SELECT T1.*, COUNT(T2.commentNumber) AS commentCount
 		FROM boardTable AS T1 LEFT JOIN commentTable AS T2 ON T1.boardNumber = T2.boardNumber
 		WHERE categoryNumber = #{categoryNumber}
@@ -28,14 +28,14 @@
 		GROUP BY T1.boardNumber ORDER BY T1.boardNumber DESC LIMIT 5;
     </select>
     
-    <select id="callOneBoard" parameterType="object.boardVO" resultMap="boardMap">
+    <select id="callOneBoard" parameterType="Object.boardVO" resultMap="boardMap">
     	SELECT T1.*, COUNT(T2.commentNumber) AS commentCount
 		FROM boardTable AS T1 LEFT JOIN commentTable AS T2 ON T1.boardNumber = T2.boardNumber
 		WHERE T1.boardNumber = #{boardNumber} AND T1.userNumber = #{userNumber}
 		GROUP BY T1.boardNumber ORDER BY T1.boardNumber DESC LIMIT 5;
     </select>
     
-    <delete id="deleteBoard" parameterType="object.boardVO">
+    <delete id="deleteBoard" parameterType="Object.boardVO">
         DELETE FROM boardTable WHERE boardNumber=#{boardNumber} AND userNumber = #{userNumber};
     </delete>
     

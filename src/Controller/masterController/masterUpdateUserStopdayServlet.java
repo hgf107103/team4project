@@ -13,18 +13,18 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import module.DatabaseModule.MyBatisConnectionFactory;
-import object.boardVO;
-import object.userVO;
+import Object.boardVO;
+import Object.userVO;
+import Module.databaseModule.MyBatisConnectionFactory;
 
 /**
  * Servlet implementation class masterFixedUserStopdayServlet
  */
 @WebServlet("/master/user/stopUp")
-public class masterFixedUserStopdayServlet extends HttpServlet {
+public class masterUpdateUserStopdayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-    public masterFixedUserStopdayServlet() {
+    public masterUpdateUserStopdayServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -131,7 +131,7 @@ public class masterFixedUserStopdayServlet extends HttpServlet {
 			pw.write("\"plusDay\":"+ number);
 			pw.write("}");
 		} catch (Exception e) {
-			System.out.println("masterFixedUserStopdayServlet ERROR : " + e);
+			System.out.println("masterUpdateUserStopdayServlet ERROR : " + e);
 			sqlse.close();
 			response.sendError(400);
 		}
