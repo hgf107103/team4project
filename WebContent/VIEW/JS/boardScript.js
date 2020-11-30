@@ -46,6 +46,7 @@ $(window).scroll(() => {
             	
             	if(data.board.length < 5) {
             		check = -10;
+                    $('#boardMainSection').append(`<footer>모든 게시물을 불러왔습니다.</footer>`);
             	}
             },
             error: () => {
@@ -293,6 +294,7 @@ $(document).ready(() => {
             	
             	if(data.board.length < 5) {
             		check = -10;
+                    $('#boardMainSection').append(`<footer>모든 게시물을 불러왔습니다.</footer>`);
             	}
             },
             error: () => {

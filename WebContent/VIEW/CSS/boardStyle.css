@@ -330,6 +330,11 @@ section#boardMainSection div.board input.boardDeleteButton:hover{
 }
 
 
-
+section#boardMainSection footer {
+	text-align: center;
+	padding: 30px 0px;
+	font-size: 20px;
+	cursor: default;
+}
 
 

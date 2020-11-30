@@ -76,7 +76,7 @@
 		알 수 없는 오류가 발생했습니다.
 	<%} %>
 	</h2>
-	<input type="button" value="메인페이지로" onclick="location.href='/project/index.jsp';">
+	<input type="button" value="메인페이지로" onclick="location.href='/project/';">
 </div>
 </body>
 </html>

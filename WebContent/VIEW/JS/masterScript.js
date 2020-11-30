@@ -213,6 +213,7 @@ function resetStopDay() {
         	if(data.check == "success") {
         		alert('제제일 초기화에 성공했습니다.');
         		localUserStopDay = 0;
+        		localUserStatus = "활성";
         		getUserList();
         		userSelect();
         		return;
@@ -276,6 +277,7 @@ function updateStopDay() {
         		alert('제제일 업데이트에 성공했습니다.');
         		getUserList();
         		localUserStopDay += data.plusDay;
+        		localUserStatus = "제한";
         		userSelect();
         		return;
         	}

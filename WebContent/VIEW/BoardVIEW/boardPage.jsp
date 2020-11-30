@@ -15,9 +15,9 @@
 	<input type="hidden" id="categoryName" value="<c:out value="${categoryName}"></c:out>">
 	<input type="hidden" id="boardNumber" value="0">
 	<header class="flexBox">
-        <img src="/project/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = '/project/index.jsp'" alt="" title="누르면 홈페이지로 이동">
+        <img src="/project/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = '/project/'" alt="" title="누르면 홈페이지로 이동">
         <h1><c:out value="${categoryALLName}"></c:out> 유저 대화방</h1>
-        <img src="/project/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = '/project/index.jsp'" alt="" title="누르면 홈페이지로 이동">
+        <img src="/project/VIEW/img/boardIcon/board<c:out value="${categoryName}"></c:out>.png" onclick="location.href = '/project/'" alt="" title="누르면 홈페이지로 이동">
     </header>
     <div id="categoryMoveMenu">
     	<span>게시판 이동</span>
