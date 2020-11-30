@@ -2,6 +2,7 @@
     margin: 0 0;
     padding: 0 0;
     font-family: "Noto Sans KR";
+    cursor: default;
 }
 *:focus {
     outline: none;
@@ -98,6 +99,7 @@ div#mainDiv {
     border-radius: 50px;
     height: 40px;
     text-align: center;
+    cursor:text;
     transition: opacity ease 0.8s 0.2s, border ease 0.8s 0.2s, box-shadow ease 0.8s 0s;
 }
 #loginDiv input[type=text]:focus {
@@ -116,6 +118,7 @@ div#mainDiv {
     border-radius: 50px;
     height: 40px;
     text-align: center;
+    cursor:text;
     transition: opacity ease 0.8s 0.2s, border ease 0.8s 0.2s, box-shadow ease 0.8s 0s;
 }
 #loginDiv input[type=password]:focus {
