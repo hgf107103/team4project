@@ -65,7 +65,7 @@ public class masterUserBoardDeleteServlet extends HttpServlet {
 					if (boardCommentCheck.getCommentCount() > 0) {
 						int commentDeleteCheck = sqlse.delete("commentMapper.deleteAllComment", boardCommentCheck.getBoardNumber());
 						if (commentDeleteCheck > 0) {
-							sqlse.commit();
+							//sqlse.commit(); 잘못될 경우를 대비해 여기서 커밋하지 않음
 						} else if(commentDeleteCheck <= 0) {
 							check = "commentDeleteFail";
 							nextCheck = 1;

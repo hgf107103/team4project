@@ -3,6 +3,8 @@ package Controller.boardController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -43,6 +45,13 @@ public class callBoardServlet extends HttpServlet {
 		SqlSession sqlse = MyBatisConnectionFactory.getSqlSession();
 		PrintWriter pw = response.getWriter();
 		try {
+			/*System.out.println(request.getProtocol());
+			Enumeration eHeader = request.getHeaderNames();
+			while (eHeader.hasMoreElements()) {
+			    String hName = (String)eHeader.nextElement();
+			    String hValue = request.getHeader(hName);
+			    System.out.println(hName + " : " + hValue + "");
+			}*/
 			boardVO boardTemp = new boardVO();
 			int boardNumberParam = Integer.parseInt(request.getParameter("boardNumber"));
 			//System.out.println(1);

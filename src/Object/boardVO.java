@@ -9,7 +9,6 @@ public class boardVO {
 	private String boardText;
 	private Date boardDate;
 	private int commentCount;
-	
 	public int getBoardNumber() {
 		return boardNumber;
 	}
@@ -52,7 +51,6 @@ public class boardVO {
 				+ categoryNumber + ", boardText=" + boardText + ", boardDate=" + boardDate + ", commentCount="
 				+ commentCount + "]";
 	}
-	
 	
 	
 	
